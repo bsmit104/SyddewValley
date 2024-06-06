@@ -24,7 +24,8 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move the character by setting the velocity of the Rigidbody2D
-        rb.velocity = moveInput * moveSpeed;
+        // Move the character by setting the position of the Rigidbody2D
+        Vector2 moveVelocity = moveInput * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + moveVelocity);
     }
 }
