@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();  // Get the Rigidbody2D component attached to the GameObject
+
+        // Ensure rotation is constrained
+        rb.freezeRotation = true;
     }
 
     void Update()
