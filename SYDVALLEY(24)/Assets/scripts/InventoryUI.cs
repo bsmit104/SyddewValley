@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Add this to use TMP_Text
+using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField]
     private Inventory inventory;
-    public GameObject slotPrefab; // Assign your prefab slot
-    public Transform slotPanel; // Parent object in your UI where slots are housed
+    public GameObject slotPrefab;
+    public Transform slotPanel;
 
     private List<GameObject> slots = new List<GameObject>();
 
@@ -22,7 +22,6 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        // Subscribe to inventory changes
         inventory.OnInventoryChanged += UpdateInventoryUI;
 
         InitializeSlots();
@@ -34,10 +33,15 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Initializing slots...");
         for (int i = 0; i < inventory.items.Count; i++)
         {
-            GameObject slot = Instantiate(slotPrefab, slotPanel);
-            slots.Add(slot);
+            CreateSlot();
         }
         Debug.Log("Slots initialized. Total slots: " + slots.Count);
+    }
+
+    void CreateSlot()
+    {
+        GameObject slot = Instantiate(slotPrefab, slotPanel);
+        slots.Add(slot);
     }
 
     public void UpdateInventoryUI()
@@ -45,20 +49,17 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Updating inventory UI...");
         Debug.Log("Current slots count: " + slots.Count);
 
-        // Clear existing slots and re-initialize
-        foreach (var slot in slots)
+        // Ensure there are enough slots for the items
+        for (int i = slots.Count; i < inventory.items.Count; i++)
         {
-            Destroy(slot);
+            CreateSlot();
         }
-        slots.Clear();
 
-        for (int i = 0; i < inventory.items.Count; i++)
+        // Update the slots with item data
+        for (int i = 0; i < slots.Count; i++)
         {
-            Debug.Log("Creating slot for item: " + inventory.items[i].item.itemName);
-
-            GameObject slot = Instantiate(slotPrefab, slotPanel);
-            Transform iconTransform = slot.transform.Find("Icon");
-            Transform countTransform = slot.transform.Find("Count");
+            Transform iconTransform = slots[i].transform.Find("Icon");
+            Transform countTransform = slots[i].transform.Find("Count");
 
             if (iconTransform == null)
             {
@@ -70,7 +71,7 @@ public class InventoryUI : MonoBehaviour
             }
 
             Image iconImage = iconTransform?.GetComponent<Image>();
-            TMP_Text countText = countTransform?.GetComponent<TMP_Text>(); // Use TMP_Text instead of Text
+            TMP_Text countText = countTransform?.GetComponent<TMP_Text>();
 
             if (iconImage == null)
             {
@@ -81,29 +82,268 @@ public class InventoryUI : MonoBehaviour
                 Debug.LogError("Count TMP_Text component not found in slot prefab!");
             }
 
-            if (iconImage != null)
+            if (i < inventory.items.Count)
             {
-                iconImage.sprite = inventory.items[i].item.itemIcon;
+                if (iconImage != null)
+                {
+                    iconImage.color = Color.white; // Ensure the color is set to white
+                    iconImage.sprite = inventory.items[i].item.itemIcon;
+                }
+                if (countText != null)
+                {
+                    countText.text = inventory.items[i].stackSize.ToString();
+                }
             }
-            if (countText != null)
+            else
             {
-                countText.text = inventory.items[i].stackSize.ToString();
+                if (iconImage != null)
+                {
+                    iconImage.sprite = null;
+                }
+                if (countText != null)
+                {
+                    countText.text = "";
+                }
             }
-
-            slots.Add(slot);
         }
+
         Debug.Log("Inventory UI updated. Total slots: " + slots.Count);
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event when the object is destroyed to avoid memory leaks
         if (inventory != null)
         {
             inventory.OnInventoryChanged -= UpdateInventoryUI;
         }
     }
 }
+
+// using System.Collections.Generic;
+// using UnityEngine;
+// using UnityEngine.UI;
+// using TMPro;
+
+// public class InventoryUI : MonoBehaviour
+// {
+//     [SerializeField]
+//     private Inventory inventory;
+//     public GameObject slotPrefab;
+//     public Transform slotPanel;
+
+//     private List<GameObject> slots = new List<GameObject>();
+
+//     void Start()
+//     {
+//         Debug.Log("Initializing inventory UI...");
+
+//         if (inventory == null)
+//         {
+//             Debug.LogError("Inventory is not assigned!");
+//             return;
+//         }
+
+//         inventory.OnInventoryChanged += UpdateInventoryUI;
+
+//         InitializeSlots();
+//         UpdateInventoryUI();
+//     }
+
+//     void InitializeSlots()
+//     {
+//         Debug.Log("Initializing slots...");
+//         for (int i = 0; i < inventory.items.Count; i++)
+//         {
+//             CreateSlot();
+//         }
+//         Debug.Log("Slots initialized. Total slots: " + slots.Count);
+//     }
+
+//     void CreateSlot()
+//     {
+//         GameObject slot = Instantiate(slotPrefab, slotPanel);
+//         slots.Add(slot);
+//     }
+
+//     public void UpdateInventoryUI()
+//     {
+//         Debug.Log("Updating inventory UI...");
+//         Debug.Log("Current slots count: " + slots.Count);
+
+//         for (int i = slots.Count; i < inventory.items.Count; i++)
+//         {
+//             CreateSlot();
+//         }
+
+//         for (int i = 0; i < slots.Count; i++)
+//         {
+//             Transform iconTransform = slots[i].transform.Find("Icon");
+//             Transform countTransform = slots[i].transform.Find("Count");
+
+//             if (iconTransform == null)
+//             {
+//                 Debug.LogError("Icon child object not found in slot prefab!");
+//             }
+//             if (countTransform == null)
+//             {
+//                 Debug.LogError("Count child object not found in slot prefab!");
+//             }
+
+//             Image iconImage = iconTransform?.GetComponent<Image>();
+//             TMP_Text countText = countTransform?.GetComponent<TMP_Text>();
+
+//             if (iconImage == null)
+//             {
+//                 Debug.LogError("Icon Image component not found in slot prefab!");
+//             }
+//             if (countText == null)
+//             {
+//                 Debug.LogError("Count TMP_Text component not found in slot prefab!");
+//             }
+
+//             if (i < inventory.items.Count)
+//             {
+//                 if (iconImage != null)
+//                 {
+//                     iconImage.color = Color.white; // Ensure the color is set to white
+//                     iconImage.sprite = inventory.items[i].item.itemIcon;
+//                 }
+//                 if (countText != null)
+//                 {
+//                     countText.text = inventory.items[i].stackSize.ToString();
+//                 }
+//             }
+//             else
+//             {
+//                 if (iconImage != null)
+//                 {
+//                     iconImage.sprite = null;
+//                 }
+//                 if (countText != null)
+//                 {
+//                     countText.text = "";
+//                 }
+//             }
+//         }
+
+//         Debug.Log("Inventory UI updated. Total slots: " + slots.Count);
+//     }
+
+//     private void OnDestroy()
+//     {
+//         if (inventory != null)
+//         {
+//             inventory.OnInventoryChanged -= UpdateInventoryUI;
+//         }
+//     }
+// }
+
+// using System.Collections.Generic;
+// using UnityEngine;
+// using UnityEngine.UI;
+// using TMPro; // Add this to use TMP_Text
+
+// public class InventoryUI : MonoBehaviour
+// {
+//     [SerializeField]
+//     private Inventory inventory;
+//     public GameObject slotPrefab; // Assign your prefab slot
+//     public Transform slotPanel; // Parent object in your UI where slots are housed
+
+//     private List<GameObject> slots = new List<GameObject>();
+
+//     void Start()
+//     {
+//         Debug.Log("Initializing inventory UI...");
+
+//         if (inventory == null)
+//         {
+//             Debug.LogError("Inventory is not assigned!");
+//             return;
+//         }
+
+//         // Subscribe to inventory changes
+//         inventory.OnInventoryChanged += UpdateInventoryUI;
+
+//         InitializeSlots();
+//         UpdateInventoryUI();
+//     }
+
+//     void InitializeSlots()
+//     {
+//         Debug.Log("Initializing slots...");
+//         for (int i = 0; i < inventory.items.Count; i++)
+//         {
+//             GameObject slot = Instantiate(slotPrefab, slotPanel);
+//             slots.Add(slot);
+//         }
+//         Debug.Log("Slots initialized. Total slots: " + slots.Count);
+//     }
+
+//     public void UpdateInventoryUI()
+//     {
+//         Debug.Log("Updating inventory UI...");
+//         Debug.Log("Current slots count: " + slots.Count);
+
+//         // Clear existing slots and re-initialize
+//         foreach (var slot in slots)
+//         {
+//             Destroy(slot);
+//         }
+//         slots.Clear();
+
+//         for (int i = 0; i < inventory.items.Count; i++)
+//         {
+//             Debug.Log("Creating slot for item: " + inventory.items[i].item.itemName);
+
+//             GameObject slot = Instantiate(slotPrefab, slotPanel);
+//             Transform iconTransform = slot.transform.Find("Icon");
+//             Transform countTransform = slot.transform.Find("Count");
+
+//             if (iconTransform == null)
+//             {
+//                 Debug.LogError("Icon child object not found in slot prefab!");
+//             }
+//             if (countTransform == null)
+//             {
+//                 Debug.LogError("Count child object not found in slot prefab!");
+//             }
+
+//             Image iconImage = iconTransform?.GetComponent<Image>();
+//             TMP_Text countText = countTransform?.GetComponent<TMP_Text>(); // Use TMP_Text instead of Text
+
+//             if (iconImage == null)
+//             {
+//                 Debug.LogError("Icon Image component not found in slot prefab!");
+//             }
+//             if (countText == null)
+//             {
+//                 Debug.LogError("Count TMP_Text component not found in slot prefab!");
+//             }
+
+//             if (iconImage != null)
+//             {
+//                 iconImage.sprite = inventory.items[i].item.itemIcon;
+//             }
+//             if (countText != null)
+//             {
+//                 countText.text = inventory.items[i].stackSize.ToString();
+//             }
+
+//             slots.Add(slot);
+//         }
+//         Debug.Log("Inventory UI updated. Total slots: " + slots.Count);
+//     }
+
+//     private void OnDestroy()
+//     {
+//         // Unsubscribe from the event when the object is destroyed to avoid memory leaks
+//         if (inventory != null)
+//         {
+//             inventory.OnInventoryChanged -= UpdateInventoryUI;
+//         }
+//     }
+// }
 
 
 

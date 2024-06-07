@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8833844ae2c874b98e0de3b3826657, type: 3}
+  m_Name: BigSando
+  m_EditorClassIdentifier: 
+  itemName: Mamas Big Sandiwich
+  itemIcon: {fileID: 21300000, guid: c785a484cc905a248be98f8c88f588da, type: 3}
+  maxStack: 69
