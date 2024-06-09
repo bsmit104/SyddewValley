@@ -33,7 +33,36 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(Item itemToAdd, int quantity = 1)
+    public bool IsFull()
+    {
+        return items.Count >= 9; // Assuming 9 is the maximum number of different items the inventory can hold
+    }
+
+    // public void AddItem(Item itemToAdd, int quantity = 1)
+    // {
+    //     foreach (var itemStack in items)
+    //     {
+    //         if (itemStack.item.itemName == itemToAdd.itemName && itemStack.stackSize < itemStack.item.maxStack)
+    //         {
+    //             int availableSpace = itemStack.item.maxStack - itemStack.stackSize;
+    //             int toAdd = Mathf.Min(quantity, availableSpace);
+    //             itemStack.stackSize += toAdd;
+    //             quantity -= toAdd;
+    //             if (quantity == 0)
+    //             {
+    //                 OnInventoryChanged?.Invoke();
+    //                 return;
+    //             }
+    //         }
+    //     }
+    //     if (quantity > 0)
+    //     {
+    //         items.Add(new ItemStack { item = itemToAdd, stackSize = quantity });
+    //         OnInventoryChanged?.Invoke();
+    //     }
+    // }
+
+    public bool AddItem(Item itemToAdd, int quantity = 1)
     {
         foreach (var itemStack in items)
         {
@@ -46,15 +75,17 @@ public class Inventory : MonoBehaviour
                 if (quantity == 0)
                 {
                     OnInventoryChanged?.Invoke();
-                    return;
+                    return true;
                 }
             }
         }
-        if (quantity > 0)
+        if (quantity > 0 && !IsFull())
         {
             items.Add(new ItemStack { item = itemToAdd, stackSize = quantity });
             OnInventoryChanged?.Invoke();
+            return true;
         }
+        return false;
     }
 
     public bool RemoveItem(Item itemToRemove, int quantity = 1)
