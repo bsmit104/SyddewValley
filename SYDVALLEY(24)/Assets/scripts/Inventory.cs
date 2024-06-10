@@ -90,6 +90,7 @@ public class Inventory : MonoBehaviour
 
     public bool RemoveItem(Item itemToRemove, int quantity = 1)
     {
+        Debug.Log($"Trying to remove {quantity} of {itemToRemove.itemName}");
         for (int i = items.Count - 1; i >= 0; i--)
         {
             ItemStack stack = items[i];
@@ -98,11 +99,18 @@ public class Inventory : MonoBehaviour
                 if (quantity >= stack.stackSize)
                 {
                     quantity -= stack.stackSize;
+                    Debug.Log($"Removing stack {stack.stackSize} of {stack.item.itemName}");
                     items.RemoveAt(i);
                 }
                 else
                 {
                     stack.stackSize -= quantity;
+                    Debug.Log($"Reducing stack by {quantity}, new count {stack.stackSize}");
+                    quantity = 0;
+                }
+
+                if (quantity == 0)
+                {
                     OnInventoryChanged?.Invoke();
                     return true;
                 }
@@ -111,6 +119,30 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return quantity == 0;
     }
+
+    // public bool RemoveItem(Item itemToRemove, int quantity = 1)
+    // {
+    //     for (int i = items.Count - 1; i >= 0; i--)
+    //     {
+    //         ItemStack stack = items[i];
+    //         if (stack.item.itemName == itemToRemove.itemName)
+    //         {
+    //             if (quantity >= stack.stackSize)
+    //             {
+    //                 quantity -= stack.stackSize;
+    //                 items.RemoveAt(i);
+    //             }
+    //             else
+    //             {
+    //                 stack.stackSize -= quantity;
+    //                 OnInventoryChanged?.Invoke();
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     OnInventoryChanged?.Invoke();
+    //     return quantity == 0;
+    // }
 }
 
 // using System.Collections.Generic;
