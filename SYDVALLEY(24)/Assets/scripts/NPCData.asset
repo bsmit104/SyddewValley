@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99fba5f93a26d74990ee7df8ac98fac, type: 3}
+  m_Name: NPCData
+  m_EditorClassIdentifier: 
+  npcs:
+  - name: Anabelle
+    likedGifts:
+    - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+    - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+    - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
+    heartPoints: 0
+    dialogues:
+    - '"Scrumdillyuptious"'
+    - '"Gonna eat this and paint!"'
+  - name: 
+    likedGifts: []
+    heartPoints: 0
+    dialogues: []
