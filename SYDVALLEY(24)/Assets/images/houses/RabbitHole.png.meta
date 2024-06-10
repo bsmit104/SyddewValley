@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RabbitHole_0: 6744035055625222323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
