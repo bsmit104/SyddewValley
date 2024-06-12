@@ -1326,7 +1326,8 @@ Transform:
   m_LocalPosition: {x: -3.31, y: -2.47, z: 0}
   m_LocalScale: {x: 6.4212923, y: 6.4212923, z: 6.4212923}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1327949787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &481304351
@@ -4406,6 +4407,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4718652c06b85054ca6437613c3b170d, type: 3}
+--- !u!1 &1327949786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327949787}
+  m_Layer: 0
+  m_Name: head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1327949787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327949786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.208, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 470209123}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1362959786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 823952836101946286, guid: 8a26b75ffb754b646bb6f479c376dcfc, type: 3}
@@ -5759,6 +5791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1789005036}
   - component: {fileID: 1789005035}
+  - component: {fileID: 1789005037}
   m_Layer: 0
   m_Name: Anabelle
   m_TagString: Untagged
@@ -5835,6 +5868,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789005037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789005034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780669fb074d0854f8055a3ac036ccb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Anabelle
 --- !u!224 &1817604054 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4235883509557159637, guid: 4718652c06b85054ca6437613c3b170d, type: 3}
@@ -13476,6 +13522,9 @@ MonoBehaviour:
   inventory: {fileID: 533837612}
   slotPanel: {fileID: 1120061156}
   trashCanImage: {fileID: 129618108}
+  playerHeadTransform: {fileID: 1327949787}
+  selectedItemDisplayPrefab: {fileID: 6528222111743752768, guid: 2fbc7442912768749b0f33d2aa91b3de, type: 3}
+  draggedItemPrefab: {fileID: 5226531458436613664, guid: 5f0b4b4812c84b647b88feb83bf0a541, type: 3}
 --- !u!4 &2081783373
 Transform:
   m_ObjectHideFlags: 0
