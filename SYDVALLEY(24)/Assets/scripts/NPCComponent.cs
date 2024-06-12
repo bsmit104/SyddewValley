@@ -4,7 +4,8 @@ public class NPCComponent : MonoBehaviour
 {
     public string npcName; // Identifier for the NPC
 
-    private NPCData npcData;
+    // Change access modifier to public to make it accessible from other classes
+    public NPCData npcData;
     private NPC npc;
 
     private void Start()

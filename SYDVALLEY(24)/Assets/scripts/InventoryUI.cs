@@ -6,17 +6,6 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
-    // [SerializeField]
-    // private Inventory inventory;
-    // public Transform slotPanel;
-    // public Image trashCanImage; // Assign your trash can image in the editor
-    // public Transform playerHeadTransform; // Assign the player's head transform in the editor
-    // public GameObject selectedItemDisplayPrefab; // Prefab for displaying selected item above the player's head
-
-    // private List<GameObject> slots = new List<GameObject>();
-    // private GameObject draggedItem;
-    // private int draggedItemIndex = -1;
-    // private GameObject selectedItemDisplay;
     [SerializeField]
     private Inventory inventory;
     public Transform slotPanel;
@@ -86,7 +75,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     [System.Obsolete]
-        public void BeginDrag(BaseEventData data)
+    public void BeginDrag(BaseEventData data)
     {
         PointerEventData pointerData = (PointerEventData)data;
         draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
@@ -111,25 +100,18 @@ public class InventoryUI : MonoBehaviour
         return itemObject;
     }
 
-    // public void Drag(BaseEventData data)
-    // {
-    //     if (draggedItem != null)
-    //     {
-    //         PointerEventData pointerData = (PointerEventData)data;
-    //         draggedItem.transform.position = pointerData.position;
-    //     }
-    // }
     public void Drag(BaseEventData data)
-{
-    if (draggedItem != null)
     {
-        PointerEventData pointerData = (PointerEventData)data;
-        Vector3 newPosition = Camera.main.ScreenToWorldPoint(pointerData.position);
-        newPosition.z = 0; // Assuming your dragged items should be on the same z-plane
-        draggedItem.transform.position = newPosition;
+        if (draggedItem != null)
+        {
+            PointerEventData pointerData = (PointerEventData)data;
+            Vector3 newPosition = Camera.main.ScreenToWorldPoint(pointerData.position);
+            newPosition.z = 0; // Assuming your dragged items should be on the same z-plane
+            draggedItem.transform.position = newPosition;
+        }
     }
-}
 
+    [System.Obsolete]
     public void EndDrag(BaseEventData data)
     {
         if (draggedItem != null)
@@ -149,58 +131,6 @@ public class InventoryUI : MonoBehaviour
             UpdateInventoryUI();
         }
     }
-    // public void BeginDrag(BaseEventData data)
-    // {
-    //     PointerEventData pointerData = (PointerEventData)data;
-    //     draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
-    //     if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
-    //     {
-    //         draggedItem = CreateDraggedItem(draggedItemIndex);
-    //         slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
-    //     }
-    // }
-
-    // [System.Obsolete]
-    // GameObject CreateDraggedItem(int index)
-    // {
-    //     GameObject itemObject = new GameObject("DraggedItem");
-    //     Image itemImage = itemObject.AddComponent<Image>();
-    //     itemImage.sprite = inventory.items[index].item.itemIcon;
-    //     itemImage.SetNativeSize();
-    //     Canvas canvas = FindObjectOfType<Canvas>();
-    //     itemObject.transform.SetParent(canvas.transform, false);
-    //     itemObject.transform.SetAsLastSibling();
-    //     return itemObject;
-    // }
-
-    // public void Drag(BaseEventData data)
-    // {
-    //     if (draggedItem != null)
-    //     {
-    //         PointerEventData pointerData = (PointerEventData)data;
-    //         draggedItem.transform.position = pointerData.position;
-    //     }
-    // }
-
-    // public void EndDrag(BaseEventData data)
-    // {
-    //     if (draggedItem != null)
-    //     {
-    //         slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-    //         if (IsPointerOverUIObject(trashCanImage.gameObject))
-    //         {
-    //             Debug.Log("Item dropped on trash can.");
-    //             inventory.RemoveItem(inventory.items[draggedItemIndex].item, 1);  // Always remove one item
-    //         }
-
-    //         Destroy(draggedItem);
-    //         draggedItem = null;
-    //         draggedItemIndex = -1;
-
-    //         UpdateInventoryUI();
-    //     }
-    // }
 
     int GetSlotIndex(GameObject slot)
     {
@@ -246,17 +176,18 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void UpdateSelectedItemDisplay(Item selectedItem)
+    public void UpdateSelectedItemDisplay(Item selectedItem)
     {
-        // Check if the selectedItemDisplay is null or if it's not active
-        if (selectedItemDisplay == null || !selectedItemDisplay.activeSelf)
+        // Destroy the previous selectedItemDisplay if it exists
+        if (selectedItemDisplay != null)
         {
-            // Destroy the previous selectedItemDisplay if it exists
-            if (selectedItemDisplay != null)
-            {
-                Destroy(selectedItemDisplay);
-            }
+            Destroy(selectedItemDisplay);
+            selectedItemDisplay = null;
+        }
 
+        // Check if a new item is selected
+        if (selectedItem != null)
+        {
             // Instantiate a new selectedItemDisplay
             selectedItemDisplay = Instantiate(selectedItemDisplayPrefab);
             Image itemImage = selectedItemDisplay.GetComponent<Image>();
@@ -277,35 +208,6 @@ public class InventoryUI : MonoBehaviour
             selectedItemDisplay.transform.localScale = Vector3.one; // Reset local scale
         }
     }
-
-    // void UpdateSelectedItemDisplay(Item selectedItem)
-    // {
-    //     if (selectedItemDisplay != null)
-    //     {
-    //         Destroy(selectedItemDisplay);
-    //     }
-
-    //     if (selectedItem != null)
-    //     {
-    //         selectedItemDisplay = Instantiate(selectedItemDisplayPrefab);
-    //         Image itemImage = selectedItemDisplay.GetComponent<Image>();
-    //         if (itemImage != null)
-    //         {
-    //             itemImage.sprite = selectedItem.itemIcon;
-    //         }
-
-    //         // Set the parent to the player's head transform
-    //         selectedItemDisplay.transform.SetParent(playerHeadTransform);
-
-    //         // Set position relative to the player's head
-    //         selectedItemDisplay.transform.localPosition = new Vector3(0, 2, 0); // Adjust position above the player's head
-
-    //         // Ensure the item is positioned in world space
-    //         selectedItemDisplay.transform.localPosition = Vector3.zero; // Reset local position
-    //         selectedItemDisplay.transform.localRotation = Quaternion.identity; // Reset local rotation
-    //         selectedItemDisplay.transform.localScale = Vector3.one; // Reset local scale
-    //     }
-    // }
 
     private void OnDestroy()
     {
