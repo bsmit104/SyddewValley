@@ -61,6 +61,8 @@ public class NPCManager : MonoBehaviour
         }
     }
 }
+
+
 // using UnityEngine;
 
 // public class NPCManager : MonoBehaviour
