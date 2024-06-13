@@ -1233,6 +1233,7 @@ GameObject:
   - component: {fileID: 470209121}
   - component: {fileID: 470209120}
   - component: {fileID: 470209119}
+  - component: {fileID: 470209126}
   m_Layer: 0
   m_Name: Brayden
   m_TagString: Player
@@ -1387,6 +1388,20 @@ Transform:
   - {fileID: 1327949787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470209126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470209118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e720b5620d63844ad5dcd397f4c627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeTransparencyAmount: 0.5
+  playerTransparencyAmount: 0.75
 --- !u!1001 &481304351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22461,6 +22476,10 @@ PrefabInstance:
     - target: {fileID: 5038001370701100835, guid: 73777ac1f6f38b84cb79b10b8f4d6221, type: 3}
       propertyPath: m_Name
       value: tree3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038001370701100835, guid: 73777ac1f6f38b84cb79b10b8f4d6221, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

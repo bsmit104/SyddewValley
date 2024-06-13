@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Inventory
+  - Tree
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - tree
+  - foreground
   - Water
   - UI
   - count
