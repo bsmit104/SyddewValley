@@ -10,11 +10,11 @@ public class Enemy : MonoBehaviour
     public float walkTimeMax = 3.0f;
     public float walkSpeed = 2.0f;
     public float chaseDistance = 5.0f;
-    public float attackStrength = 10.0f;  // Strength of the attack
+    public float attackStrength = 10.0f; // Default attack strength for all enemies
     public Transform player;
 
     protected Rigidbody2D rb;
-    protected Animator animator;
+    //protected Animator animator;
     protected Vector2 movement;
     protected float idleTimer;
     protected float walkTimer;
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         idleTimer = Random.Range(idleTimeMin, idleTimeMax);
         walkTimer = Random.Range(walkTimeMin, walkTimeMax);
@@ -76,21 +76,26 @@ public class Enemy : MonoBehaviour
     protected void StartChase()
     {
         isChasing = true;
-        animator.SetBool("isChasing", true);
+        Debug.Log("chase state started");
+        //animator.SetBool("isChasing", true);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            AttackPlayer();
+            AttackPlayer(other);
         }
     }
 
-    protected virtual void AttackPlayer()
+    protected virtual void AttackPlayer(Collider2D playerCollider)
     {
-        // Default attack behavior
-        Debug.Log("Attacking player with strength: " + attackStrength);
-        // Implement your attack logic here
+        Debug.Log("attack");
+        PlayerHealth playerHealth = playerCollider.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage((int)attackStrength);
+            // Optionally, add specific attack animations or effects here
+        }
     }
 }

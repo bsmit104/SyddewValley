@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
-
-    // Reference to UI elements if needed
-    public Text healthText;
+    public TMP_Text healthText; // Use TMP_Text instead of Text
 
     void Start()
     {
@@ -35,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + currentHealth.ToString();
+            healthText.text = "H: " + currentHealth.ToString();
         }
     }
 }

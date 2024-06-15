@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrongZombie : Enemy
+public class FastZombie : Enemy
 {
-    public float increasedAttackStrength = 20.0f; // Increased attack strength for this type
+    public float increasedWalkSpeed = 4.0f;
 
     protected override void Start()
     {
         base.Start();
-        attackStrength = increasedAttackStrength; // Set the attack strength for this type
+        walkSpeed = increasedWalkSpeed;
     }
 
-    protected override void AttackPlayer()
+    protected override void AttackPlayer(Collider2D playerCollider)
     {
-        // Custom attack behavior for strong zombie
-        Debug.Log("Attacking player strongly with strength: " + attackStrength);
-        // Implement strong zombie attack logic here
+        PlayerHealth playerHealth = playerCollider.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage((int)attackStrength);
+            // Optionally, add specific attack animations or effects for fast zombie
+        }
     }
 }
