@@ -100,6 +100,48 @@ public class Inventory : MonoBehaviour
     //     return false;
     // }
 
+    // public bool AddItem(Item itemToAdd, int quantity = 1)
+    // {
+    //     if (itemToAdd == null)
+    //     {
+    //         Debug.LogError("itemToAdd is null");
+    //         return false;
+    //     }
+
+    //     Debug.Log("Adding item: " + itemToAdd.itemName + ", Quantity: " + quantity);
+
+    //     foreach (var itemStack in items)
+    //     {
+    //         if (itemStack.item != null && itemStack.item.itemName == itemToAdd.itemName && itemStack.stackSize < itemStack.item.maxStack)
+    //         {
+    //             int availableSpace = itemStack.item.maxStack - itemStack.stackSize;
+    //             int toAdd = Mathf.Min(quantity, availableSpace);
+    //             itemStack.stackSize += toAdd;
+    //             quantity -= toAdd;
+    //             if (quantity == 0)
+    //             {
+    //                 OnInventoryChanged?.Invoke();
+    //                 return true;
+    //             }
+    //         }
+    //     }
+
+    //     if (quantity > 0 && !IsFull())
+    //     {
+    //         int availableSlotIndex = items.FindIndex(stack => stack.item == null || stack.item.itemName == itemToAdd.itemName);
+    //         if (availableSlotIndex == -1)
+    //         {
+    //             items.Add(new ItemStack { item = itemToAdd, stackSize = quantity });
+    //         }
+    //         else
+    //         {
+    //             items[availableSlotIndex] = new ItemStack { item = itemToAdd, stackSize = quantity };
+    //         }
+    //         OnInventoryChanged?.Invoke();
+    //         return true;
+    //     }
+    //     return false;
+    // }
     public bool AddItem(Item itemToAdd, int quantity = 1)
     {
         if (itemToAdd == null)
@@ -128,7 +170,7 @@ public class Inventory : MonoBehaviour
 
         if (quantity > 0 && !IsFull())
         {
-            int availableSlotIndex = items.FindIndex(stack => stack.item == null || stack.item.itemName == itemToAdd.itemName);
+            int availableSlotIndex = items.FindIndex(stack => stack.item == null);
             if (availableSlotIndex == -1)
             {
                 items.Add(new ItemStack { item = itemToAdd, stackSize = quantity });

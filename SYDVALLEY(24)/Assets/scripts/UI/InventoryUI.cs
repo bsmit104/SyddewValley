@@ -154,65 +154,65 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    public void EndDrag(BaseEventData data)
-    {
-        if (draggedItem != null)
-        {
-            PointerEventData pointerData = (PointerEventData)data;
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+    // public void EndDrag(BaseEventData data)
+    // {
+    //     if (draggedItem != null)
+    //     {
+    //         PointerEventData pointerData = (PointerEventData)data;
+    //         Vector2 localPoint;
+    //         RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
 
-            targetSlotIndex = -1;
-            for (int i = 0; i < slots.Count; i++)
-            {
-                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
-                {
-                    targetSlotIndex = i;
-                    break;
-                }
-            }
+    //         targetSlotIndex = -1;
+    //         for (int i = 0; i < slots.Count; i++)
+    //         {
+    //             RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
+    //             if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
+    //             {
+    //                 targetSlotIndex = i;
+    //                 break;
+    //             }
+    //         }
 
-            Debug.Log("EndDrag - Target Slot Index: " + targetSlotIndex);
-            Debug.Log("Total Slots Count: " + slots.Count);
-            Debug.Log("Inventory Items Count: " + inventory.items.Count);
+    //         Debug.Log("EndDrag - Target Slot Index: " + targetSlotIndex);
+    //         Debug.Log("Total Slots Count: " + slots.Count);
+    //         Debug.Log("Inventory Items Count: " + inventory.items.Count);
 
-            if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
-            {
-                while (inventory.items.Count <= targetSlotIndex)
-                {
-                    inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-                }
+    //         if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
+    //         {
+    //             while (inventory.items.Count <= targetSlotIndex)
+    //             {
+    //                 inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+    //             }
 
-                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
-                {
-                    Debug.Log("Item dropped in slot: " + targetSlotIndex);
+    //             if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+    //             {
+    //                 Debug.Log("Item dropped in slot: " + targetSlotIndex);
 
-                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
-                    Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
-                    inventory.items[draggedItemIndex] = targetItemStack;
-                    inventory.items[targetSlotIndex] = draggedItemStack;
+    //                 Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+    //                 Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
+    //                 inventory.items[draggedItemIndex] = targetItemStack;
+    //                 inventory.items[targetSlotIndex] = draggedItemStack;
 
-                    UpdateInventoryUI();
-                }
-                else
-                {
-                    Debug.LogError($"Invalid draggedItemIndex: {draggedItemIndex} (out of bounds for inventory.items)");
-                }
-            }
-            else
-            {
-                if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-                {
-                    slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
-                }
+    //                 UpdateInventoryUI();
+    //             }
+    //             else
+    //             {
+    //                 Debug.LogError($"Invalid draggedItemIndex: {draggedItemIndex} (out of bounds for inventory.items)");
+    //             }
+    //         }
+    //         else
+    //         {
+    //             if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+    //             {
+    //                 slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+    //             }
 
-                Destroy(draggedItem);
-            }
+    //             Destroy(draggedItem);
+    //         }
 
-            CleanUpDrag();
-        }
-    }
+    //         CleanUpDrag();
+    //     }
+    // }
 
 
 
@@ -285,14 +285,83 @@ public class InventoryUI : MonoBehaviour
     // }
 
 
-    void CleanUpDrag()
+    // void CleanUpDrag()
+    // {
+    //     // Clean up the dragged item
+    //     Destroy(draggedItem);
+    //     draggedItem = null;
+    //     draggedItemIndex = -1;
+    //     targetSlotIndex = -1;
+    // }
+
+    public void EndDrag(BaseEventData data)
     {
-        // Clean up the dragged item
-        Destroy(draggedItem);
+        if (draggedItem != null)
+        {
+            PointerEventData pointerData = (PointerEventData)data;
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+
+            targetSlotIndex = -1;
+            for (int i = 0; i < slots.Count; i++)
+            {
+                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
+                {
+                    targetSlotIndex = i;
+                    break;
+                }
+            }
+
+            Debug.Log("EndDrag - Target Slot Index: " + targetSlotIndex);
+            Debug.Log("Total Slots Count: " + slots.Count);
+            Debug.Log("Inventory Items Count: " + inventory.items.Count);
+
+            if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
+            {
+                while (inventory.items.Count <= targetSlotIndex)
+                {
+                    inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+                }
+
+                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+                {
+                    Debug.Log("Item dropped in slot: " + targetSlotIndex);
+
+                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+                    Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
+                    inventory.items[draggedItemIndex] = targetItemStack;
+                    inventory.items[targetSlotIndex] = draggedItemStack;
+
+                    UpdateInventoryUI();
+                }
+                else
+                {
+                    Debug.LogError($"Invalid draggedItemIndex: {draggedItemIndex} (out of bounds for inventory.items)");
+                }
+            }
+            else
+            {
+                Debug.Log("Dropped outside of valid slots.");
+            }
+
+            if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+            {
+                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+
+            Destroy(draggedItem);
+            CleanUpDrag();
+        }
+    }
+
+    private void CleanUpDrag()
+    {
         draggedItem = null;
         draggedItemIndex = -1;
         targetSlotIndex = -1;
     }
+
 
     int GetSlotIndex(GameObject slot)
     {
