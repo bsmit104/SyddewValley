@@ -73,12 +73,23 @@ public class InventoryUI : MonoBehaviour
         inventory.SelectItem(slotIndex);
     }
 
+    // public void BeginDrag(BaseEventData data)
+    // {
+    //     PointerEventData pointerData = (PointerEventData)data;
+    //     draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
+    //     if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+    //     {
+    //         draggedItem = CreateDraggedItem(draggedItemIndex);
+    //         slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+    //     }
+    // }
     public void BeginDrag(BaseEventData data)
     {
         PointerEventData pointerData = (PointerEventData)data;
         draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
         if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
         {
+            Debug.Log("BeginDrag: " + draggedItemIndex);
             draggedItem = CreateDraggedItem(draggedItemIndex);
             slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
@@ -103,25 +114,107 @@ public class InventoryUI : MonoBehaviour
         return itemObject;
     }
 
+    // public void Drag(BaseEventData data)
+    // {
+    //     if (draggedItem != null)
+    //     {
+    //         PointerEventData pointerData = (PointerEventData)data;
+
+    //         // Get the Canvas
+    //         Canvas canvas = FindObjectOfType<Canvas>();
+    //         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+
+    //         // Convert screen point to local point
+    //         Vector2 localPoint;
+    //         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, pointerData.position, canvas.worldCamera, out localPoint);
+
+    //         // Set the position of the dragged item
+    //         RectTransform draggedItemRectTransform = draggedItem.GetComponent<RectTransform>();
+    //         draggedItemRectTransform.anchoredPosition = localPoint;
+    //     }
+    // }
+
     public void Drag(BaseEventData data)
     {
         if (draggedItem != null)
         {
             PointerEventData pointerData = (PointerEventData)data;
 
-            // Get the Canvas
             Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas == null) return;
+
             RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
 
-            // Convert screen point to local point
             Vector2 localPoint;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, pointerData.position, canvas.worldCamera, out localPoint);
 
-            // Set the position of the dragged item
             RectTransform draggedItemRectTransform = draggedItem.GetComponent<RectTransform>();
             draggedItemRectTransform.anchoredPosition = localPoint;
         }
     }
+
+
+    public void EndDrag(BaseEventData data)
+    {
+        if (draggedItem != null)
+        {
+            PointerEventData pointerData = (PointerEventData)data;
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+
+            targetSlotIndex = -1;
+            for (int i = 0; i < slots.Count; i++)
+            {
+                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
+                {
+                    targetSlotIndex = i;
+                    break;
+                }
+            }
+
+            Debug.Log("EndDrag - Target Slot Index: " + targetSlotIndex);
+            Debug.Log("Total Slots Count: " + slots.Count);
+            Debug.Log("Inventory Items Count: " + inventory.items.Count);
+
+            if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
+            {
+                while (inventory.items.Count <= targetSlotIndex)
+                {
+                    inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+                }
+
+                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+                {
+                    Debug.Log("Item dropped in slot: " + targetSlotIndex);
+
+                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+                    Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
+                    inventory.items[draggedItemIndex] = targetItemStack;
+                    inventory.items[targetSlotIndex] = draggedItemStack;
+
+                    UpdateInventoryUI();
+                }
+                else
+                {
+                    Debug.LogError($"Invalid draggedItemIndex: {draggedItemIndex} (out of bounds for inventory.items)");
+                }
+            }
+            else
+            {
+                if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+                {
+                    slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+                }
+
+                Destroy(draggedItem);
+            }
+
+            CleanUpDrag();
+        }
+    }
+
+
 
     // public void EndDrag(BaseEventData data)
     // {
@@ -174,85 +267,22 @@ public class InventoryUI : MonoBehaviour
     //         }
     //         else
     //         {
-    //             Debug.LogError($"Invalid targetSlotIndex: {targetSlotIndex} (out of bounds for slots)");
-    //         }
+    //             // If the item was not dropped into a valid slot, return it to its original slot
+    //             if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+    //             {
+    //                 slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-    //         if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-    //         {
-    //             slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+    //                 // You can also add logic here to update the inventory if needed
+    //                 // For example, if you want to maintain the item at its original index, you can do so here
+    //             }
+
+    //             // Optionally, you can destroy the dragged item if it is not valid to keep it
+    //             Destroy(draggedItem);
     //         }
 
     //         CleanUpDrag();
     //     }
     // }
-
-    public void EndDrag(BaseEventData data)
-    {
-        if (draggedItem != null)
-        {
-            RectTransform draggedItemRectTransform = draggedItem.GetComponent<RectTransform>();
-            PointerEventData pointerData = (PointerEventData)data;
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
-
-            targetSlotIndex = -1;
-            for (int i = 0; i < slots.Count; i++)
-            {
-                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
-                {
-                    targetSlotIndex = i;
-                    break;
-                }
-            }
-
-            Debug.Log("EndDrag - Target Slot Index: " + targetSlotIndex);
-            Debug.Log("Total Slots Count: " + slots.Count);
-            Debug.Log("Inventory Items Count: " + inventory.items.Count);
-
-            if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
-            {
-                // Expand inventory if necessary
-                while (inventory.items.Count <= targetSlotIndex)
-                {
-                    inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-                }
-
-                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
-                {
-                    Debug.Log("Item dropped in slot: " + targetSlotIndex);
-
-                    // Swap items
-                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
-                    Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
-                    inventory.items[draggedItemIndex] = targetItemStack;
-                    inventory.items[targetSlotIndex] = draggedItemStack;
-
-                    UpdateInventoryUI();
-                }
-                else
-                {
-                    Debug.LogError($"Invalid draggedItemIndex: {draggedItemIndex} (out of bounds for inventory.items)");
-                }
-            }
-            else
-            {
-                // If the item was not dropped into a valid slot, return it to its original slot
-                if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-                {
-                    slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-                    // You can also add logic here to update the inventory if needed
-                    // For example, if you want to maintain the item at its original index, you can do so here
-                }
-
-                // Optionally, you can destroy the dragged item if it is not valid to keep it
-                Destroy(draggedItem);
-            }
-
-            CleanUpDrag();
-        }
-    }
 
 
     void CleanUpDrag()
