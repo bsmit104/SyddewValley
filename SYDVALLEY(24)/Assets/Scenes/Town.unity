@@ -22400,7 +22400,7 @@ MonoBehaviour:
   trashCanImage: {fileID: 129618108}
   playerHeadTransform: {fileID: 1327949787}
   selectedItemDisplayPrefab: {fileID: 6528222111743752768, guid: 2fbc7442912768749b0f33d2aa91b3de, type: 3}
-  draggedItemPrefab: {fileID: 5226531458436613664, guid: 5f0b4b4812c84b647b88feb83bf0a541, type: 3}
+  draggedItemPrefab: {fileID: 8899116917104050968, guid: 1fca42b3ca152654682204d5520e768d, type: 3}
 --- !u!4 &2081783373
 Transform:
   m_ObjectHideFlags: 0
@@ -22565,7 +22565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
