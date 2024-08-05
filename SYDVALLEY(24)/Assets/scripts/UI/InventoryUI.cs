@@ -72,7 +72,7 @@ public class InventoryUI : MonoBehaviour
         int slotIndex = GetSlotIndex(pointerData.pointerPress);
         inventory.SelectItem(slotIndex);
     }
-    
+
     public void BeginDrag(BaseEventData data)
     {
         PointerEventData pointerData = (PointerEventData)data;
@@ -124,94 +124,207 @@ public class InventoryUI : MonoBehaviour
     }
 
     public void EndDrag(BaseEventData data)
-{
-    if (draggedItem != null)
     {
-        PointerEventData pointerData = (PointerEventData)data;
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
-
-        targetSlotIndex = -1;
-        for (int i = 0; i < slots.Count; i++)
+        if (draggedItem != null)
         {
-            RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
-            if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
-            {
-                targetSlotIndex = i;
-                break;
-            }
-        }
+            PointerEventData pointerData = (PointerEventData)data;
 
-        // Check if item is dropped over the trash can
-        if (RectTransformUtility.RectangleContainsScreenPoint(trashCanImage.rectTransform, pointerData.position))
-        {
-            if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+
+            targetSlotIndex = -1;
+            for (int i = 0; i < slots.Count; i++)
             {
-                var itemToRemove = inventory.items[draggedItemIndex];
-                if (itemToRemove != null)
+                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
                 {
-                    inventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
-                    Debug.Log("Item dropped in trash can and removed: " + itemToRemove.item.itemName);
-                }
-                else
-                {
-                    Debug.LogError("Item to remove is null.");
+                    targetSlotIndex = i;
+                    break;
                 }
             }
-            else
-            {
-                Debug.LogError("Invalid draggedItemIndex: " + draggedItemIndex);
-            }
-        }
-        else if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
-        {
-            while (inventory.items.Count <= targetSlotIndex)
-            {
-                inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-            }
 
-            if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+            if (RectTransformUtility.RectangleContainsScreenPoint(trashCanImage.rectTransform, pointerData.position))
+            {
+                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+                {
+                    var itemToRemove = inventory.items[draggedItemIndex];
+                    if (itemToRemove != null)
+                    {
+                        inventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
+                        Debug.Log("Item dropped in trash can and removed: " + itemToRemove.item.itemName);
+                    }
+                    else
+                    {
+                        Debug.LogError("Item to remove is null.");
+                    }
+                }
+            }
+            else if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
             {
                 Debug.Log("Item dropped in slot: " + targetSlotIndex);
 
-                Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
-                Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
-                inventory.items[draggedItemIndex] = targetItemStack;
-                inventory.items[targetSlotIndex] = draggedItemStack;
+                while (inventory.items.Count <= targetSlotIndex)
+                {
+                    inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+                }
 
-                UpdateInventoryUI();
+                if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+                {
+                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+                    Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
+                    inventory.items[draggedItemIndex] = targetItemStack;
+                    inventory.items[targetSlotIndex] = draggedItemStack;
+
+                    UpdateInventoryUI();
+                }
+                else
+                {
+                    Debug.LogError("Invalid draggedItemIndex: " + draggedItemIndex + " (out of bounds for inventory.items)");
+                }
             }
             else
             {
-                Debug.LogError("Invalid draggedItemIndex: " + draggedItemIndex + " (out of bounds for inventory.items)");
+                Debug.Log("Returning item to original slot: " + draggedItemIndex);
+                if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+                {
+                    // Return item to the original slot
+                    if (inventory.items.Count <= draggedItemIndex)
+                    {
+                        inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+                    }
+
+                    Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+                    if (draggedItemStack.item == null)
+                    {
+                        // Restore the original item stack to the slot
+                        draggedItemStack.item = inventory.items[draggedItemIndex].item;
+                        draggedItemStack.stackSize = inventory.items[draggedItemIndex].stackSize;
+                    }
+                    else
+                    {
+                        // Slot was not empty, return the dragged item
+                        Inventory.ItemStack originalItemStack = inventory.items[draggedItemIndex];
+                        inventory.items[draggedItemIndex] = new Inventory.ItemStack { item = draggedItemStack.item, stackSize = draggedItemStack.stackSize };
+                        draggedItemStack.item = originalItemStack.item;
+                        draggedItemStack.stackSize = originalItemStack.stackSize;
+                    }
+
+                    UpdateInventoryUI();
+                }
             }
+
+            if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+            {
+                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+
+            Destroy(draggedItem);
+            CleanUpDrag();
         }
         else
         {
-            // Return item to original slot if not dropped in a valid slot or trash can
-            Debug.Log("Returning item to original slot: " + draggedItemIndex);
+            Debug.LogError("Dragged item is null.");
         }
-
-        if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-        {
-            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-
-        Destroy(draggedItem);
-        CleanUpDrag();
     }
-    else
+
+
+    private void CleanUpDrag()
     {
-        Debug.LogError("Dragged item is null.");
+        draggedItem = null;
+        draggedItemIndex = -1;
+        targetSlotIndex = -1;
     }
-}
 
-private void CleanUpDrag()
-{
-    draggedItem = null;
-    draggedItemIndex = -1;
-    targetSlotIndex = -1;
-}
+
+    //     public void EndDrag(BaseEventData data)
+    // {
+    //     if (draggedItem != null)
+    //     {
+    //         PointerEventData pointerData = (PointerEventData)data;
+    //         Vector2 localPoint;
+    //         RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+
+    //         targetSlotIndex = -1;
+    //         for (int i = 0; i < slots.Count; i++)
+    //         {
+    //             RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
+    //             if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
+    //             {
+    //                 targetSlotIndex = i;
+    //                 break;
+    //             }
+    //         }
+
+    //         // Check if item is dropped over the trash can
+    //         if (RectTransformUtility.RectangleContainsScreenPoint(trashCanImage.rectTransform, pointerData.position))
+    //         {
+    //             if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+    //             {
+    //                 var itemToRemove = inventory.items[draggedItemIndex];
+    //                 if (itemToRemove != null)
+    //                 {
+    //                     inventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
+    //                     Debug.Log("Item dropped in trash can and removed: " + itemToRemove.item.itemName);
+    //                 }
+    //                 else
+    //                 {
+    //                     Debug.LogError("Item to remove is null.");
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 Debug.LogError("Invalid draggedItemIndex: " + draggedItemIndex);
+    //             }
+    //         }
+    //         else if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
+    //         {
+    //             while (inventory.items.Count <= targetSlotIndex)
+    //             {
+    //                 inventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+    //             }
+
+    //             if (draggedItemIndex >= 0 && draggedItemIndex < inventory.items.Count)
+    //             {
+    //                 Debug.Log("Item dropped in slot: " + targetSlotIndex);
+
+    //                 Inventory.ItemStack draggedItemStack = inventory.items[draggedItemIndex];
+    //                 Inventory.ItemStack targetItemStack = inventory.items[targetSlotIndex];
+    //                 inventory.items[draggedItemIndex] = targetItemStack;
+    //                 inventory.items[targetSlotIndex] = draggedItemStack;
+
+    //                 UpdateInventoryUI();
+    //             }
+    //             else
+    //             {
+    //                 Debug.LogError("Invalid draggedItemIndex: " + draggedItemIndex + " (out of bounds for inventory.items)");
+    //             }
+    //         }
+    //         else
+    //         {
+    //             // Return item to original slot if not dropped in a valid slot or trash can
+    //             Debug.Log("Returning item to original slot: " + draggedItemIndex);
+    //         }
+
+    //         if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+    //         {
+    //             slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+    //         }
+
+    //         Destroy(draggedItem);
+    //         CleanUpDrag();
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Dragged item is null.");
+    //     }
+    // }
+
+    // private void CleanUpDrag()
+    // {
+    //     draggedItem = null;
+    //     draggedItemIndex = -1;
+    //     targetSlotIndex = -1;
+    // }
 
 
     int GetSlotIndex(GameObject slot)
