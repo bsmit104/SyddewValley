@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghibBray_0: 210978060950327476
+      ghibBray_1: -5854857581202458642
+      ghibBray_10: 4378119431837240056
+      ghibBray_11: -1330305119502072324
+      ghibBray_12: 1274180328201727086
+      ghibBray_13: 2916763965082965539
+      ghibBray_14: -8421288620610048794
+      ghibBray_15: -5493989229078695951
+      ghibBray_2: 260248407984134567
+      ghibBray_3: -6765662218985635853
+      ghibBray_4: 1868250227240545762
+      ghibBray_5: -4416033227802416835
+      ghibBray_6: -775559236849581723
+      ghibBray_7: 936322552294375886
+      ghibBray_8: 1870496612285150448
+      ghibBray_9: -190106699453275009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -444,7 +444,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bronzeBlueUI_0: -8488059673977980179
+      bronzeBlueUI_1: -4720953811617284008
+      bronzeBlueUI_10: -7556814530808101127
+      bronzeBlueUI_11: -4935799781949008161
+      bronzeBlueUI_12: 3406758156545965664
+      bronzeBlueUI_2: -7586461975208362024
+      bronzeBlueUI_3: 1082214321170630886
+      bronzeBlueUI_4: -6691796457283465605
+      bronzeBlueUI_5: 9021007116190046491
+      bronzeBlueUI_6: -3124270166957581950
+      bronzeBlueUI_7: 6343637620141187348
+      bronzeBlueUI_8: -3151514717726240179
+      bronzeBlueUI_9: 6295449195679144985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
