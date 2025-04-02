@@ -21,22 +21,30 @@ public class ChestInventoryUI : MonoBehaviour
 
     void Start()
     {
-        if (chestInventory == null)
-        {
-            Debug.LogError("ChestInventory is not assigned!");
-            return;
-        }
-
         if (slotGrid == null)
         {
             Debug.LogError("Slot Grid is not assigned!");
             return;
         }
 
-        chestInventory.OnChestInventoryChanged += UpdateChestInventoryUI;
-
         InitializeSlots();
         UpdateChestInventoryUI();
+    }
+
+    void OnEnable()
+    {
+        if (chestInventory != null)
+        {
+            chestInventory.OnChestInventoryChanged += UpdateChestInventoryUI;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (chestInventory != null)
+        {
+            chestInventory.OnChestInventoryChanged -= UpdateChestInventoryUI;
+        }
     }
 
     void InitializeSlots()
@@ -216,6 +224,24 @@ public class ChestInventoryUI : MonoBehaviour
 
     public void UpdateChestInventoryUI()
     {
+        // Clear all slots if there's no chest inventory
+        if (chestInventory == null)
+        {
+            for (int i = 0; i < slots.Count; i++)
+            {
+                var iconTransform = slots[i].transform.Find("Icon");
+                var countTransform = slots[i].transform.Find("Count");
+                var slotImage = slots[i].GetComponent<Image>();
+
+                var iconImage = iconTransform?.GetComponent<Image>();
+                var countText = countTransform?.GetComponent<TMP_Text>();
+
+                ClearSlot(iconImage, countText);
+                slotImage.color = Color.white;
+            }
+            return;
+        }
+
         for (int i = 0; i < slots.Count; i++)
         {
             var iconTransform = slots[i].transform.Find("Icon");

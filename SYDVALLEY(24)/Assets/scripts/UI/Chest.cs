@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    public GameObject chestCanvas;
     private bool isPlayerInRange;
-    public ChestInventory chestInventory;
+    private ChestInventory chestInventory;
     public Inventory playerInventory;
+
+    public ChestInventory ChestInventory => chestInventory;
+
+    void Start()
+    {
+        // Create a unique inventory instance for this chest
+        chestInventory = gameObject.AddComponent<ChestInventory>();
+        
+        // Ensure ChestManager exists
+        if (ChestManager.Instance == null)
+        {
+            Debug.LogError("ChestManager not found in scene! Please add a ChestManager GameObject with the ChestManager script.");
+            enabled = false;
+            return;
+        }
+    }
 
     void Update()
     {
@@ -36,7 +51,9 @@ public class Chest : MonoBehaviour
 
     void ToggleChest()
     {
-        if (chestCanvas.activeSelf)
+        if (ChestManager.Instance == null) return;
+        
+        if (ChestManager.Instance.IsChestOpen())
         {
             CloseChest();
         }
@@ -48,12 +65,14 @@ public class Chest : MonoBehaviour
 
     void OpenChest()
     {
-        chestCanvas.SetActive(true);
+        if (ChestManager.Instance == null) return;
+        ChestManager.Instance.OpenChest(this);
     }
 
     void CloseChest()
     {
-        chestCanvas.SetActive(false);
+        if (ChestManager.Instance == null) return;
+        ChestManager.Instance.CloseChest();
     }
 
     // public void TransferToChest(Inventory.ItemStack itemStack)
