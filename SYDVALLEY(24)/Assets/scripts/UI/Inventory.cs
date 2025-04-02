@@ -14,8 +14,6 @@ public class Inventory : MonoBehaviour
         public int stackSize;
     }
 
-    // public Item someItemReference;
-
     public event Action OnInventoryChanged;
     public event Action<Item> OnSelectedItemChanged;
 
@@ -23,16 +21,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        // if (someItemReference != null)
-        // {
-        //     items.Add(new ItemStack { item = someItemReference, stackSize = 1 });
-        //     Debug.Log("Added test item to inventory: " + someItemReference.itemName);
-        //     OnInventoryChanged?.Invoke();
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("someItemReference is not assigned.");
-        // }
+        // Initialize inventory if needed
     }
 
     void Update()
@@ -53,12 +42,7 @@ public class Inventory : MonoBehaviour
 
     public bool IsFull()
     {
-        foreach (var itemStack in items)
-        {
-            if (itemStack == null || itemStack.item == null)
-                return false;
-        }
-        return items.Count >= 9;
+        return items.Count >= 9 && !items.Exists(stack => stack == null || stack.item == null);
     }
 
     public bool AddItem(Item itemToAdd, int quantity = 1)
@@ -69,17 +53,18 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        Debug.Log("Adding item: " + itemToAdd.itemName + ", Quantity: " + quantity);
-
-        // Try to stack the item in existing slots first
+        // Try to stack with existing items first
         foreach (var itemStack in items)
         {
-            if (itemStack != null && itemStack.item != null && itemStack.item.itemName == itemToAdd.itemName && itemStack.stackSize < itemStack.item.maxStack)
+            if (itemStack.item != null && 
+                itemStack.item.itemName == itemToAdd.itemName && 
+                itemStack.stackSize < itemStack.item.maxStack)
             {
                 int availableSpace = itemStack.item.maxStack - itemStack.stackSize;
                 int toAdd = Mathf.Min(quantity, availableSpace);
                 itemStack.stackSize += toAdd;
                 quantity -= toAdd;
+                
                 if (quantity == 0)
                 {
                     OnInventoryChanged?.Invoke();
@@ -88,7 +73,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // If there's remaining quantity to add, find an empty slot
+        // Add remaining quantity as new stack
         if (quantity > 0 && !IsFull())
         {
             int availableSlotIndex = items.FindIndex(stack => stack == null || stack.item == null);
@@ -108,22 +93,19 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(Item itemToRemove, int quantity = 1)
     {
-        Debug.Log($"Trying to remove {quantity} of {itemToRemove.itemName}");
         for (int i = items.Count - 1; i >= 0; i--)
         {
-            ItemStack stack = items[i];
-            if (stack != null && stack.item != null && stack.item.itemName == itemToRemove.itemName)
+            var stack = items[i];
+            if (stack.item != null && stack.item.itemName == itemToRemove.itemName)
             {
                 if (quantity >= stack.stackSize)
                 {
                     quantity -= stack.stackSize;
-                    Debug.Log($"Removing stack {stack.stackSize} of {stack.item.itemName}");
                     items.RemoveAt(i);
                 }
                 else
                 {
                     stack.stackSize -= quantity;
-                    Debug.Log($"Reducing stack by {quantity}, new count {stack.stackSize}");
                     quantity = 0;
                 }
 
@@ -148,28 +130,18 @@ public class Inventory : MonoBehaviour
         {
             selectedItem = items[index]?.item;
             OnSelectedItemChanged?.Invoke(selectedItem);
-            if (selectedItem != null)
-            {
-                Debug.Log("Selected item: " + selectedItem.itemName);
-            }
-            else
-            {
-                Debug.Log("Selected slot is empty.");
-            }
+            Debug.Log(selectedItem != null ? $"Selected item: {selectedItem.itemName}" : "Selected slot is empty.");
         }
     }
 
-    public Item GetSelectedItem()
-    {
-        return selectedItem;
-    }
+    public Item GetSelectedItem() => selectedItem;
 
     public void GiveSelectedItemToNPC(NPCInteraction npcInteraction)
     {
         if (selectedItem != null && npcInteraction != null)
         {
             npcInteraction.GiveGift(selectedItem);
-            RemoveItem(selectedItem, 1); // Remove one instance of the item from inventory
+            RemoveItem(selectedItem, 1);
         }
     }
 }

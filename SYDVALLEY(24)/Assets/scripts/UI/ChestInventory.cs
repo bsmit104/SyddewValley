@@ -8,7 +8,7 @@ public class ChestInventory : MonoBehaviour
 
     public event System.Action OnChestInventoryChanged;
 
-    public bool AddItem(Item itemToAdd, int quantity = 1)
+    public bool AddItem(Item itemToAdd, int quantity = 1, int targetSlotIndex = -1)
     {
         if (itemToAdd == null)
         {
@@ -16,14 +16,30 @@ public class ChestInventory : MonoBehaviour
             return false;
         }
 
-        foreach (var itemStack in items)
+        // If target slot is specified, try to add to that slot first
+        if (targetSlotIndex >= 0)
         {
-            if (itemStack.item != null && itemStack.item.itemName == itemToAdd.itemName && itemStack.stackSize < itemStack.item.maxStack)
+            // Ensure the list has enough slots
+            while (items.Count <= targetSlotIndex)
             {
-                int availableSpace = itemStack.item.maxStack - itemStack.stackSize;
+                items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+            }
+
+            var targetStack = items[targetSlotIndex];
+            if (targetStack.item == null)
+            {
+                items[targetSlotIndex] = new Inventory.ItemStack { item = itemToAdd, stackSize = quantity };
+                OnChestInventoryChanged?.Invoke();
+                return true;
+            }
+            else if (targetStack.item.itemName == itemToAdd.itemName && 
+                     targetStack.stackSize < targetStack.item.maxStack)
+            {
+                int availableSpace = targetStack.item.maxStack - targetStack.stackSize;
                 int toAdd = Mathf.Min(quantity, availableSpace);
-                itemStack.stackSize += toAdd;
+                targetStack.stackSize += toAdd;
                 quantity -= toAdd;
+                
                 if (quantity == 0)
                 {
                     OnChestInventoryChanged?.Invoke();
@@ -32,6 +48,27 @@ public class ChestInventory : MonoBehaviour
             }
         }
 
+        // Try to stack with existing items
+        foreach (var itemStack in items)
+        {
+            if (itemStack.item != null && 
+                itemStack.item.itemName == itemToAdd.itemName && 
+                itemStack.stackSize < itemStack.item.maxStack)
+            {
+                int availableSpace = itemStack.item.maxStack - itemStack.stackSize;
+                int toAdd = Mathf.Min(quantity, availableSpace);
+                itemStack.stackSize += toAdd;
+                quantity -= toAdd;
+                
+                if (quantity == 0)
+                {
+                    OnChestInventoryChanged?.Invoke();
+                    return true;
+                }
+            }
+        }
+
+        // Add remaining quantity as new stack
         if (quantity > 0)
         {
             items.Add(new Inventory.ItemStack { item = itemToAdd, stackSize = quantity });
