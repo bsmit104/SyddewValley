@@ -31,6 +31,22 @@ public class ChestManager : MonoBehaviour
         chestCanvas.SetActive(false);
     }
 
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
     public void OpenChest(Chest chest)
     {
         // If we're already looking at a chest, close it first

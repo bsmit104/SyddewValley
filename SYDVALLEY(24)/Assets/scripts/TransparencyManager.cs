@@ -19,7 +19,7 @@ public class TransparencyManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Tree"))
+        if (other.CompareTag("TreeStyleA") || other.CompareTag("TreeStyleB"))
         {
             Renderer treeRenderer = other.GetComponent<Renderer>();
             if (treeRenderer != null && !originalTreeColors.ContainsKey(treeRenderer))
@@ -39,7 +39,7 @@ public class TransparencyManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Tree"))
+        if (other.CompareTag("TreeStyleA") || other.CompareTag("TreeStyleB"))
         {
             Renderer treeRenderer = other.GetComponent<Renderer>();
             if (treeRenderer != null && originalTreeColors.ContainsKey(treeRenderer))
