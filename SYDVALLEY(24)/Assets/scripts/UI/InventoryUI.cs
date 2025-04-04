@@ -9,15 +9,12 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] public Inventory inventory;
     [SerializeField] private GridLayoutGroup slotGrid;
     [SerializeField] private Image trashCanImage;
-    [SerializeField] private Transform playerHeadTransform;
     [SerializeField] private GameObject slotPrefab;
-    [SerializeField] private GameObject selectedItemDisplayPrefab;
     [SerializeField] private GameObject draggedItemPrefab;
     [SerializeField] private Color selectedSlotColor = new Color(0.8f, 0.8f, 0.8f, 1f);
     [SerializeField] private Color hoverSlotColor = new Color(0.9f, 0.9f, 0.9f, 1f);
 
     private readonly List<GameObject> slots = new List<GameObject>();
-    private GameObject selectedItemDisplay;
     private GameObject draggedItem;
     private int draggedItemIndex = -1;
     private int selectedSlotIndex = -1;
@@ -38,7 +35,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         inventory.OnInventoryChanged += UpdateInventoryUI;
-        inventory.OnSelectedItemChanged += UpdateSelectedItemDisplay;
+        inventory.OnSelectedItemChanged += UpdateSelectedSlot;
 
         InitializeSlots();
         UpdateInventoryUI();
@@ -138,11 +135,43 @@ public class InventoryUI : MonoBehaviour
     {
         var pointerData = (PointerEventData)data;
         draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
+        Debug.Log($"BeginDrag: Index = {draggedItemIndex}");
         
         if (IsValidDragIndex())
         {
+            // Clear selection when starting drag
+            if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
+            {
+                var selectedSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
+                selectedSlotImage.color = Color.white;
+            }
+            selectedSlotIndex = -1;
+            inventory.SelectItem(-1);
+
             draggedItem = CreateDraggedItem(draggedItemIndex);
-            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            if (draggedItem != null)
+            {
+                var canvas = FindObjectOfType<Canvas>();
+                if (canvas != null)
+                {
+                    draggedItem.transform.SetParent(canvas.transform, false);
+                    draggedItem.transform.SetAsLastSibling();
+                    Debug.Log("Dragged item created and parented to canvas");
+                }
+                else
+                {
+                    Debug.LogError("Canvas not found!");
+                }
+                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+            else
+            {
+                Debug.LogError("Failed to create dragged item!");
+            }
+        }
+        else
+        {
+            Debug.LogError($"Invalid drag index: {draggedItemIndex}");
         }
     }
 
@@ -150,26 +179,54 @@ public class InventoryUI : MonoBehaviour
 
     GameObject CreateDraggedItem(int index)
     {
+        if (draggedItemPrefab == null)
+        {
+            Debug.LogError("DraggedItemPrefab is not assigned!");
+            return null;
+        }
+
         var itemObject = Instantiate(draggedItemPrefab);
         var itemImage = itemObject.GetComponent<Image>();
-        itemImage.sprite = inventory.items[index].item.itemIcon;
+        if (itemImage == null)
+        {
+            Debug.LogError("DraggedItemPrefab does not have an Image component!");
+            Destroy(itemObject);
+            return null;
+        }
+
+        if (inventory.items[index]?.item?.itemIcon != null)
+        {
+            itemImage.sprite = inventory.items[index].item.itemIcon;
+            itemImage.color = Color.white;
+            Debug.Log("Dragged item sprite set successfully");
+        }
+        else
+        {
+            Debug.LogError($"No item icon found at index {index}");
+        }
 
         var rectTransform = itemObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(50, 50);
-
-        var canvas = FindObjectOfType<Canvas>();
-        itemObject.transform.SetParent(canvas.transform, false);
+        rectTransform.anchoredPosition = Vector2.zero;
 
         return itemObject;
     }
 
     public void Drag(BaseEventData data)
     {
-        if (draggedItem == null) return;
+        if (draggedItem == null)
+        {
+            Debug.LogError("Dragged item is null during drag!");
+            return;
+        }
 
         var pointerData = (PointerEventData)data;
         var canvas = FindObjectOfType<Canvas>();
-        if (canvas == null) return;
+        if (canvas == null)
+        {
+            Debug.LogError("Canvas not found during drag!");
+            return;
+        }
 
         var canvasRectTransform = canvas.GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, pointerData.position, canvas.worldCamera, out Vector2 localPoint);
@@ -178,7 +235,7 @@ public class InventoryUI : MonoBehaviour
         draggedItemRectTransform.anchoredPosition = localPoint;
     }
 
-    void EndDrag(BaseEventData data)
+    public void EndDrag(BaseEventData data)
     {
         if (draggedItem == null) return;
 
@@ -196,7 +253,11 @@ public class InventoryUI : MonoBehaviour
             SwapItems(targetSlotIndex);
         }
 
-        slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+        {
+            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        
         Destroy(draggedItem);
         CleanUpDrag();
     }
@@ -344,27 +405,31 @@ public class InventoryUI : MonoBehaviour
         countText.text = "";
     }
 
-    public void UpdateSelectedItemDisplay(Item selectedItem)
+    private void UpdateSelectedSlot(Item selectedItem)
     {
-        if (selectedItemDisplay != null)
+        // Find the slot containing the selected item
+        int newSelectedIndex = -1;
+        for (int i = 0; i < inventory.items.Count; i++)
         {
-            Destroy(selectedItemDisplay);
-            selectedItemDisplay = null;
+            if (inventory.items[i]?.item == selectedItem)
+            {
+                newSelectedIndex = i;
+                break;
+            }
         }
 
-        if (selectedItem != null)
+        // Update selection visuals
+        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
         {
-            selectedItemDisplay = Instantiate(selectedItemDisplayPrefab);
-            var itemImage = selectedItemDisplay.GetComponent<Image>();
-            if (itemImage != null)
-            {
-                itemImage.sprite = selectedItem.itemIcon;
-            }
+            var oldSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
+            oldSlotImage.color = Color.white;
+        }
 
-            selectedItemDisplay.transform.SetParent(playerHeadTransform);
-            selectedItemDisplay.transform.localPosition = Vector3.zero;
-            selectedItemDisplay.transform.localRotation = Quaternion.identity;
-            selectedItemDisplay.transform.localScale = Vector3.one;
+        selectedSlotIndex = newSelectedIndex;
+        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
+        {
+            var newSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
+            newSlotImage.color = selectedSlotColor;
         }
     }
 
@@ -373,7 +438,7 @@ public class InventoryUI : MonoBehaviour
         if (inventory != null)
         {
             inventory.OnInventoryChanged -= UpdateInventoryUI;
-            inventory.OnSelectedItemChanged -= UpdateSelectedItemDisplay;
+            inventory.OnSelectedItemChanged -= UpdateSelectedSlot;
         }
     }
 }

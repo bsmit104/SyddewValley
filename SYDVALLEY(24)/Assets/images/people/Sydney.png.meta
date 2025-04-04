@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sydney_0: -1615971321137904074
+      Sydney_1: 1523934374715638077
+      Sydney_10: 8334012574702883653
+      Sydney_11: -3460193634157702522
+      Sydney_12: 8799159714153997238
+      Sydney_13: 6631225897366548142
+      Sydney_14: 7799283330663872346
+      Sydney_15: 5618135797177866860
+      Sydney_2: -5048261049556883158
+      Sydney_3: 3084964756829503118
+      Sydney_4: -7526446812855923729
+      Sydney_5: -2007536345254093017
+      Sydney_6: 7512754014810100540
+      Sydney_7: 528151787444289551
+      Sydney_8: 2864047510035880461
+      Sydney_9: -4942770806822843956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

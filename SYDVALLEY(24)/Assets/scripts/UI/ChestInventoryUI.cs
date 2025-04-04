@@ -88,7 +88,12 @@ public class ChestInventoryUI : MonoBehaviour
         if (IsValidDragIndex())
         {
             draggedItem = CreateDraggedItem(draggedItemIndex);
-            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            if (draggedItem != null)
+            {
+                draggedItem.transform.SetParent(transform.root, false);
+                draggedItem.transform.SetAsLastSibling();
+                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
         }
     }
 
@@ -96,15 +101,26 @@ public class ChestInventoryUI : MonoBehaviour
 
     GameObject CreateDraggedItem(int index)
     {
+        if (draggedItemPrefab == null)
+        {
+            Debug.LogError("DraggedItemPrefab is not assigned!");
+            return null;
+        }
+
         var itemObject = Instantiate(draggedItemPrefab);
         var itemImage = itemObject.GetComponent<Image>();
+        if (itemImage == null)
+        {
+            Debug.LogError("DraggedItemPrefab does not have an Image component!");
+            Destroy(itemObject);
+            return null;
+        }
+
         itemImage.sprite = chestInventory.items[index].item.itemIcon;
+        itemImage.color = Color.white;
 
         var rectTransform = itemObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(50, 50);
-
-        var canvas = FindObjectOfType<Canvas>();
-        itemObject.transform.SetParent(canvas.transform, false);
 
         return itemObject;
     }
@@ -114,7 +130,7 @@ public class ChestInventoryUI : MonoBehaviour
         if (draggedItem == null) return;
 
         var pointerData = (PointerEventData)data;
-        var canvas = FindObjectOfType<Canvas>();
+        var canvas = GetComponentInParent<Canvas>();
         if (canvas == null) return;
 
         var canvasRectTransform = canvas.GetComponent<RectTransform>();
@@ -138,7 +154,11 @@ public class ChestInventoryUI : MonoBehaviour
             SwapItems(targetSlotIndex);
         }
 
-        slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+        {
+            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        
         Destroy(draggedItem);
         CleanUpDrag();
     }
