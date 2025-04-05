@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 SelectItem(i);
+                OnInventoryChanged?.Invoke(); // Force UI refresh when selecting via number keys
             }
         }
     }

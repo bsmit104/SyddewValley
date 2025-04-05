@@ -15,3 +15,7 @@ MonoBehaviour:
   itemName: Beans
   itemIcon: {fileID: 21300000, guid: 9a1b858147292c540935b68d33ace0b5, type: 3}
   maxStack: 69
+  isSellable: 1
+  sellPrice: 30
+  buyPrice: 40
+  isAvailableInShop: 1

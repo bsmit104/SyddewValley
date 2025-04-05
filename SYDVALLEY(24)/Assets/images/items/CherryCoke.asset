@@ -15,3 +15,7 @@ MonoBehaviour:
   itemName: Cherry Coke
   itemIcon: {fileID: 21300000, guid: 345f5c0062346fe44bdee7e8d6da2514, type: 3}
   maxStack: 69
+  isSellable: 1
+  sellPrice: 5
+  buyPrice: 10
+  isAvailableInShop: 1

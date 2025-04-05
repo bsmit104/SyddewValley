@@ -11,14 +11,19 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Image trashCanImage;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private GameObject draggedItemPrefab;
-    [SerializeField] private Color selectedSlotColor = new Color(0.8f, 0.8f, 0.8f, 1f);
-    [SerializeField] private Color hoverSlotColor = new Color(0.9f, 0.9f, 0.9f, 1f);
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color selectedColor = new Color(0.8f, 0.8f, 0.8f, 1f);
+    [SerializeField] private Color hoverColor = new Color(0.9f, 0.9f, 0.9f, 1f);
+    [SerializeField] private Color sellableColor = new Color(0.7f, 1f, 0.7f, 1f);
+    [SerializeField] private Color sellableSelectedColor = new Color(0.5f, 0.9f, 0.5f, 1f); // Bright green for selected sellable
+    [SerializeField] private Color sellableHoverColor = new Color(0.6f, 0.9f, 0.6f, 1f); // Medium green for hover
 
     private readonly List<GameObject> slots = new List<GameObject>();
     private GameObject draggedItem;
     private int draggedItemIndex = -1;
     private int selectedSlotIndex = -1;
     private int hoveredSlotIndex = -1;
+    private bool isInShopRange = false;
 
     void Start()
     {
@@ -84,51 +89,116 @@ public class InventoryUI : MonoBehaviour
 
     private void SelectSlot(int index)
     {
-        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
-        {
-            var oldSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
-            oldSlotImage.color = Color.white;
-        }
-
+        // Just update the index and refresh
         selectedSlotIndex = index;
-        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
-        {
-            var newSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
-            newSlotImage.color = selectedSlotColor;
-        }
-
         inventory.SelectItem(index);
+        
+        // Refresh the affected slots
+        if (selectedSlotIndex >= 0) UpdateSlot(selectedSlotIndex);
+        UpdateInventoryUI();
     }
 
     public void OnSlotEnter(BaseEventData data)
     {
         var pointerData = (PointerEventData)data;
         int slotIndex = GetSlotIndex(pointerData.pointerCurrentRaycast.gameObject);
-        if (slotIndex != hoveredSlotIndex)
-        {
-            if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
-            {
-                var oldSlotImage = slots[hoveredSlotIndex].GetComponent<Image>();
-                oldSlotImage.color = hoveredSlotIndex == selectedSlotIndex ? selectedSlotColor : Color.white;
-            }
-
-            hoveredSlotIndex = slotIndex;
-            if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
-            {
-                var newSlotImage = slots[hoveredSlotIndex].GetComponent<Image>();
-                newSlotImage.color = hoverSlotColor;
-            }
-        }
+        
+        int oldHoveredIndex = hoveredSlotIndex;
+        hoveredSlotIndex = slotIndex;
+        
+        // Update affected slots
+        if (oldHoveredIndex >= 0) UpdateSlot(oldHoveredIndex);
+        if (hoveredSlotIndex >= 0) UpdateSlot(hoveredSlotIndex);
     }
 
     public void OnSlotExit(BaseEventData data)
     {
-        if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
-        {
-            var slotImage = slots[hoveredSlotIndex].GetComponent<Image>();
-            slotImage.color = hoveredSlotIndex == selectedSlotIndex ? selectedSlotColor : Color.white;
-        }
+        int oldHoveredIndex = hoveredSlotIndex;
         hoveredSlotIndex = -1;
+        
+        // Update the slot that was previously hovered
+        if (oldHoveredIndex >= 0) UpdateSlot(oldHoveredIndex);
+    }
+
+    private void UpdateSlot(int index)
+    {
+        if (index < 0 || index >= slots.Count) return;
+        
+        var slot = slots[index];
+        var iconTransform = slot.transform.Find("Icon");
+        var countTransform = slot.transform.Find("Count");
+        var slotImage = slot.GetComponent<Image>();
+        var iconImage = iconTransform?.GetComponent<Image>();
+        var countText = countTransform?.GetComponent<TMP_Text>();
+        
+        bool hasItem = false;
+        bool isSellable = false;
+        
+        // Update item display
+        if (index < inventory.items.Count && inventory.items[index]?.item != null)
+        {
+            var itemStack = inventory.items[index];
+            hasItem = true;
+            
+            // Check if this item is sellable
+            isSellable = isInShopRange && itemStack.item.isSellable;
+            
+            // Update icon and count
+            iconImage.sprite = itemStack.item.itemIcon;
+            iconImage.color = Color.white;
+            countText.text = itemStack.stackSize.ToString();
+        }
+        else
+        {
+            ClearSlot(iconImage, countText);
+        }
+        
+        // Determine slot color based on state
+        Color slotColor = normalColor;
+        
+        if (hasItem)
+        {
+            bool isSelected = (index == selectedSlotIndex);
+            bool isHovered = (index == hoveredSlotIndex);
+            
+            if (isSellable)
+            {
+                // Sellable item states
+                if (isSelected && isHovered) {
+                    slotColor = sellableSelectedColor; // Selected + hovered sellable
+                }
+                else if (isSelected) {
+                    slotColor = sellableSelectedColor; // Selected sellable
+                }
+                else if (isHovered) {
+                    slotColor = sellableHoverColor; // Hovered sellable
+                }
+                else {
+                    slotColor = sellableColor; // Normal sellable
+                }
+            }
+            else
+            {
+                // Regular item states
+                if (isSelected && isHovered) {
+                    slotColor = selectedColor; // Selected + hovered
+                }
+                else if (isSelected) {
+                    slotColor = selectedColor; // Selected
+                }
+                else if (isHovered) {
+                    slotColor = hoverColor; // Hovered
+                }
+                // else: normal color
+            }
+        }
+        else if (index == hoveredSlotIndex)
+        {
+            slotColor = hoverColor; // Empty slot, but hovered
+        }
+        
+        // Apply the color
+        slotImage.color = slotColor;
     }
 
     public void BeginDrag(BaseEventData data)
@@ -162,7 +232,7 @@ public class InventoryUI : MonoBehaviour
                 {
                     Debug.LogError("Canvas not found!");
                 }
-                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
             else
             {
@@ -196,7 +266,7 @@ public class InventoryUI : MonoBehaviour
 
         if (inventory.items[index]?.item?.itemIcon != null)
         {
-            itemImage.sprite = inventory.items[index].item.itemIcon;
+        itemImage.sprite = inventory.items[index].item.itemIcon;
             itemImage.color = Color.white;
             Debug.Log("Dragged item sprite set successfully");
         }
@@ -255,15 +325,15 @@ public class InventoryUI : MonoBehaviour
 
         if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
         {
-            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         
         Destroy(draggedItem);
         CleanUpDrag();
     }
 
-    private void HandleDropIntoChest(Vector2 position)
-    {
+private void HandleDropIntoChest(Vector2 position)
+{
         var chestInventoryUI = FindObjectOfType<ChestInventoryUI>();
         if (chestInventoryUI == null) return;
 
@@ -274,18 +344,18 @@ public class InventoryUI : MonoBehaviour
             inventory.RemoveItem(draggedItemStack.item, draggedItemStack.stackSize);
             chestInventoryUI.chestInventory.AddItem(draggedItemStack.item, draggedItemStack.stackSize, chestSlotIndex);
             chestInventoryUI.UpdateChestInventoryUI();
-        }
     }
+}
 
     private void RemoveDraggedItem()
     {
         if (!IsValidDragIndex()) return;
 
-        var itemToRemove = inventory.items[draggedItemIndex];
-        if (itemToRemove != null)
-        {
-            inventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
-            Debug.Log($"Item dropped in trash can and removed: {itemToRemove.item.itemName}");
+            var itemToRemove = inventory.items[draggedItemIndex];
+            if (itemToRemove != null)
+            {
+                inventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
+                Debug.Log($"Item dropped in trash can and removed: {itemToRemove.item.itemName}");
         }
     }
 
@@ -357,52 +427,14 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            var iconTransform = slots[i].transform.Find("Icon");
-            var countTransform = slots[i].transform.Find("Count");
-            var slotImage = slots[i].GetComponent<Image>();
-
-            var iconImage = iconTransform?.GetComponent<Image>();
-            var countText = countTransform?.GetComponent<TMP_Text>();
-
-            if (i < inventory.items.Count)
-            {
-                var itemStack = inventory.items[i];
-                if (itemStack != null && itemStack.item != null)
-                {
-                    iconImage.sprite = itemStack.item.itemIcon;
-                    iconImage.color = Color.white;
-                    countText.text = itemStack.stackSize.ToString();
-                }
-                else
-                {
-                    ClearSlot(iconImage, countText);
-                }
-            }
-            else
-            {
-                ClearSlot(iconImage, countText);
-            }
-
-            // Update slot color based on selection and hover states
-            if (i == selectedSlotIndex)
-            {
-                slotImage.color = selectedSlotColor;
-            }
-            else if (i == hoveredSlotIndex)
-            {
-                slotImage.color = hoverSlotColor;
-            }
-            else
-            {
-                slotImage.color = Color.white;
-            }
+            UpdateSlot(i);
         }
     }
 
     private void ClearSlot(Image iconImage, TMP_Text countText)
-    {
-        iconImage.sprite = null;
-        countText.text = "";
+            {
+                iconImage.sprite = null;
+                countText.text = "";
     }
 
     private void UpdateSelectedSlot(Item selectedItem)
@@ -418,19 +450,11 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        // Update selection visuals
-        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
-        {
-            var oldSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
-            oldSlotImage.color = Color.white;
-        }
-
+        // Update the selected slot index
         selectedSlotIndex = newSelectedIndex;
-        if (selectedSlotIndex >= 0 && selectedSlotIndex < slots.Count)
-        {
-            var newSlotImage = slots[selectedSlotIndex].GetComponent<Image>();
-            newSlotImage.color = selectedSlotColor;
-        }
+        
+        // Refresh the entire UI to ensure proper coloring
+        UpdateInventoryUI();
     }
 
     private void OnDestroy()
@@ -439,6 +463,39 @@ public class InventoryUI : MonoBehaviour
         {
             inventory.OnInventoryChanged -= UpdateInventoryUI;
             inventory.OnSelectedItemChanged -= UpdateSelectedSlot;
+        }
+    }
+
+    void Update()
+    {
+        // Handle right-click selling
+        if (isInShopRange && Input.GetMouseButtonDown(1)) // Right click
+        {
+            var mousePos = Input.mousePosition;
+            int slotIndex = GetTargetSlotIndex(mousePos);
+            
+            if (slotIndex >= 0 && slotIndex < inventory.items.Count)
+            {
+                var itemStack = inventory.items[slotIndex];
+                if (itemStack?.item != null && itemStack.item.isSellable)
+                {
+                    var shopUI = FindObjectOfType<ShopUI>();
+                    if (shopUI != null)
+                    {
+                        shopUI.ShowSellConfirmation(itemStack.item);
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetInShopRange(bool inRange)
+    {
+        if (isInShopRange != inRange)
+        {
+            isInShopRange = inRange;
+            UpdateInventoryUI(); // Refresh all slots when shop status changes
+            Debug.Log("Shop range set to: " + inRange);
         }
     }
 }
