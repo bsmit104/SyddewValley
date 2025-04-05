@@ -309,6 +309,7 @@ public class ChestInventoryUI : MonoBehaviour
     private void ClearSlot(Image iconImage, TMP_Text countText)
     {
         iconImage.sprite = null;
+        iconImage.color = new Color(1, 1, 1, 0);
         countText.text = "";
     }
 

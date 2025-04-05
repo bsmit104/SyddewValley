@@ -17,14 +17,13 @@ public class ShopUI : MonoBehaviour
 
     [Header("Shop Settings")]
     [SerializeField] private List<Item> availableItems = new List<Item>();
-    [SerializeField] private Vector2 itemSize = new Vector2(60, 60);
-    [SerializeField] private Vector2 itemSpacing = new Vector2(2, 2);
-    [SerializeField] private int columnsCount = 5;
+    [SerializeField] private Vector2 itemSize = new Vector2(100, 100);
+    [SerializeField] private Vector2 itemSpacing = new Vector2(10, 10);
+    [SerializeField] private int columnsCount = 4;
     
     private Inventory playerInventory;
     private Item selectedItem;
     private bool isSelling;
-    private GridLayoutGroup layoutGroup;
 
     void Start()
     {
@@ -93,92 +92,29 @@ public class ShopUI : MonoBehaviour
     private void SetupShopLayout()
     {
         // Make sure we have a layout group
-        layoutGroup = shopItemsContainer.GetComponent<GridLayoutGroup>();
+        GridLayoutGroup layoutGroup = shopItemsContainer.GetComponent<GridLayoutGroup>();
         if (layoutGroup == null)
         {
             layoutGroup = shopItemsContainer.gameObject.AddComponent<GridLayoutGroup>();
         }
 
-        // Configure layout for more compact display
+        // Configure layout
         layoutGroup.cellSize = itemSize;
         layoutGroup.spacing = itemSpacing;
-        layoutGroup.padding = new RectOffset(2, 2, 2, 2);
         layoutGroup.startCorner = GridLayoutGroup.Corner.UpperLeft;
         layoutGroup.startAxis = GridLayoutGroup.Axis.Horizontal;
         layoutGroup.childAlignment = TextAnchor.UpperLeft;
         layoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         layoutGroup.constraintCount = columnsCount;
 
-        // IMPORTANT: For proper scrolling do NOT use ContentSizeFitter
-        // Remove ContentSizeFitter if it exists - it prevents proper scrolling
+        // Set up content sizing
         ContentSizeFitter sizeFitter = shopItemsContainer.GetComponent<ContentSizeFitter>();
-        if (sizeFitter != null)
+        if (sizeFitter == null)
         {
-            DestroyImmediate(sizeFitter);
+            sizeFitter = shopItemsContainer.gameObject.AddComponent<ContentSizeFitter>();
         }
-        
-        // Ensure the container has correct settings for scrolling
-        RectTransform containerRect = shopItemsContainer.GetComponent<RectTransform>();
-        if (containerRect)
-        {
-            // Reset anchors for proper layout
-            containerRect.anchorMin = new Vector2(0, 1);
-            containerRect.anchorMax = new Vector2(1, 1);
-            containerRect.pivot = new Vector2(0.5f, 1);
-            
-            // Make sure the width matches parent width
-            containerRect.offsetMin = new Vector2(0, 0);
-            containerRect.offsetMax = new Vector2(0, 0);
-        }
-        
-        // Double check scroll rect is properly set up
-        if (scrollRect != null)
-        {
-            scrollRect.horizontal = false;
-            scrollRect.vertical = true;
-            scrollRect.movementType = ScrollRect.MovementType.Elastic;
-            scrollRect.scrollSensitivity = 20;
-            
-            // Make sure content is assigned
-            if (scrollRect.content == null)
-            {
-                scrollRect.content = containerRect;
-            }
-            
-            // Set scrollbar visibility
-            scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
-        }
-        else
-        {
-            Debug.LogWarning("ScrollRect not assigned - shop items may not scroll properly");
-        }
-    }
-
-    // Calculate the proper height for the content based on items
-    private void UpdateContentSize()
-    {
-        if (shopItemsContainer == null) return;
-        
-        RectTransform containerRect = shopItemsContainer.GetComponent<RectTransform>();
-        if (containerRect == null) return;
-        
-        // Calculate how many rows we need based on item count and columns
-        int itemCount = 0;
-        foreach (Item item in availableItems)
-        {
-            if (item.isAvailableInShop) itemCount++;
-        }
-        
-        int rows = Mathf.CeilToInt((float)itemCount / columnsCount);
-        
-        // Calculate total height needed (rows * (itemHeight + spacing) - spacing + padding*2)
-        float totalHeight = rows * (itemSize.y + itemSpacing.y) - itemSpacing.y + (layoutGroup?.padding?.top ?? 0) + (layoutGroup?.padding?.bottom ?? 0);
-        
-        // Set the height of content rect
-        containerRect.sizeDelta = new Vector2(0, totalHeight);
-        
-        // Force layout update
-        LayoutRebuilder.ForceRebuildLayoutImmediate(containerRect);
+        sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+        sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
     }
 
     public void RefreshShopItems()
@@ -202,9 +138,6 @@ public class ShopUI : MonoBehaviour
                 CreateShopItemButton(item);
             }
         }
-        
-        // Update the content size to match items
-        UpdateContentSize();
 
         // Make sure the content size is updated
         Canvas.ForceUpdateCanvases();
@@ -233,54 +166,9 @@ public class ShopUI : MonoBehaviour
         TextMeshProUGUI nameText = buttonObj.transform.Find("Name")?.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI priceText = buttonObj.transform.Find("Price")?.GetComponent<TextMeshProUGUI>();
         
-        if (iconImage) 
-        {
-            iconImage.sprite = item.itemIcon;
-            iconImage.preserveAspect = true;
-            
-            // Optimize icon placement
-            RectTransform iconRect = iconImage.GetComponent<RectTransform>();
-            if (iconRect)
-            {
-                // Make icon take up most of the button space
-                float padding = itemSize.x * 0.1f; // 10% padding
-                iconRect.offsetMin = new Vector2(padding, padding + (itemSize.y * 0.2f)); // Add extra bottom padding for text
-                iconRect.offsetMax = new Vector2(-padding, -padding);
-            }
-        }
-        
-        if (nameText) 
-        {
-            nameText.text = item.itemName;
-            nameText.fontSize = itemSize.x * 0.15f; // Scale font based on item size
-            
-            // Optimize name text placement
-            RectTransform nameRect = nameText.GetComponent<RectTransform>();
-            if (nameRect)
-            {
-                nameRect.anchorMin = new Vector2(0, 0);
-                nameRect.anchorMax = new Vector2(1, 0.3f);
-                nameRect.offsetMin = new Vector2(2, 2);
-                nameRect.offsetMax = new Vector2(-2, 0);
-            }
-        }
-        
-        if (priceText) 
-        {
-            priceText.text = $"${item.buyPrice:N0}";
-            priceText.fontSize = itemSize.x * 0.14f; // Scale font based on item size
-            priceText.color = Color.yellow; // Make price stand out
-            
-            // Optimize price text placement
-            RectTransform priceRect = priceText.GetComponent<RectTransform>();
-            if (priceRect)
-            {
-                priceRect.anchorMin = new Vector2(0.6f, 0);
-                priceRect.anchorMax = new Vector2(1, 0.25f);
-                priceRect.offsetMin = new Vector2(0, 0);
-                priceRect.offsetMax = new Vector2(-2, 0);
-            }
-        }
+        if (iconImage) iconImage.sprite = item.itemIcon;
+        if (nameText) nameText.text = item.itemName;
+        if (priceText) priceText.text = $"${item.buyPrice:N0}";
 
         // Make sure the button has the right size
         RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();

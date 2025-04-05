@@ -432,9 +432,10 @@ private void HandleDropIntoChest(Vector2 position)
     }
 
     private void ClearSlot(Image iconImage, TMP_Text countText)
-            {
-                iconImage.sprite = null;
-                countText.text = "";
+    {
+        iconImage.sprite = null;
+        iconImage.color = new Color(1, 1, 1, 0); // Set alpha to 0 to make it fully transparent
+        countText.text = "";
     }
 
     private void UpdateSelectedSlot(Item selectedItem)
