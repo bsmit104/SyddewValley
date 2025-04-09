@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rb;  // Rigidbody2D component for physics-based movement
     private Vector2 moveInput;  // Store the player's input
+    public Animator animator;
 
     void Start()
     {
@@ -23,6 +24,10 @@ public class Movement : MonoBehaviour
 
         // Create a vector with the input values
         moveInput = new Vector2(moveX, moveY).normalized;  // Normalize to ensure consistent movement speed in all directions
+
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        animator.SetFloat("Speed", moveInput.magnitude);
     }
 
     void FixedUpdate()

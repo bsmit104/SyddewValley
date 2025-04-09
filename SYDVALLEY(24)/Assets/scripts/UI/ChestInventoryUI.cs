@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,250 +6,349 @@ using TMPro;
 
 public class ChestInventoryUI : MonoBehaviour
 {
-    [SerializeField]
-    private ChestInventory chestInventory;
-    public Transform slotPanel;
-    public Image trashCanImage;
-    public GameObject draggedItemPrefab;
+    [SerializeField] public ChestInventory chestInventory;
+    [SerializeField] private GridLayoutGroup slotGrid;
+    [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private GameObject draggedItemPrefab;
+    [SerializeField] private Color selectedSlotColor = new Color(0.8f, 0.8f, 0.8f, 1f);
+    [SerializeField] private Color hoverSlotColor = new Color(0.9f, 0.9f, 0.9f, 1f);
 
-    private List<GameObject> slots = new List<GameObject>();
+    private readonly List<GameObject> slots = new List<GameObject>();
     private GameObject draggedItem;
     private int draggedItemIndex = -1;
-    private int targetSlotIndex = -1;
+    private int selectedSlotIndex = -1;
+    private int hoveredSlotIndex = -1;
 
     void Start()
     {
-        if (chestInventory == null)
+        if (slotGrid == null)
         {
-            Debug.LogError("ChestInventory is not assigned!");
+            Debug.LogError("Slot Grid is not assigned!");
             return;
         }
 
-        chestInventory.OnInventoryChanged += UpdateInventoryUI;
         InitializeSlots();
-        UpdateInventoryUI();
+        UpdateChestInventoryUI();
+    }
+
+    void OnEnable()
+    {
+        if (chestInventory != null)
+        {
+            chestInventory.OnChestInventoryChanged += UpdateChestInventoryUI;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (chestInventory != null)
+        {
+            chestInventory.OnChestInventoryChanged -= UpdateChestInventoryUI;
+        }
     }
 
     void InitializeSlots()
     {
-        for (int i = 0; i < slotPanel.childCount; i++)
+        // Clear existing slots
+        foreach (Transform child in slotGrid.transform)
         {
-            GameObject slot = slotPanel.GetChild(i).gameObject;
+            Destroy(child.gameObject);
+        }
+        slots.Clear();
+
+        // Create new slots (6x6 grid for chest)
+        for (int i = 0; i < 44; i++)
+        {
+            GameObject slot = Instantiate(slotPrefab, slotGrid.transform);
             slots.Add(slot);
 
-            if (slot.GetComponent<CanvasGroup>() == null)
-            {
-                slot.AddComponent<CanvasGroup>();
-            }
-
-            EventTrigger trigger = slot.AddComponent<EventTrigger>();
-            AddEventTrigger(trigger, EventTriggerType.PointerClick, OnSlotClick);
+            var canvasGroup = slot.GetComponent<CanvasGroup>();
+            var trigger = slot.AddComponent<EventTrigger>();
+            
             AddEventTrigger(trigger, EventTriggerType.BeginDrag, BeginDrag);
             AddEventTrigger(trigger, EventTriggerType.Drag, Drag);
             AddEventTrigger(trigger, EventTriggerType.EndDrag, EndDrag);
+            AddEventTrigger(trigger, EventTriggerType.PointerEnter, OnSlotEnter);
+            AddEventTrigger(trigger, EventTriggerType.PointerExit, OnSlotExit);
         }
     }
 
     void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, UnityEngine.Events.UnityAction<BaseEventData> action)
     {
-        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
+        var entry = new EventTrigger.Entry { eventID = eventType };
         entry.callback.AddListener(action);
         trigger.triggers.Add(entry);
     }
 
-    void OnSlotClick(BaseEventData data)
-    {
-        // Handle slot click if needed
-    }
-
     public void BeginDrag(BaseEventData data)
     {
-        PointerEventData pointerData = (PointerEventData)data;
+        var pointerData = (PointerEventData)data;
         draggedItemIndex = GetSlotIndex(pointerData.pointerPress);
-        if (draggedItemIndex >= 0 && draggedItemIndex < chestInventory.items.Count)
+        
+        if (IsValidDragIndex())
         {
             draggedItem = CreateDraggedItem(draggedItemIndex);
-            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            if (draggedItem != null)
+            {
+                draggedItem.transform.SetParent(transform.root, false);
+                draggedItem.transform.SetAsLastSibling();
+                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
         }
     }
 
+    private bool IsValidDragIndex() => draggedItemIndex >= 0 && draggedItemIndex < chestInventory.items.Count;
+
     GameObject CreateDraggedItem(int index)
     {
-        GameObject itemObject = Instantiate(draggedItemPrefab);
-        Image itemImage = itemObject.GetComponent<Image>();
+        if (draggedItemPrefab == null)
+        {
+            Debug.LogError("DraggedItemPrefab is not assigned!");
+            return null;
+        }
+
+        var itemObject = Instantiate(draggedItemPrefab);
+        var itemImage = itemObject.GetComponent<Image>();
+        if (itemImage == null)
+        {
+            Debug.LogError("DraggedItemPrefab does not have an Image component!");
+            Destroy(itemObject);
+            return null;
+        }
+
         itemImage.sprite = chestInventory.items[index].item.itemIcon;
+        itemImage.color = Color.white;
 
-        RectTransform rectTransform = itemObject.GetComponent<RectTransform>();
+        var rectTransform = itemObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(50, 50);
-        rectTransform.anchoredPosition = Vector2.zero;
-
-        Canvas canvas = FindObjectOfType<Canvas>();
-        itemObject.transform.SetParent(canvas.transform, false);
 
         return itemObject;
     }
 
     public void Drag(BaseEventData data)
     {
-        if (draggedItem != null)
-        {
-            PointerEventData pointerData = (PointerEventData)data;
-            Canvas canvas = FindObjectOfType<Canvas>();
-            RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+        if (draggedItem == null) return;
 
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, pointerData.position, canvas.worldCamera, out localPoint);
+        var pointerData = (PointerEventData)data;
+        var canvas = GetComponentInParent<Canvas>();
+        if (canvas == null) return;
 
-            RectTransform draggedItemRectTransform = draggedItem.GetComponent<RectTransform>();
-            draggedItemRectTransform.anchoredPosition = localPoint;
-        }
+        var canvasRectTransform = canvas.GetComponent<RectTransform>();
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, pointerData.position, canvas.worldCamera, out Vector2 localPoint);
+
+        var draggedItemRectTransform = draggedItem.GetComponent<RectTransform>();
+        draggedItemRectTransform.anchoredPosition = localPoint;
     }
 
     public void EndDrag(BaseEventData data)
     {
-        if (draggedItem != null)
+        if (draggedItem == null) return;
+
+        var pointerData = (PointerEventData)data;
+        int targetSlotIndex = GetTargetSlotIndex(pointerData.position);
+
+        HandleDropIntoPlayerInventory(pointerData.position);
+
+        if (targetSlotIndex >= 0)
         {
-            PointerEventData pointerData = (PointerEventData)data;
+            SwapItems(targetSlotIndex);
+        }
 
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(slotPanel as RectTransform, pointerData.position, null, out localPoint);
+        if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
+        {
+            slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        
+        Destroy(draggedItem);
+        CleanUpDrag();
+    }
 
-            targetSlotIndex = -1;
-            for (int i = 0; i < slots.Count; i++)
-            {
-                RectTransform slotRectTransform = slots[i].GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, pointerData.position))
-                {
-                    targetSlotIndex = i;
-                    break;
-                }
-            }
+    private void HandleDropIntoPlayerInventory(Vector2 position)
+    {
+        var playerInventoryUI = FindObjectOfType<InventoryUI>();
+        if (playerInventoryUI == null) return;
 
-            if (RectTransformUtility.RectangleContainsScreenPoint(trashCanImage.rectTransform, pointerData.position))
-            {
-                if (draggedItemIndex >= 0 && draggedItemIndex < chestInventory.items.Count)
-                {
-                    var itemToRemove = chestInventory.items[draggedItemIndex];
-                    if (itemToRemove != null)
-                    {
-                        chestInventory.RemoveItem(itemToRemove.item, itemToRemove.stackSize);
-                    }
-                }
-            }
-            else if (targetSlotIndex >= 0 && targetSlotIndex < slots.Count)
-            {
-                while (chestInventory.items.Count <= targetSlotIndex)
-                {
-                    chestInventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-                }
-
-                if (draggedItemIndex >= 0 && draggedItemIndex < chestInventory.items.Count)
-                {
-                    Inventory.ItemStack draggedItemStack = chestInventory.items[draggedItemIndex];
-                    Inventory.ItemStack targetItemStack = chestInventory.items[targetSlotIndex];
-                    chestInventory.items[draggedItemIndex] = targetItemStack;
-                    chestInventory.items[targetSlotIndex] = draggedItemStack;
-
-                    UpdateInventoryUI();
-                }
-            }
-            else
-            {
-                Debug.Log("Returning item to original slot: " + draggedItemIndex);
-                if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-                {
-                    // Return item to the original slot
-                    if (chestInventory.items.Count <= draggedItemIndex)
-                    {
-                        chestInventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-                    }
-
-                    Inventory.ItemStack draggedItemStack = chestInventory.items[draggedItemIndex];
-                    if (draggedItemStack.item == null)
-                    {
-                        // Restore the original item stack to the slot
-                        draggedItemStack.item = chestInventory.items[draggedItemIndex].item;
-                        draggedItemStack.stackSize = chestInventory.items[draggedItemIndex].stackSize;
-                    }
-                    else
-                    {
-                        // Slot was not empty, return the dragged item
-                        Inventory.ItemStack originalItemStack = chestInventory.items[draggedItemIndex];
-                        chestInventory.items[draggedItemIndex] = new Inventory.ItemStack { item = draggedItemStack.item, stackSize = draggedItemStack.stackSize };
-                        draggedItemStack.item = originalItemStack.item;
-                        draggedItemStack.stackSize = originalItemStack.stackSize;
-                    }
-
-                    UpdateInventoryUI();
-                }
-            }
-
-            if (draggedItemIndex >= 0 && draggedItemIndex < slots.Count)
-            {
-                slots[draggedItemIndex].GetComponent<CanvasGroup>().blocksRaycasts = true;
-            }
-
-            Destroy(draggedItem);
-            CleanUpDrag();
+        int playerSlotIndex = playerInventoryUI.GetTargetSlotIndex(position);
+        if (playerSlotIndex >= 0)
+        {
+            var draggedItemStack = chestInventory.items[draggedItemIndex];
+            chestInventory.RemoveItem(draggedItemStack.item, draggedItemStack.stackSize);
+            playerInventoryUI.inventory.AddItem(draggedItemStack.item, draggedItemStack.stackSize);
+            playerInventoryUI.UpdateInventoryUI();
         }
     }
 
+    private void SwapItems(int targetSlotIndex)
+    {
+        // Ensure the chest inventory list has enough slots
+        while (chestInventory.items.Count <= targetSlotIndex)
+        {
+            chestInventory.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
+        }
+
+        if (!IsValidDragIndex()) return;
+
+        var draggedItemStack = chestInventory.items[draggedItemIndex];
+        var targetItemStack = chestInventory.items[targetSlotIndex];
+
+        // If target slot is empty, just move the item
+        if (targetItemStack.item == null)
+        {
+            chestInventory.items[targetSlotIndex] = draggedItemStack;
+            chestInventory.items[draggedItemIndex] = new Inventory.ItemStack { item = null, stackSize = 0 };
+        }
+        // If target slot has the same item type and isn't full, try to stack
+        else if (targetItemStack.item.itemName == draggedItemStack.item.itemName && 
+                 targetItemStack.stackSize < targetItemStack.item.maxStack)
+        {
+            int availableSpace = targetItemStack.item.maxStack - targetItemStack.stackSize;
+            int toAdd = Mathf.Min(draggedItemStack.stackSize, availableSpace);
+            
+            targetItemStack.stackSize += toAdd;
+            draggedItemStack.stackSize -= toAdd;
+
+            chestInventory.items[draggedItemIndex] = draggedItemStack.stackSize <= 0 ? 
+                new Inventory.ItemStack { item = null, stackSize = 0 } : draggedItemStack;
+        }
+        // Otherwise, swap the items
+        else
+        {
+            chestInventory.items[draggedItemIndex] = targetItemStack;
+            chestInventory.items[targetSlotIndex] = draggedItemStack;
+        }
+
+        UpdateChestInventoryUI();
+        Debug.Log($"Item moved to chest slot: {targetSlotIndex}");
+    }
 
     private void CleanUpDrag()
     {
         draggedItem = null;
         draggedItemIndex = -1;
-        targetSlotIndex = -1;
     }
 
-    int GetSlotIndex(GameObject slot)
-    {
-        return slots.IndexOf(slot);
-    }
+    int GetSlotIndex(GameObject slot) => slots.IndexOf(slot);
 
-    void UpdateInventoryUI()
+    public int GetTargetSlotIndex(Vector2 position)
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            Transform iconTransform = slots[i].transform.Find("Icon");
-            Transform countTransform = slots[i].transform.Find("Count");
+            var slotRectTransform = slots[i].GetComponent<RectTransform>();
+            if (RectTransformUtility.RectangleContainsScreenPoint(slotRectTransform, position))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-            Image iconImage = iconTransform?.GetComponent<Image>();
-            TMP_Text countText = countTransform?.GetComponent<TMP_Text>();
+    public void UpdateChestInventoryUI()
+    {
+        // Clear all slots if there's no chest inventory
+        if (chestInventory == null)
+        {
+            for (int i = 0; i < slots.Count; i++)
+            {
+                var iconTransform = slots[i].transform.Find("Icon");
+                var countTransform = slots[i].transform.Find("Count");
+                var slotImage = slots[i].GetComponent<Image>();
+
+                var iconImage = iconTransform?.GetComponent<Image>();
+                var countText = countTransform?.GetComponent<TMP_Text>();
+
+                ClearSlot(iconImage, countText);
+                slotImage.color = Color.white;
+            }
+            return;
+        }
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            var iconTransform = slots[i].transform.Find("Icon");
+            var countTransform = slots[i].transform.Find("Count");
+            var slotImage = slots[i].GetComponent<Image>();
+
+            var iconImage = iconTransform?.GetComponent<Image>();
+            var countText = countTransform?.GetComponent<TMP_Text>();
 
             if (i < chestInventory.items.Count)
             {
-                if (chestInventory.items[i] != null && chestInventory.items[i].item != null)
+                var itemStack = chestInventory.items[i];
+                if (itemStack != null && itemStack.item != null)
                 {
-                    if (iconImage != null)
-                    {
-                        iconImage.sprite = chestInventory.items[i].item.itemIcon;
-                        iconImage.color = Color.white;
-                    }
-                    if (countText != null)
-                    {
-                        countText.text = chestInventory.items[i].stackSize.ToString();
-                    }
+                    iconImage.sprite = itemStack.item.itemIcon;
+                    iconImage.color = Color.white;
+                    countText.text = itemStack.stackSize.ToString();
                 }
                 else
                 {
-                    if (iconImage != null) iconImage.sprite = null;
-                    if (countText != null) countText.text = "";
+                    ClearSlot(iconImage, countText);
                 }
             }
             else
             {
-                if (iconImage != null) iconImage.sprite = null;
-                if (countText != null) countText.text = "";
+                ClearSlot(iconImage, countText);
+            }
+
+            // Update slot color based on selection and hover states
+            if (i == selectedSlotIndex)
+            {
+                slotImage.color = selectedSlotColor;
+            }
+            else if (i == hoveredSlotIndex)
+            {
+                slotImage.color = hoverSlotColor;
+            }
+            else
+            {
+                slotImage.color = Color.white;
             }
         }
+    }
+
+    private void ClearSlot(Image iconImage, TMP_Text countText)
+    {
+        iconImage.sprite = null;
+        iconImage.color = new Color(1, 1, 1, 0);
+        countText.text = "";
+    }
+
+    public void OnSlotEnter(BaseEventData data)
+    {
+        var pointerData = (PointerEventData)data;
+        int slotIndex = GetSlotIndex(pointerData.pointerCurrentRaycast.gameObject);
+        if (slotIndex != hoveredSlotIndex)
+        {
+            if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
+            {
+                var oldSlotImage = slots[hoveredSlotIndex].GetComponent<Image>();
+                oldSlotImage.color = hoveredSlotIndex == selectedSlotIndex ? selectedSlotColor : Color.white;
+            }
+
+            hoveredSlotIndex = slotIndex;
+            if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
+            {
+                var newSlotImage = slots[hoveredSlotIndex].GetComponent<Image>();
+                newSlotImage.color = hoverSlotColor;
+            }
+        }
+    }
+
+    public void OnSlotExit(BaseEventData data)
+    {
+        if (hoveredSlotIndex >= 0 && hoveredSlotIndex < slots.Count)
+        {
+            var slotImage = slots[hoveredSlotIndex].GetComponent<Image>();
+            slotImage.color = hoveredSlotIndex == selectedSlotIndex ? selectedSlotColor : Color.white;
+        }
+        hoveredSlotIndex = -1;
     }
 
     private void OnDestroy()
     {
         if (chestInventory != null)
         {
-            chestInventory.OnInventoryChanged -= UpdateInventoryUI;
+            chestInventory.OnChestInventoryChanged -= UpdateChestInventoryUI;
         }
     }
 }

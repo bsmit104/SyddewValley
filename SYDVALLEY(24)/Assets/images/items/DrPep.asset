@@ -15,3 +15,7 @@ MonoBehaviour:
   itemName: Dr Pepper
   itemIcon: {fileID: 21300000, guid: 6c032a87b1b840a4ebc5bad83181b23d, type: 3}
   maxStack: 69
+  isSellable: 1
+  sellPrice: 5
+  buyPrice: 20
+  isAvailableInShop: 1
