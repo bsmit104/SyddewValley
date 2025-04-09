@@ -51,9 +51,15 @@ public class ShopManager : MonoBehaviour
         isShopOpen = false;
     }
 
-    public void OpenShop()
+    public void OpenShop(ShopData shopData)
     {
         if (isShopOpen) return;
+        
+        // Set the shop data
+        if (shopUI != null)
+        {
+            shopUI.SetShopData(shopData);
+        }
         
         shopCanvas.SetActive(true);
         isShopOpen = true;
@@ -108,7 +114,7 @@ public class ShopManager : MonoBehaviour
         isShopOpen = false;
     }
 
-    public void ToggleShop()
+    public void ToggleShop(ShopData shopData)
     {
         if (isShopOpen)
         {
@@ -116,7 +122,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            OpenShop();
+            OpenShop(shopData);
         }
     }
 

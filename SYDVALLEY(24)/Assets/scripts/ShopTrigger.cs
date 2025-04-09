@@ -5,6 +5,7 @@ public class ShopTrigger : MonoBehaviour
     [SerializeField] private bool debugMode = false;
     [Tooltip("Optional direct reference to shop manager")]
     [SerializeField] private ShopManager shopManagerReference;
+    [SerializeField] private ShopData shopData;
     
     // Visual indicator for debugging
     [SerializeField] private Color gizmoColor = Color.green;
@@ -18,6 +19,11 @@ public class ShopTrigger : MonoBehaviour
         {
             shopManagerReference = FindObjectOfType<ShopManager>();
         }
+
+        if (shopData == null)
+        {
+            Debug.LogError("ShopTrigger: No ShopData assigned!");
+        }
     }
 
     void Update()
@@ -27,11 +33,11 @@ public class ShopTrigger : MonoBehaviour
         {
             if (ShopManager.Instance != null)
             {
-                ShopManager.Instance.ToggleShop();
+                ShopManager.Instance.ToggleShop(shopData);
             }
             else if (shopManagerReference != null)
             {
-                shopManagerReference.ToggleShop();
+                shopManagerReference.ToggleShop(shopData);
             }
         }
     }

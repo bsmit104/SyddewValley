@@ -14,13 +14,22 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
     [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private TextMeshProUGUI shopTitleText;
 
-    [Header("Shop Settings")]
-    [SerializeField] private List<Item> availableItems = new List<Item>();
-    
     private Inventory playerInventory;
     private Item selectedItem;
     private bool isSelling;
+    private ShopData currentShopData;
+
+    public void SetShopData(ShopData shopData)
+    {
+        currentShopData = shopData;
+        if (shopTitleText != null && shopData != null)
+        {
+            shopTitleText.text = shopData.shopName;
+        }
+        RefreshShopItems();
+    }
 
     void Start()
     {
@@ -68,16 +77,6 @@ public class ShopUI : MonoBehaviour
         {
             Debug.LogWarning("ShopUI: Confirm or cancel button not assigned!");
         }
-
-        // Wait a frame before populating items to ensure everything is initialized
-        StartCoroutine(PopulateItemsNextFrame());
-    }
-
-    private System.Collections.IEnumerator PopulateItemsNextFrame()
-    {
-        yield return null; // Wait one frame
-        Debug.Log("Populating shop items");
-        PopulateShopItems();
     }
 
     public void RefreshShopItems()
@@ -88,7 +87,13 @@ public class ShopUI : MonoBehaviour
 
     private void PopulateShopItems()
     {
-        Debug.Log($"Starting to populate shop items. Available items count: {availableItems.Count}");
+        if (currentShopData == null)
+        {
+            Debug.LogWarning("No shop data assigned to populate items");
+            return;
+        }
+
+        Debug.Log($"Starting to populate shop items. Available items count: {currentShopData.availableItems.Count}");
         
         // Clear existing items
         foreach (Transform child in shopItemsContainer)
@@ -97,7 +102,7 @@ public class ShopUI : MonoBehaviour
         }
 
         // Add available items
-        foreach (Item item in availableItems)
+        foreach (Item item in currentShopData.availableItems)
         {
             if (item.isAvailableInShop)
             {
