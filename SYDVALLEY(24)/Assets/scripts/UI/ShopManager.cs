@@ -96,15 +96,16 @@ public class ShopManager : MonoBehaviour
     {
         if (!isShopOpen) return;
         
-        shopCanvas.SetActive(false);
-        isShopOpen = false;
-        
-        // Notify inventory about shop state
+        // Notify inventory about shop state before closing
         var inventoryUI = FindObjectOfType<InventoryUI>();
-        if (inventoryUI != null)
+        if (inventoryUI != null && inventoryUI.isActiveAndEnabled)
         {
             inventoryUI.SetInShopRange(false);
         }
+        
+        // Close the shop after updating inventory
+        shopCanvas.SetActive(false);
+        isShopOpen = false;
     }
 
     public void ToggleShop()

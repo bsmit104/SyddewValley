@@ -17,9 +17,6 @@ public class ShopUI : MonoBehaviour
 
     [Header("Shop Settings")]
     [SerializeField] private List<Item> availableItems = new List<Item>();
-    [SerializeField] private Vector2 itemSize = new Vector2(100, 100);
-    [SerializeField] private Vector2 itemSpacing = new Vector2(10, 10);
-    [SerializeField] private int columnsCount = 4;
     
     private Inventory playerInventory;
     private Item selectedItem;
@@ -27,6 +24,7 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("ShopUI Start called");
         playerInventory = FindObjectOfType<Inventory>();
         
         // Ensure references are valid
@@ -36,6 +34,12 @@ public class ShopUI : MonoBehaviour
             return;
         }
         
+        if (shopItemPrefab == null)
+        {
+            Debug.LogError("ShopUI: Shop item prefab is not assigned!");
+            return;
+        }
+
         if (confirmationPanel != null)
         {
             confirmationPanel.SetActive(false);
@@ -51,23 +55,9 @@ public class ShopUI : MonoBehaviour
             scrollRect = GetComponentInParent<ScrollRect>();
             if (scrollRect == null)
             {
-                // Try to find it in the parent hierarchy
-                Transform parent = transform.parent;
-                while (parent != null && scrollRect == null)
-                {
-                    scrollRect = parent.GetComponent<ScrollRect>();
-                    parent = parent.parent;
-                }
-                
-                if (scrollRect == null)
-                {
-                    Debug.LogWarning("ShopUI: ScrollRect not found. Scrolling to top may not work.");
-                }
+                Debug.LogWarning("ShopUI: ScrollRect not found. Scrolling to top may not work.");
             }
         }
-
-        // Set up the shop layout
-        SetupShopLayout();
 
         if (confirmButton != null && cancelButton != null)
         {
@@ -86,44 +76,20 @@ public class ShopUI : MonoBehaviour
     private System.Collections.IEnumerator PopulateItemsNextFrame()
     {
         yield return null; // Wait one frame
+        Debug.Log("Populating shop items");
         PopulateShopItems();
-    }
-
-    private void SetupShopLayout()
-    {
-        // Make sure we have a layout group
-        GridLayoutGroup layoutGroup = shopItemsContainer.GetComponent<GridLayoutGroup>();
-        if (layoutGroup == null)
-        {
-            layoutGroup = shopItemsContainer.gameObject.AddComponent<GridLayoutGroup>();
-        }
-
-        // Configure layout
-        layoutGroup.cellSize = itemSize;
-        layoutGroup.spacing = itemSpacing;
-        layoutGroup.startCorner = GridLayoutGroup.Corner.UpperLeft;
-        layoutGroup.startAxis = GridLayoutGroup.Axis.Horizontal;
-        layoutGroup.childAlignment = TextAnchor.UpperLeft;
-        layoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        layoutGroup.constraintCount = columnsCount;
-
-        // Set up content sizing
-        ContentSizeFitter sizeFitter = shopItemsContainer.GetComponent<ContentSizeFitter>();
-        if (sizeFitter == null)
-        {
-            sizeFitter = shopItemsContainer.gameObject.AddComponent<ContentSizeFitter>();
-        }
-        sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-        sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
     }
 
     public void RefreshShopItems()
     {
+        Debug.Log("Refreshing shop items");
         PopulateShopItems();
     }
 
     private void PopulateShopItems()
     {
+        Debug.Log($"Starting to populate shop items. Available items count: {availableItems.Count}");
+        
         // Clear existing items
         foreach (Transform child in shopItemsContainer)
         {
@@ -135,9 +101,12 @@ public class ShopUI : MonoBehaviour
         {
             if (item.isAvailableInShop)
             {
+                Debug.Log($"Creating shop item for: {item.itemName}");
                 CreateShopItemButton(item);
             }
         }
+
+        Debug.Log($"Finished populating shop items. Container child count: {shopItemsContainer.childCount}");
 
         // Make sure the content size is updated
         Canvas.ForceUpdateCanvases();
@@ -159,26 +128,35 @@ public class ShopUI : MonoBehaviour
 
     private void CreateShopItemButton(Item item)
     {
+        if (shopItemPrefab == null)
+        {
+            Debug.LogError("Cannot create shop item: prefab is null");
+            return;
+        }
+
         GameObject buttonObj = Instantiate(shopItemPrefab, shopItemsContainer);
+        Debug.Log($"Created shop item button for {item.itemName}");
         
         // Set up the button's visuals
         Image iconImage = buttonObj.transform.Find("Icon")?.GetComponent<Image>();
         TextMeshProUGUI nameText = buttonObj.transform.Find("Name")?.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI priceText = buttonObj.transform.Find("Price")?.GetComponent<TextMeshProUGUI>();
         
+        if (iconImage == null) Debug.LogError("Icon component not found in shop item prefab");
+        if (nameText == null) Debug.LogError("Name TextMeshPro component not found in shop item prefab");
+        if (priceText == null) Debug.LogError("Price TextMeshPro component not found in shop item prefab");
+        
         if (iconImage) iconImage.sprite = item.itemIcon;
         if (nameText) nameText.text = item.itemName;
         if (priceText) priceText.text = $"${item.buyPrice:N0}";
 
-        // Make sure the button has the right size
-        RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();
-        if (rectTransform)
-        {
-            rectTransform.sizeDelta = itemSize;
-        }
-
         // Add click handler
         Button button = buttonObj.GetComponent<Button>();
+        if (button == null)
+        {
+            Debug.LogError("Button component not found in shop item prefab");
+            return;
+        }
         button.onClick.AddListener(() => ShowBuyConfirmation(item));
     }
 

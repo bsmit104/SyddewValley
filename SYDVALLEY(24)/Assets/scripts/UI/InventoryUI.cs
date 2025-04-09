@@ -125,9 +125,13 @@ public class InventoryUI : MonoBehaviour
         if (index < 0 || index >= slots.Count) return;
         
         var slot = slots[index];
+        if (slot == null) return;
+        
         var iconTransform = slot.transform.Find("Icon");
         var countTransform = slot.transform.Find("Count");
         var slotImage = slot.GetComponent<Image>();
+        if (slotImage == null) return;
+        
         var iconImage = iconTransform?.GetComponent<Image>();
         var countText = countTransform?.GetComponent<TMP_Text>();
         
@@ -144,9 +148,15 @@ public class InventoryUI : MonoBehaviour
             isSellable = isInShopRange && itemStack.item.isSellable;
             
             // Update icon and count
-            iconImage.sprite = itemStack.item.itemIcon;
-            iconImage.color = Color.white;
-            countText.text = itemStack.stackSize.ToString();
+            if (iconImage != null)
+            {
+                iconImage.sprite = itemStack.item.itemIcon;
+                iconImage.color = Color.white;
+            }
+            if (countText != null)
+            {
+                countText.text = itemStack.stackSize.ToString();
+            }
         }
         else
         {
