@@ -15,3 +15,9 @@ MonoBehaviour:
   itemName: Potato Salad
   itemIcon: {fileID: 21300000, guid: ff37ea3f5e1b6ee4893019f7b9c489c4, type: 3}
   maxStack: 69
+  isSellable: 0
+  sellPrice: 0
+  buyPrice: 0
+  isAvailableInShop: 0
+  isFood: 1
+  hungerRestore: 25

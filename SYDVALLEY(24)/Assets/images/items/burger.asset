@@ -15,3 +15,9 @@ MonoBehaviour:
   itemName: Burger
   itemIcon: {fileID: 21300000, guid: 9083fed8e42eb4a4b8512c59db4572c7, type: 3}
   maxStack: 69
+  isSellable: 0
+  sellPrice: 0
+  buyPrice: 0
+  isAvailableInShop: 0
+  isFood: 1
+  hungerRestore: 25

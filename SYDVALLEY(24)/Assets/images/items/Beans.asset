@@ -19,3 +19,5 @@ MonoBehaviour:
   sellPrice: 30
   buyPrice: 40
   isAvailableInShop: 1
+  isFood: 1
+  hungerRestore: 25
