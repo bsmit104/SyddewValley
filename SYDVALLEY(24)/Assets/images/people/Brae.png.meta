@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Brae_0: 7348154659611765380
+      Brae_1: 8107027609062770084
+      Brae_10: 8858604254331402554
+      Brae_11: -8755191161206734245
+      Brae_12: 429123157171869230
+      Brae_13: 6971985475242780594
+      Brae_14: 3490682997403183995
+      Brae_15: -4867745662354443744
+      Brae_2: -1851323674388168922
+      Brae_3: -5998676867813414795
+      Brae_4: -766138240605075992
+      Brae_5: 4062074027649913850
+      Brae_6: 7947146056289886748
+      Brae_7: -2170928690092059766
+      Brae_8: -5430086055582565453
+      Brae_9: -6270801244884744777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
