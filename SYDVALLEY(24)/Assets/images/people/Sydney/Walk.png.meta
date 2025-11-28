@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9aa752a97c09fb48a070c249f316ac6
+guid: 3cd838f01dd889b47a11aecb6ec0477c
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sydney_0
+      name: Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -183,16 +183,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6364b5c25aae299e0800000000000000
-      internalID: -1615971321137904074
+      spriteID: 0df2a172689867c4f8a6c3711dae6fa4
+      internalID: 1113517580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_1
+      name: Walk_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,16 +204,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d31cee95d3a162510800000000000000
-      internalID: 1523934374715638077
+      spriteID: ec0d0a4943c173848a865c43a8142fab
+      internalID: 1082206656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_2
+      name: Walk_2
       rect:
         serializedVersion: 2
         x: 32
@@ -225,16 +225,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a29a8bf7259f0f9b0800000000000000
-      internalID: -5048261049556883158
+      spriteID: d92dea216b800124e8dbcb67b22d8dcb
+      internalID: -795627646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_3
+      name: Walk_3
       rect:
         serializedVersion: 2
         x: 48
@@ -246,16 +246,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e8efb6bf91fffca20800000000000000
-      internalID: 3084964756829503118
+      spriteID: d2db3f45b280a7241bf97b30c62c5fdc
+      internalID: 1842037667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_4
+      name: Walk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -267,16 +267,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: feb0ad22080bc8790800000000000000
-      internalID: -7526446812855923729
+      spriteID: 6c719351acf466c4d8a94f423ee606a5
+      internalID: 977680198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_5
+      name: Walk_5
       rect:
         serializedVersion: 2
         x: 16
@@ -288,16 +288,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 72f9173945cc324e0800000000000000
-      internalID: -2007536345254093017
+      spriteID: ea074c9d9f91e5747a3e0d965d517cf5
+      internalID: -556775007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_6
+      name: Walk_6
       rect:
         serializedVersion: 2
         x: 32
@@ -309,16 +309,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3355a1e8f9a24860800000000000000
-      internalID: 7512754014810100540
+      spriteID: c61cf495168c5d144870027192aee71f
+      internalID: -854548752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_7
+      name: Walk_7
       rect:
         serializedVersion: 2
         x: 48
@@ -330,16 +330,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f00ca1e904f545700800000000000000
-      internalID: 528151787444289551
+      spriteID: d2f82fea4517aee45ac7a20607fc1803
+      internalID: -1116789156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_8
+      name: Walk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -351,16 +351,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d0ad78739042fb720800000000000000
-      internalID: 2864047510035880461
+      spriteID: b4a8735a5af6b94489d209cae01eef82
+      internalID: -2038745540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_9
+      name: Walk_9
       rect:
         serializedVersion: 2
         x: 16
@@ -372,16 +372,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc9472d9320c76bb0800000000000000
-      internalID: -4942770806822843956
+      spriteID: c3aa2e622461fc049888db61faba9ed6
+      internalID: 1644981852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_10
+      name: Walk_10
       rect:
         serializedVersion: 2
         x: 32
@@ -393,16 +393,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 543ddccf74c58a370800000000000000
-      internalID: 8334012574702883653
+      spriteID: 448c2734396f9b04086aa8c1d47562c9
+      internalID: -146265166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_11
+      name: Walk_11
       rect:
         serializedVersion: 2
         x: 48
@@ -414,16 +414,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68256fdf83ceaffc0800000000000000
-      internalID: -3460193634157702522
+      spriteID: 8b061f0b1b926d54680af53ef1e174f9
+      internalID: -1697649112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_12
+      name: Walk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -435,16 +435,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b3a31cd325ec1a70800000000000000
-      internalID: 8799159714153997238
+      spriteID: c59431fef8db4bf4ca8d5d907d02ae0c
+      internalID: -13188936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_13
+      name: Walk_13
       rect:
         serializedVersion: 2
         x: 16
@@ -456,16 +456,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eae67e5e1d8d60c50800000000000000
-      internalID: 6631225897366548142
+      spriteID: f4c7858b850264e4e9418cebb71d3336
+      internalID: 677856246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_14
+      name: Walk_14
       rect:
         serializedVersion: 2
         x: 32
@@ -477,16 +477,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5778daedde9c3c60800000000000000
-      internalID: 7799283330663872346
+      spriteID: ffb4ab1514a09b04ba1d088225f27961
+      internalID: -798105473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sydney_15
+      name: Walk_15
       rect:
         serializedVersion: 2
         x: 48
@@ -498,10 +498,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c6a51bacdb0a7fd40800000000000000
-      internalID: 5618135797177866860
+      spriteID: 3615a2084c316b747bc8e89fae2ed19c
+      internalID: -1930226950
       vertices: []
       indices: 
       edges: []
@@ -517,22 +517,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sydney_0: -1615971321137904074
-      Sydney_1: 1523934374715638077
-      Sydney_10: 8334012574702883653
-      Sydney_11: -3460193634157702522
-      Sydney_12: 8799159714153997238
-      Sydney_13: 6631225897366548142
-      Sydney_14: 7799283330663872346
-      Sydney_15: 5618135797177866860
-      Sydney_2: -5048261049556883158
-      Sydney_3: 3084964756829503118
-      Sydney_4: -7526446812855923729
-      Sydney_5: -2007536345254093017
-      Sydney_6: 7512754014810100540
-      Sydney_7: 528151787444289551
-      Sydney_8: 2864047510035880461
-      Sydney_9: -4942770806822843956
+      Walk_0: 1113517580
+      Walk_1: 1082206656
+      Walk_10: -146265166
+      Walk_11: -1697649112
+      Walk_12: -13188936
+      Walk_13: 677856246
+      Walk_14: -798105473
+      Walk_15: -1930226950
+      Walk_2: -795627646
+      Walk_3: 1842037667
+      Walk_4: 977680198
+      Walk_5: -556775007
+      Walk_6: -854548752
+      Walk_7: -1116789156
+      Walk_8: -2038745540
+      Walk_9: 1644981852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
