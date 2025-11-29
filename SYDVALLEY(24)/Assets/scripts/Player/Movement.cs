@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
         animator = GetComponent<Animator>();
     }
 
