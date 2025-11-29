@@ -1,55 +1,55 @@
 fileFormatVersion: 2
-guid: fbdfd4073741c8340989fefb12c93d6c
+guid: 85fb0d3f74295454a9133edbf17c0713
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7348154659611765380
-    second: Brae_0
+      213: -5362292703166988329
+    second: rabbit_0
   - first:
-      213: 8107027609062770084
-    second: Brae_1
+      213: -9183474814421927023
+    second: rabbit_1
   - first:
-      213: -1851323674388168922
-    second: Brae_2
+      213: 4094930355834545784
+    second: rabbit_2
   - first:
-      213: -5998676867813414795
-    second: Brae_3
+      213: -2956455614790974670
+    second: rabbit_3
   - first:
-      213: -766138240605075992
-    second: Brae_4
+      213: 6646757335500350731
+    second: rabbit_4
   - first:
-      213: 4062074027649913850
-    second: Brae_5
+      213: 2205422856068950921
+    second: rabbit_5
   - first:
-      213: 7947146056289886748
-    second: Brae_6
+      213: -1710025177234258205
+    second: rabbit_6
   - first:
-      213: -2170928690092059766
-    second: Brae_7
+      213: -1520130438184224705
+    second: rabbit_7
   - first:
-      213: -5430086055582565453
-    second: Brae_8
+      213: 6978142131542690387
+    second: rabbit_8
   - first:
-      213: -6270801244884744777
-    second: Brae_9
+      213: -3811027324686367218
+    second: rabbit_9
   - first:
-      213: 8858604254331402554
-    second: Brae_10
+      213: -8275629492349689178
+    second: rabbit_10
   - first:
-      213: -8755191161206734245
-    second: Brae_11
+      213: -3615608086160406521
+    second: rabbit_11
   - first:
-      213: 429123157171869230
-    second: Brae_12
+      213: -1894917469346153302
+    second: rabbit_12
   - first:
-      213: 6971985475242780594
-    second: Brae_13
+      213: -2372467105192624143
+    second: rabbit_13
   - first:
-      213: 3490682997403183995
-    second: Brae_14
+      213: -3077199415608434654
+    second: rabbit_14
   - first:
-      213: -4867745662354443744
-    second: Brae_15
+      213: -7045262923644442350
+    second: rabbit_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -171,13 +171,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brae_0
+      name: rabbit_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 97
+        y: 114
         width: 16
-        height: 32
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 48a6ac01bb3e9f560800000000000000
-      internalID: 7348154659611765380
+      spriteID: 7dfff06723f4595b0800000000000000
+      internalID: -5362292703166988329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_1
+      name: rabbit_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 97
-        width: 16
-        height: 32
+        x: 17
+        y: 113
+        width: 15
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a5887658a2f18070800000000000000
-      internalID: 8107027609062770084
+      spriteID: 19b72aaff4ebd8080800000000000000
+      internalID: -9183474814421927023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_2
+      name: rabbit_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 97
+        y: 114
         width: 16
-        height: 32
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 62f72d74de6ce46e0800000000000000
-      internalID: -1851323674388168922
+      spriteID: 8766b77767d14d830800000000000000
+      internalID: 4094930355834545784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_3
+      name: rabbit_3
       rect:
         serializedVersion: 2
         x: 48
-        y: 97
-        width: 16
-        height: 32
+        y: 113
+        width: 15
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +248,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 578e0abcb2b60cca0800000000000000
-      internalID: -5998676867813414795
+      spriteID: 233cc26484f88f6d0800000000000000
+      internalID: -2956455614790974670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_4
+      name: rabbit_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 65
-        width: 16
-        height: 32
+        y: 75
+        width: 14
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,83 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e544ef44512e55f0800000000000000
-      internalID: -766138240605075992
+      spriteID: b0568b2a4960e3c50800000000000000
+      internalID: 6646757335500350731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 65
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af3d96d6ec26f5830800000000000000
-      internalID: 4062074027649913850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Brae_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 65
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c122e4f7b3fe94e60800000000000000
-      internalID: 7947146056289886748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Brae_7
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 65
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a83db52cbdf4fd1e0800000000000000
-      internalID: -2170928690092059766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Brae_8
+      name: rabbit_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 33
-        width: 16
-        height: 32
+        y: 38
+        width: 17
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,20 +290,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3bbf235908574a4b0800000000000000
-      internalID: -5430086055582565453
+      spriteID: 98b648b176c3b9e10800000000000000
+      internalID: 2205422856068950921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_9
+      name: rabbit_6
       rect:
         serializedVersion: 2
         x: 16
-        y: 33
-        width: 16
-        height: 32
+        y: 75
+        width: 17
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,20 +311,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b5419ded73a9f8a0800000000000000
-      internalID: -6270801244884744777
+      spriteID: 3e64af15925c448e0800000000000000
+      internalID: -1710025177234258205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_10
+      name: rabbit_7
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 38
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3835c3ab6967eae0800000000000000
+      internalID: -1520130438184224705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbit_8
       rect:
         serializedVersion: 2
         x: 32
-        y: 33
+        y: 38
         width: 16
-        height: 32
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -395,20 +353,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a39ff2962a510fa70800000000000000
-      internalID: 8858604254331402554
+      spriteID: 35a0acefb4757d060800000000000000
+      internalID: 6978142131542690387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_11
+      name: rabbit_9
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 75
+        width: 14
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0603c207d28c1bc0800000000000000
+      internalID: -3811027324686367218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbit_10
       rect:
         serializedVersion: 2
         x: 48
-        y: 33
+        y: 75
         width: 16
-        height: 32
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -416,20 +395,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5202af96005f7680800000000000000
-      internalID: -8755191161206734245
+      spriteID: 6a220c7a2de072d80800000000000000
+      internalID: -8275629492349689178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_12
+      name: rabbit_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 16
-        height: 32
+        x: 48
+        y: 38
+        width: 15
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -437,20 +416,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e269f14ec3d84f500800000000000000
-      internalID: 429123157171869230
+      spriteID: 70801691a97c2ddc0800000000000000
+      internalID: -3615608086160406521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_13
+      name: rabbit_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 14
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aacb0f0f996e3b5e0800000000000000
+      internalID: -1894917469346153302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbit_13
       rect:
         serializedVersion: 2
         x: 16
-        y: 1
+        y: 0
         width: 16
-        height: 32
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -458,20 +458,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b7670fb9d771c060800000000000000
-      internalID: 6971985475242780594
+      spriteID: 1ffb1b9dcbd431fd0800000000000000
+      internalID: -2372467105192624143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_14
+      name: rabbit_14
       rect:
         serializedVersion: 2
-        x: 32
-        y: 1
-        width: 16
-        height: 32
+        x: 34
+        y: 0
+        width: 14
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -479,20 +479,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b7b66b311b5617030800000000000000
-      internalID: 3490682997403183995
+      spriteID: 220ae996f679b45d0800000000000000
+      internalID: -3077199415608434654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_15
+      name: rabbit_15
       rect:
         serializedVersion: 2
-        x: 48
-        y: 1
-        width: 16
-        height: 32
+        x: 47
+        y: 0
+        width: 17
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -500,8 +500,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0223a6a4c1b427cb0800000000000000
-      internalID: -4867745662354443744
+      spriteID: 21961f6c2b23a3e90800000000000000
+      internalID: -7045262923644442350
       vertices: []
       indices: 
       edges: []
@@ -509,30 +509,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cc99ec4c93b367a488e4a49dc1e8a4cb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Brae_0: 7348154659611765380
-      Brae_1: 8107027609062770084
-      Brae_10: 8858604254331402554
-      Brae_11: -8755191161206734245
-      Brae_12: 429123157171869230
-      Brae_13: 6971985475242780594
-      Brae_14: 3490682997403183995
-      Brae_15: -4867745662354443744
-      Brae_2: -1851323674388168922
-      Brae_3: -5998676867813414795
-      Brae_4: -766138240605075992
-      Brae_5: 4062074027649913850
-      Brae_6: 7947146056289886748
-      Brae_7: -2170928690092059766
-      Brae_8: -5430086055582565453
-      Brae_9: -6270801244884744777
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

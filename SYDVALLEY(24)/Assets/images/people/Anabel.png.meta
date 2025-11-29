@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -174,10 +174,10 @@ TextureImporter:
       name: Anabel_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 98
-        width: 14
-        height: 29
+        x: 0
+        y: 97
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +195,10 @@ TextureImporter:
       name: Anabel_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 98
-        width: 14
-        height: 28
+        x: 16
+        y: 97
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Anabel_2
       rect:
         serializedVersion: 2
-        x: 33
-        y: 98
-        width: 14
-        height: 29
+        x: 32
+        y: 97
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: Anabel_3
       rect:
         serializedVersion: 2
-        x: 49
-        y: 98
-        width: 14
-        height: 28
+        x: 48
+        y: 97
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,10 +258,10 @@ TextureImporter:
       name: Anabel_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 66
-        width: 14
-        height: 29
+        x: 0
+        y: 65
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,10 +279,10 @@ TextureImporter:
       name: Anabel_5
       rect:
         serializedVersion: 2
-        x: 17
-        y: 66
-        width: 14
-        height: 28
+        x: 16
+        y: 65
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +300,10 @@ TextureImporter:
       name: Anabel_6
       rect:
         serializedVersion: 2
-        x: 33
-        y: 66
-        width: 14
-        height: 29
+        x: 32
+        y: 65
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +321,10 @@ TextureImporter:
       name: Anabel_7
       rect:
         serializedVersion: 2
-        x: 49
-        y: 66
-        width: 14
-        height: 28
+        x: 48
+        y: 65
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,10 +342,10 @@ TextureImporter:
       name: Anabel_8
       rect:
         serializedVersion: 2
-        x: 1
-        y: 34
-        width: 14
-        height: 29
+        x: 0
+        y: 33
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,10 +363,10 @@ TextureImporter:
       name: Anabel_9
       rect:
         serializedVersion: 2
-        x: 17
-        y: 34
-        width: 14
-        height: 28
+        x: 16
+        y: 33
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,10 +384,10 @@ TextureImporter:
       name: Anabel_10
       rect:
         serializedVersion: 2
-        x: 33
-        y: 34
-        width: 14
-        height: 29
+        x: 32
+        y: 33
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,10 +405,10 @@ TextureImporter:
       name: Anabel_11
       rect:
         serializedVersion: 2
-        x: 49
-        y: 34
-        width: 14
-        height: 28
+        x: 48
+        y: 33
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,10 +426,10 @@ TextureImporter:
       name: Anabel_12
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 14
-        height: 28
+        x: 0
+        y: 1
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: Anabel_13
       rect:
         serializedVersion: 2
-        x: 17
-        y: 2
-        width: 14
-        height: 29
+        x: 16
+        y: 1
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -468,10 +468,10 @@ TextureImporter:
       name: Anabel_14
       rect:
         serializedVersion: 2
-        x: 33
-        y: 2
-        width: 14
-        height: 28
+        x: 32
+        y: 1
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -489,10 +489,10 @@ TextureImporter:
       name: Anabel_15
       rect:
         serializedVersion: 2
-        x: 49
-        y: 2
-        width: 14
-        height: 29
+        x: 48
+        y: 1
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -509,14 +509,30 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2e60986817c78c24385f6988fe82677d
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Anabel_0: 7873436052116560886
+      Anabel_1: -5266949654381604618
+      Anabel_10: -6892844442126713621
+      Anabel_11: 6579306110714093419
+      Anabel_12: 3408103401868664089
+      Anabel_13: -1151967467333644342
+      Anabel_14: 4542365586163602783
+      Anabel_15: 6240868654113984450
+      Anabel_2: -2047674520799051621
+      Anabel_3: 8711074496983291552
+      Anabel_4: 828673958786905228
+      Anabel_5: -7547671725585650821
+      Anabel_6: 8288651619060891695
+      Anabel_7: -5458346833462897095
+      Anabel_8: 1506084119349748466
+      Anabel_9: -1103485578179694027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

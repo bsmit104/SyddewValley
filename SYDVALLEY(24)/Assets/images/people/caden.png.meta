@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      caden_0: 7657907150880016920
+      caden_1: 7319298037292007179
+      caden_10: 4047807415003833969
+      caden_11: -137031094587271516
+      caden_12: -2186706277692636758
+      caden_13: 3610347487845176276
+      caden_14: 3436105450649913160
+      caden_15: 7446397001039338876
+      caden_2: 295560398703187578
+      caden_3: -1954102762958362495
+      caden_4: 1177932405354341825
+      caden_5: -8530049904095109861
+      caden_6: 8634216546082026664
+      caden_7: 2564514755759694230
+      caden_8: -7897280463228852827
+      caden_9: 7021433436816022660
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
