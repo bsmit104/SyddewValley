@@ -228,7 +228,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flowerCrawlerWalk_0: 53194676263209305
+      flowerCrawlerWalk_1: 8578851294218890090
+      flowerCrawlerWalk_2: -6047790104456204112
+      flowerCrawlerWalk_3: -2650991051696810513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

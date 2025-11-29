@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spyshack_0: -4059827621575774097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

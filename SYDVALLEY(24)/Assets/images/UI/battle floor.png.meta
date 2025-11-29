@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      battle floor_0: -5547573033527157944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

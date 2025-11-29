@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Braydo2_0: -5635711053463014137
+      Braydo2_1: -638878639408133634
+      Braydo2_10: -545933471498593935
+      Braydo2_11: -1753824382165153434
+      Braydo2_12: -6216165465788654278
+      Braydo2_13: 7936395756748720864
+      Braydo2_14: -2485634805871635995
+      Braydo2_15: 3419054449715663427
+      Braydo2_2: -2717482654967356423
+      Braydo2_3: -7552336923165076471
+      Braydo2_4: -9038227047357911046
+      Braydo2_5: 7669533210595477513
+      Braydo2_6: 6962758578401188151
+      Braydo2_7: -4245709499737415520
+      Braydo2_8: 6794521093843204374
+      Braydo2_9: 7666531868061025945
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

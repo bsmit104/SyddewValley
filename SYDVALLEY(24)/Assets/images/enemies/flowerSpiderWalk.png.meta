@@ -228,7 +228,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flowerSpiderWalk_0: 3492294423758078264
+      flowerSpiderWalk_1: 6704276387947446260
+      flowerSpiderWalk_2: 386113649532475501
+      flowerSpiderWalk_3: -3629246641865046199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
