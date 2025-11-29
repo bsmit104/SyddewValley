@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 1008081451
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: BraydoIdle_0
+      m_Hash: 709506769
+      m_Sprite: {fileID: 7483165857726879287, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7483165857726879287, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+    - m_Name: BraydoIdle_1
+      m_Hash: 491587143
+      m_Sprite: {fileID: -6965692275891884021, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6965692275891884021, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+    - m_Name: BraydoIdle_2
+      m_Hash: 71587837
+      m_Sprite: {fileID: -1802690134054640060, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1802690134054640060, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+    - m_Name: BraydoIdle_3
+      m_Hash: 860055403
+      m_Sprite: {fileID: 8056989049035287706, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8056989049035287706, guid: 29bc75f29adaf6840b1bbd7f2f02f054, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Walk
+    m_Hash: 765711723
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Braydo_0
+      m_Hash: 775035076
+      m_Sprite: {fileID: -5436237947757345617, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5436237947757345617, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_1
+      m_Hash: 422914130
+      m_Sprite: {fileID: 6253086050403570865, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6253086050403570865, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_2
+      m_Hash: 3963368
+      m_Sprite: {fileID: 2194680267494618942, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2194680267494618942, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_3
+      m_Hash: 926632318
+      m_Sprite: {fileID: -1194128448104978669, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1194128448104978669, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_4
+      m_Hash: 694148317
+      m_Sprite: {fileID: -1123133736259637001, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1123133736259637001, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_5
+      m_Hash: 509144139
+      m_Sprite: {fileID: -4365186588404371945, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4365186588404371945, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_6
+      m_Hash: 122797553
+      m_Sprite: {fileID: -8531805929582284222, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8531805929582284222, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_7
+      m_Hash: 810978663
+      m_Sprite: {fileID: -5901669952630332717, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5901669952630332717, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_8
+      m_Hash: 552177910
+      m_Sprite: {fileID: -4550694472917568155, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4550694472917568155, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_9
+      m_Hash: 401514592
+      m_Sprite: {fileID: 2710996520746974433, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2710996520746974433, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_10
+      m_Hash: 828889809
+      m_Sprite: {fileID: 3726458126627487736, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3726458126627487736, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_11
+      m_Hash: 107014727
+      m_Sprite: {fileID: -3455241786426543540, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3455241786426543540, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_12
+      m_Hash: 527023101
+      m_Sprite: {fileID: -9000862969039124588, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9000862969039124588, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_13
+      m_Hash: 678333291
+      m_Sprite: {fileID: 8342109234555896490, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8342109234555896490, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_14
+      m_Hash: 906632904
+      m_Sprite: {fileID: -4683421389744259414, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4683421389744259414, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    - m_Name: Braydo_15
+      m_Hash: 17641054
+      m_Sprite: {fileID: 7165606482144288568, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7165606482144288568, guid: 60243e64a78c0d546a993a3da0a8f54c, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 16
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638999404346887488
+  m_Version: 1
