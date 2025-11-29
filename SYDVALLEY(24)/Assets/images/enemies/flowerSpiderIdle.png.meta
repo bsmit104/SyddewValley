@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flowerSpiderIdle_0: -5952593936250052947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

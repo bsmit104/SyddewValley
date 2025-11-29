@@ -516,7 +516,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rabbit_0: -5362292703166988329
+      rabbit_1: -9183474814421927023
+      rabbit_10: -8275629492349689178
+      rabbit_11: -3615608086160406521
+      rabbit_12: -1894917469346153302
+      rabbit_13: -2372467105192624143
+      rabbit_14: -3077199415608434654
+      rabbit_15: -7045262923644442350
+      rabbit_2: 4094930355834545784
+      rabbit_3: -2956455614790974670
+      rabbit_4: 6646757335500350731
+      rabbit_5: 2205422856068950921
+      rabbit_6: -1710025177234258205
+      rabbit_7: -1520130438184224705
+      rabbit_8: 6978142131542690387
+      rabbit_9: -3811027324686367218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

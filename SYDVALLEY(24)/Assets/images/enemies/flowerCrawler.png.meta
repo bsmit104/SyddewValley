@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flowerCrawler_0: -7671550090128772719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
