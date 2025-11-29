@@ -13,12 +13,52 @@ public class Item : ScriptableObject
     public int buyPrice = 0;
     public bool isAvailableInShop = false;
 
-    [Header("Food Settings")] // ← NEW
+    [Header("Food Settings")]
     public bool isFood = false;
-    public int hungerRestore = 25; // ← NEW (how much hunger it restores)
+    public int hungerRestore = 25; // how much hunger it restores
 
-    // You can add more properties here, like item ID, description, etc.
+    [Header("Placement Settings")]
+    public bool isPlaceable = false; // whether item can be placed in world
 }
+
+// using UnityEngine;
+
+// [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
+// public class Item : ScriptableObject
+// {
+//     public string itemName;
+//     public Sprite itemIcon;
+//     public int maxStack;
+
+//     [Header("Shop Settings")]
+//     public bool isSellable = false;
+//     public int sellPrice = 0;
+//     public int buyPrice = 0;
+//     public bool isAvailableInShop = false;
+
+//     [Header("Food Settings")] // ← NEW
+//     public bool isFood = false;
+//     public int hungerRestore = 25; // ← NEW (how much hunger it restores)
+
+//     // You can add more properties here, like item ID, description, etc.
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // using UnityEngine;
 
