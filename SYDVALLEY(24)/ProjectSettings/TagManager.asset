@@ -9,6 +9,7 @@ TagManager:
   - TreeStyleA
   - TreeStyleB
   - ShopCanvas
+  - Enemy
   layers:
   - Default
   - TransparentFX

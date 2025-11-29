@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -195,9 +195,9 @@ TextureImporter:
       name: Sydney_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 65
-        width: 15
+        x: 16
+        y: 97
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Sydney_2
       rect:
         serializedVersion: 2
-        x: 17
+        x: 32
         y: 97
-        width: 15
-        height: 31
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,7 +237,7 @@ TextureImporter:
       name: Sydney_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 97
         width: 16
         height: 32
@@ -258,9 +258,9 @@ TextureImporter:
       name: Sydney_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 65
-        width: 15
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -279,10 +279,10 @@ TextureImporter:
       name: Sydney_5
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 16
+        y: 65
         width: 16
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +300,10 @@ TextureImporter:
       name: Sydney_6
       rect:
         serializedVersion: 2
-        x: 15
+        x: 32
         y: 65
-        width: 18
-        height: 31
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +321,10 @@ TextureImporter:
       name: Sydney_7
       rect:
         serializedVersion: 2
-        x: 47
+        x: 48
         y: 65
-        width: 17
-        height: 31
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -345,7 +345,7 @@ TextureImporter:
         x: 0
         y: 33
         width: 16
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,9 +363,9 @@ TextureImporter:
       name: Sydney_9
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 15
+        x: 16
+        y: 33
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -384,10 +384,10 @@ TextureImporter:
       name: Sydney_10
       rect:
         serializedVersion: 2
-        x: 17
+        x: 32
         y: 33
-        width: 15
-        height: 30
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,10 +405,10 @@ TextureImporter:
       name: Sydney_11
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 33
         width: 16
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,9 +426,9 @@ TextureImporter:
       name: Sydney_12
       rect:
         serializedVersion: 2
-        x: 33
+        x: 0
         y: 1
-        width: 15
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: Sydney_13
       rect:
         serializedVersion: 2
-        x: 48
-        y: 33
-        width: 15
-        height: 30
+        x: 16
+        y: 1
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -468,10 +468,10 @@ TextureImporter:
       name: Sydney_14
       rect:
         serializedVersion: 2
-        x: 15
+        x: 32
         y: 1
-        width: 18
-        height: 31
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,7 +492,7 @@ TextureImporter:
         x: 48
         y: 1
         width: 16
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -509,7 +509,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2d9c9b7ad14978647963626aa348ea0b
     internalID: 0
     vertices: []
     indices: 
