@@ -1,0 +1,615 @@
+fileFormatVersion: 2
+guid: 3aaa141a1bff4024ebec4f1e534032be
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6048182449714585543
+    second: furnatlas_0
+  - first:
+      213: -4619159841291624124
+    second: furnatlas_1
+  - first:
+      213: 4630576455703602784
+    second: furnatlas_2
+  - first:
+      213: 788101131240524992
+    second: furnatlas_3
+  - first:
+      213: -5415577589737860032
+    second: furnatlas_4
+  - first:
+      213: 4267980828486279157
+    second: furnatlas_5
+  - first:
+      213: 3064587922936339834
+    second: furnatlas_6
+  - first:
+      213: 7292654867365670231
+    second: furnatlas_7
+  - first:
+      213: 554091133057378828
+    second: furnatlas_8
+  - first:
+      213: 9005069062609839770
+    second: furnatlas_9
+  - first:
+      213: -6237506234684233712
+    second: furnatlas_10
+  - first:
+      213: -2802638586627162950
+    second: furnatlas_11
+  - first:
+      213: -7235833956167038368
+    second: furnatlas_12
+  - first:
+      213: 935044160795533279
+    second: furnatlas_13
+  - first:
+      213: -2079160800870119597
+    second: furnatlas_14
+  - first:
+      213: 2038346963569871607
+    second: furnatlas_15
+  - first:
+      213: -8485688926667473465
+    second: furnatlas_16
+  - first:
+      213: 7320021578695097555
+    second: furnatlas_17
+  - first:
+      213: 6762390278637157031
+    second: furnatlas_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: furnatlas_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 125
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 930a20c4b1a801ca0800000000000000
+      internalID: -6048182449714585543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 124
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4412013099275efb0800000000000000
+      internalID: -4619159841291624124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_2
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 121
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 066208ba0cc134040800000000000000
+      internalID: 4630576455703602784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 118
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cccca6adc5efea00800000000000000
+      internalID: 788101131240524992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 117
+        width: 15
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044db1600e008d4b0800000000000000
+      internalID: -5415577589737860032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_5
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 117
+        width: 46
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ff1a1663f9ea3b30800000000000000
+      internalID: 4267980828486279157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 85
+        width: 49
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d9291aa7a978a20800000000000000
+      internalID: 3064587922936339834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 90
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75daad6b6f6b43560800000000000000
+      internalID: 7292654867365670231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_8
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 86
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a241723f680b700800000000000000
+      internalID: 554091133057378828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 89
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9628bef99e68fc70800000000000000
+      internalID: 9005069062609839770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_10
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 89
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018ac55902def69a0800000000000000
+      internalID: -6237506234684233712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_11
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 88
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abcf842fd070b19d0800000000000000
+      internalID: -2802638586627162950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 43
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a44fc9a57259b90800000000000000
+      internalID: -7235833956167038368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 55
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdf558dc5b1f9fc00800000000000000
+      internalID: 935044160795533279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_14
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 55
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357483974465523e0800000000000000
+      internalID: -2079160800870119597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_15
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 53
+        width: 61
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa049483c9a94c10800000000000000
+      internalID: 2038346963569871607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_16
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 6
+        width: 42
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cdf48b51e6cc3a80800000000000000
+      internalID: -8485688926667473465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_17
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 4
+        width: 82
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dcb05ab7d0f59560800000000000000
+      internalID: 7320021578695097555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: furnatlas_18
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 4
+        width: 82
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aaf8b63126d8dd50800000000000000
+      internalID: 6762390278637157031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: eadd10d58f97a524b98d22124b1f98d5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      furnatlas_0: -6048182449714585543
+      furnatlas_1: -4619159841291624124
+      furnatlas_10: -6237506234684233712
+      furnatlas_11: -2802638586627162950
+      furnatlas_12: -7235833956167038368
+      furnatlas_13: 935044160795533279
+      furnatlas_14: -2079160800870119597
+      furnatlas_15: 2038346963569871607
+      furnatlas_16: -8485688926667473465
+      furnatlas_17: 7320021578695097555
+      furnatlas_18: 6762390278637157031
+      furnatlas_2: 4630576455703602784
+      furnatlas_3: 788101131240524992
+      furnatlas_4: -5415577589737860032
+      furnatlas_5: 4267980828486279157
+      furnatlas_6: 3064587922936339834
+      furnatlas_7: 7292654867365670231
+      furnatlas_8: 554091133057378828
+      furnatlas_9: 9005069062609839770
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

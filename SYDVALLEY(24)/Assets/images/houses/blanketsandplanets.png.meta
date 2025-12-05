@@ -1,0 +1,890 @@
+fileFormatVersion: 2
+guid: fa2a88be580b9d641bc269a752fbbca5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3466816463838017853
+    second: blanketsandplanets_0
+  - first:
+      213: 1407239282245758673
+    second: blanketsandplanets_1
+  - first:
+      213: 4393272820728219516
+    second: blanketsandplanets_2
+  - first:
+      213: -8046507919137727238
+    second: blanketsandplanets_3
+  - first:
+      213: 7514218412158040054
+    second: blanketsandplanets_4
+  - first:
+      213: 2580621064500916463
+    second: blanketsandplanets_5
+  - first:
+      213: 2284487460802475407
+    second: blanketsandplanets_6
+  - first:
+      213: -3418900657163834367
+    second: blanketsandplanets_7
+  - first:
+      213: 7820572178639470631
+    second: blanketsandplanets_8
+  - first:
+      213: 1132858345057271198
+    second: blanketsandplanets_9
+  - first:
+      213: -2628798743305810759
+    second: blanketsandplanets_10
+  - first:
+      213: 7032451807923472161
+    second: blanketsandplanets_11
+  - first:
+      213: 6473830363342879645
+    second: blanketsandplanets_12
+  - first:
+      213: 2187901404328301605
+    second: blanketsandplanets_13
+  - first:
+      213: 231232179243642913
+    second: blanketsandplanets_14
+  - first:
+      213: 7638961169307827035
+    second: blanketsandplanets_15
+  - first:
+      213: 1463500269998097349
+    second: blanketsandplanets_16
+  - first:
+      213: 2288349124167069047
+    second: blanketsandplanets_17
+  - first:
+      213: 6143004553724073687
+    second: blanketsandplanets_18
+  - first:
+      213: -6781505596231238705
+    second: blanketsandplanets_19
+  - first:
+      213: -8158138348395193606
+    second: blanketsandplanets_20
+  - first:
+      213: 5778476797838549026
+    second: blanketsandplanets_21
+  - first:
+      213: 4767021882347232678
+    second: blanketsandplanets_22
+  - first:
+      213: 4503044276672933806
+    second: blanketsandplanets_23
+  - first:
+      213: 6660494583031081103
+    second: blanketsandplanets_24
+  - first:
+      213: 1525290659492834232
+    second: blanketsandplanets_25
+  - first:
+      213: -2790415465307743875
+    second: blanketsandplanets_26
+  - first:
+      213: 3415555957518365003
+    second: blanketsandplanets_27
+  - first:
+      213: 8494102390297946615
+    second: blanketsandplanets_28
+  - first:
+      213: 2151990414703545227
+    second: blanketsandplanets_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: blanketsandplanets_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c6857b4bc463efc0800000000000000
+      internalID: -3466816463838017853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1deeb3cdba4878310800000000000000
+      internalID: 1407239282245758673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7742e89a5a08fc30800000000000000
+      internalID: 4393272820728219516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_3
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc9d650eaf055090800000000000000
+      internalID: -8046507919137727238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_4
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 123
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7316575ddd74860800000000000000
+      internalID: 7514218412158040054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 105
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe0b7797f2530d320800000000000000
+      internalID: 2580621064500916463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 104
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8537faed3124bf10800000000000000
+      internalID: 2284487460802475407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_7
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 105
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10c666767ff9d80d0800000000000000
+      internalID: -3418900657163834367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_8
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 105
+        width: 19
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720cb1816f0488c60800000000000000
+      internalID: 7820572178639470631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_9
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 104
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9db9f5a9a8b8bf00800000000000000
+      internalID: 1132858345057271198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_10
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 105
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc834f8871a48bd0800000000000000
+      internalID: -2628798743305810759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_11
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 104
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1270557e8a9489160800000000000000
+      internalID: 7032451807923472161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_12
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 102
+        width: 34
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9bb0376a6aa7d950800000000000000
+      internalID: 6473830363342879645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_13
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 86
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52411983cbcfc5e10800000000000000
+      internalID: 2187901404328301605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_14
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 74
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120f4702170853300800000000000000
+      internalID: 231232179243642913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_15
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 76
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b7895e5ba030a60800000000000000
+      internalID: 7638961169307827035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_16
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 74
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3cce9ddb56f4410800000000000000
+      internalID: 1463500269998097349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_17
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 71
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ded0c7769d1cf10800000000000000
+      internalID: 2288349124167069047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_18
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 87
+        width: 23
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d694563816504550800000000000000
+      internalID: 6143004553724073687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_19
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 57
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcb3056179043e1a0800000000000000
+      internalID: -6781505596231238705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_20
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 64
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa9963556878ce80800000000000000
+      internalID: -8158138348395193606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_21
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 60
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 220e00e2806413050800000000000000
+      internalID: 5778476797838549026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_22
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 7
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ad12dd252dd72240800000000000000
+      internalID: 4767021882347232678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_23
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 48
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf22f659e60e7e30800000000000000
+      internalID: 4503044276672933806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_24
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 40
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f882bf1d884de6c50800000000000000
+      internalID: 6660494583031081103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_25
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 40
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bbaa4206cbea2510800000000000000
+      internalID: 1525290659492834232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_26
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 13
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7953962be37649d0800000000000000
+      internalID: -2790415465307743875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_27
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 24
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b41f9560c0e766f20800000000000000
+      internalID: 3415555957518365003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_28
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 11
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f9618bce1d11e570800000000000000
+      internalID: 8494102390297946615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blanketsandplanets_29
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 23
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b437461e76ddd10800000000000000
+      internalID: 2151990414703545227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7cab5e6b8bcc28a4c9e55fc4ffd9561b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      blanketsandplanets_0: -3466816463838017853
+      blanketsandplanets_1: 1407239282245758673
+      blanketsandplanets_10: -2628798743305810759
+      blanketsandplanets_11: 7032451807923472161
+      blanketsandplanets_12: 6473830363342879645
+      blanketsandplanets_13: 2187901404328301605
+      blanketsandplanets_14: 231232179243642913
+      blanketsandplanets_15: 7638961169307827035
+      blanketsandplanets_16: 1463500269998097349
+      blanketsandplanets_17: 2288349124167069047
+      blanketsandplanets_18: 6143004553724073687
+      blanketsandplanets_19: -6781505596231238705
+      blanketsandplanets_2: 4393272820728219516
+      blanketsandplanets_20: -8158138348395193606
+      blanketsandplanets_21: 5778476797838549026
+      blanketsandplanets_22: 4767021882347232678
+      blanketsandplanets_23: 4503044276672933806
+      blanketsandplanets_24: 6660494583031081103
+      blanketsandplanets_25: 1525290659492834232
+      blanketsandplanets_26: -2790415465307743875
+      blanketsandplanets_27: 3415555957518365003
+      blanketsandplanets_28: 8494102390297946615
+      blanketsandplanets_29: 2151990414703545227
+      blanketsandplanets_3: -8046507919137727238
+      blanketsandplanets_4: 7514218412158040054
+      blanketsandplanets_5: 2580621064500916463
+      blanketsandplanets_6: 2284487460802475407
+      blanketsandplanets_7: -3418900657163834367
+      blanketsandplanets_8: 7820572178639470631
+      blanketsandplanets_9: 1132858345057271198
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
