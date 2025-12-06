@@ -1,0 +1,690 @@
+fileFormatVersion: 2
+guid: 3bf0c052fb218cd47a310529a3083a7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7342585928645170509
+    second: shopfurniture_0
+  - first:
+      213: -1947984759768040389
+    second: shopfurniture_1
+  - first:
+      213: 3873414716661233373
+    second: shopfurniture_2
+  - first:
+      213: -4740155944674612951
+    second: shopfurniture_3
+  - first:
+      213: -6145864594703607521
+    second: shopfurniture_4
+  - first:
+      213: 1294805504421356733
+    second: shopfurniture_5
+  - first:
+      213: -3224565557910892344
+    second: shopfurniture_6
+  - first:
+      213: 7413725937118475698
+    second: shopfurniture_7
+  - first:
+      213: -8477542487343852770
+    second: shopfurniture_8
+  - first:
+      213: -8595108101443353479
+    second: shopfurniture_9
+  - first:
+      213: -2798967432135419508
+    second: shopfurniture_10
+  - first:
+      213: -7930465027434100580
+    second: shopfurniture_11
+  - first:
+      213: 2747607483105789325
+    second: shopfurniture_12
+  - first:
+      213: -3312629132587907068
+    second: shopfurniture_13
+  - first:
+      213: 4847036141024510264
+    second: shopfurniture_14
+  - first:
+      213: -5077462537090562409
+    second: shopfurniture_15
+  - first:
+      213: 7391579989943033394
+    second: shopfurniture_16
+  - first:
+      213: -4683227037565927843
+    second: shopfurniture_17
+  - first:
+      213: -3492786995292276759
+    second: shopfurniture_18
+  - first:
+      213: 1881279381973258344
+    second: shopfurniture_19
+  - first:
+      213: 9216101271706372238
+    second: shopfurniture_20
+  - first:
+      213: -3069708800367995861
+    second: shopfurniture_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shopfurniture_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 152
+        width: 70
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d455da9dffa16e560800000000000000
+      internalID: 7342585928645170509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_1
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 152
+        width: 70
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3cb62e8e2e57f4e0800000000000000
+      internalID: -1947984759768040389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6fc5e992221c530800000000000000
+      internalID: 3873414716661233373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_3
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 146
+        width: 55
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929a6b16845973eb0800000000000000
+      internalID: -4740155944674612951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_4
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 134
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f199a0b96b085baa0800000000000000
+      internalID: -6145864594703607521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 46
+        width: 14
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db461400fb218f110800000000000000
+      internalID: 1294805504421356733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 46
+        width: 14
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c013c5a5ba0043d0800000000000000
+      internalID: -3224565557910892344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_7
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 104
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5fb00d578d2e660800000000000000
+      internalID: 7413725937118475698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_8
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 104
+        width: 116
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1396911608b95a80800000000000000
+      internalID: -8477542487343852770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_9
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 105
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974036778ba08b880800000000000000
+      internalID: -8595108101443353479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_10
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 104
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c895ea533f11829d0800000000000000
+      internalID: -2798967432135419508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_11
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 105
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c98c120331451f190800000000000000
+      internalID: -7930465027434100580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_12
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d85c9bcc276712620800000000000000
+      internalID: 2747607483105789325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 49
+        width: 47
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408cc7fda5d2702d0800000000000000
+      internalID: -3312629132587907068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_14
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 57
+        width: 64
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8310f3780b1244340800000000000000
+      internalID: 4847036141024510264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_15
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 57
+        width: 64
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7960d5c59ba3989b0800000000000000
+      internalID: -5077462537090562409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_16
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 61
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e907da6da249660800000000000000
+      internalID: 7391579989943033394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_17
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 25
+        width: 47
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5eb06772d5d10fb0800000000000000
+      internalID: -4683227037565927843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_18
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 26
+        width: 48
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7ff7dbbb0278fc0800000000000000
+      internalID: -3492786995292276759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_19
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 9
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86058c561a5ab1a10800000000000000
+      internalID: 1881279381973258344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_20
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 8
+        width: 49
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e888512174b26ef70800000000000000
+      internalID: 9216101271706372238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopfurniture_21
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 2
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b24dc2e2c143665d0800000000000000
+      internalID: -3069708800367995861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 12535a9db78106d419d96185c77acff0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shopfurniture_0: 7342585928645170509
+      shopfurniture_1: -1947984759768040389
+      shopfurniture_10: -2798967432135419508
+      shopfurniture_11: -7930465027434100580
+      shopfurniture_12: 2747607483105789325
+      shopfurniture_13: -3312629132587907068
+      shopfurniture_14: 4847036141024510264
+      shopfurniture_15: -5077462537090562409
+      shopfurniture_16: 7391579989943033394
+      shopfurniture_17: -4683227037565927843
+      shopfurniture_18: -3492786995292276759
+      shopfurniture_19: 1881279381973258344
+      shopfurniture_2: 3873414716661233373
+      shopfurniture_20: 9216101271706372238
+      shopfurniture_21: -3069708800367995861
+      shopfurniture_3: -4740155944674612951
+      shopfurniture_4: -6145864594703607521
+      shopfurniture_5: 1294805504421356733
+      shopfurniture_6: -3224565557910892344
+      shopfurniture_7: 7413725937118475698
+      shopfurniture_8: -8477542487343852770
+      shopfurniture_9: -8595108101443353479
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

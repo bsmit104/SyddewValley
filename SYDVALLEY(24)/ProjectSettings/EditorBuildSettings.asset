@@ -18,10 +18,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Hoop.unity
     guid: ea4d936fb46422d49b2bd870159aa86f
   - enabled: 1
+    path: Assets/Scenes/Cave.unity
+    guid: 845fa907d79fcba418596de2908d9c0e
+  - enabled: 1
     path: Assets/Scenes/Smith.unity
     guid: 002afae9e1f2dcb4894bce50672fdeef
   - enabled: 1
+    path: Assets/Scenes/TacoBell.unity
+    guid: dd438291232509a418005c4242fd1416
+  - enabled: 1
     path: Assets/Scenes/Ship.unity
     guid: 5225a1bf2c98b214bbf714a89a6a6c72
+  - enabled: 1
+    path: Assets/Scenes/Ralphs.unity
+    guid: a84c3b1fdbefc724d98091660e51abe7
+  - enabled: 1
+    path: Assets/Scenes/Ronnies.unity
+    guid: dc01b684dc93a904a8ba51bacac0c9f5
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
