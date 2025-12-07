@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 9532489}
   - component: {fileID: 9532488}
   m_Layer: 0
-  m_Name: SpyShack
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

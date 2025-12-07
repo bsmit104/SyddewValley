@@ -15210,7 +15210,7 @@ GameObject:
   - component: {fileID: 1978095501}
   - component: {fileID: 1978095500}
   m_Layer: 0
-  m_Name: Sand
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
