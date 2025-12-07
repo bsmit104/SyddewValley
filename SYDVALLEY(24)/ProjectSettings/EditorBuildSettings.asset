@@ -35,5 +35,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ronnies.unity
     guid: dc01b684dc93a904a8ba51bacac0c9f5
+  - enabled: 1
+    path: Assets/Scenes/FurnStore.unity
+    guid: 263531013f58e6f4994a94c2d2a0526d
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: 7a13887eac16eac41993471c1da082fd
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
