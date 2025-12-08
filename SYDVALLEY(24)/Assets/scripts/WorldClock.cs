@@ -18,17 +18,56 @@ namespace WorldTime
         [Header("=== Start Time ===")]
         [Range(0f, 23.99f)]
         [Tooltip("What hour the game starts at (6 = 6:00 AM)")]
-        public float startHour = 6f;   // ← Change this in Inspector anytime
+        public float startHour = 6f;
 
-        private float currentTimeOfDay = 0f; // 0..1 (0 = midnight)
+        // Internal time (0 = midnight, 0.25 = 6 AM, 0.5 = noon, 1 = next midnight)
+        [SerializeField] private float currentTimeOfDay = 0f;
+
+        // Public accessor used by SaveSystem
+        public float CurrentTimeOfDay => currentTimeOfDay;
+
         private bool isSleeping = false;
 
         private void Start()
         {
-            // Set starting time (6 AM by default)
-            currentTimeOfDay = startHour / 24f;
+            // Initialize time and sync lighting immediately
+            SetTimeOfDay(startHour / 24f);
 
-            // Force WorldLight to match this exact time immediately
+            if (newDayPanel) newDayPanel.SetActive(false);
+            if (nextDayButton) nextDayButton.onClick.AddListener(OnNextDayClicked);
+
+            UpdateClockDisplay();
+        }
+
+        private void Update()
+        {
+            // Don't advance time while the "New Day" panel is open (player is sleeping/confirming)
+            if (!isSleeping)
+            {
+                currentTimeOfDay += Time.deltaTime / dayDurationInSeconds;
+
+                if (currentTimeOfDay >= 1f)
+                    currentTimeOfDay -= 1f;
+            }
+
+            UpdateClockDisplay();
+
+            // Automatically show the "New Day" screen at 2:00 AM if player hasn't slept yet
+            float currentHour = currentTimeOfDay * 24f;
+            if (currentHour >= 2f && currentHour < 3f && !isSleeping && newDayPanel && !newDayPanel.activeSelf)
+            {
+                ShowNewDayScreen();
+            }
+        }
+
+        /// <summary>
+        /// Public method used by SaveSystem to restore exact time when loading a save
+        /// </summary>
+        public void SetTimeOfDay(float time01)
+        {
+            currentTimeOfDay = Mathf.Clamp01(time01);
+
+            // Instantly update lighting and sync WorldLight's internal timer so it continues correctly
             var worldLight = FindObjectOfType<WorldLight>();
             if (worldLight != null)
             {
@@ -38,26 +77,7 @@ namespace WorldTime
                 worldLight.SetTimeOfDay(currentTimeOfDay);
             }
 
-            if (newDayPanel) newDayPanel.SetActive(false);
-            nextDayButton?.onClick.AddListener(OnNextDayClicked);
-
             UpdateClockDisplay();
-        }
-
-        private void Update()
-        {
-            // Advance time
-            currentTimeOfDay += Time.deltaTime / dayDurationInSeconds;
-            if (currentTimeOfDay >= 1f) currentTimeOfDay -= 1f;
-
-            UpdateClockDisplay();
-
-            // Auto show "New Day" screen at 2:00 AM
-            float currentHour = currentTimeOfDay * 24f;
-            if (currentHour >= 2f && currentHour < 3f && !isSleeping && newDayPanel && !newDayPanel.activeSelf)
-            {
-                ShowNewDayScreen();
-            }
         }
 
         private void UpdateClockDisplay()
@@ -81,6 +101,7 @@ namespace WorldTime
 
             newDayPanel.SetActive(true);
             Time.timeScale = 0f;
+            isSleeping = true;
 
             if (newDayDateText && CalendarManager.Instance)
             {
@@ -91,29 +112,18 @@ namespace WorldTime
 
         private void OnNextDayClicked()
         {
-            // Advance calendar
+            // Advance the calendar
             CalendarManager.Instance.AdvanceDay();
 
-            // Jump to 6:00 AM
-            currentTimeOfDay = 6f / 24f;
-
-            // Sync light perfectly
-            var light = FindObjectOfType<WorldLight>();
-            if (light != null)
-            {
-                float elapsed = currentTimeOfDay * light.duration;
-                light.startTime = Time.time - elapsed;
-                light.lastDayTime = Time.time - elapsed;
-                light.SetTimeOfDay(currentTimeOfDay);
-            }
+            // Jump straight to 6:00 AM
+            SetTimeOfDay(6f / 24f);
 
             newDayPanel.SetActive(false);
             Time.timeScale = 1f;
             isSleeping = false;
-            UpdateClockDisplay();
         }
 
-        // Called by Bed.cs when player sleeps
+        // Called by Bed.cs when the player chooses to sleep
         public void PlayerEnteredBed()
         {
             if (currentTimeOfDay * 24f < 20f) // before 8 PM
@@ -129,7 +139,149 @@ namespace WorldTime
         private string GetDaySuffix(int day)
         {
             if (day >= 11 && day <= 13) return "th";
-            return (day % 10) switch { 1 => "st", 2 => "nd", 3 => "rd", _ => "th" };
+            return (day % 10) switch
+            {
+                1 => "st",
+                2 => "nd",
+                3 => "rd",
+                _ => "th"
+            };
         }
     }
 }
+
+// using UnityEngine;
+// using TMPro;
+// using UnityEngine.UI;
+
+// namespace WorldTime
+// {
+//     public class WorldClock : MonoBehaviour
+//     {
+//         [Header("=== UI ===")]
+//         public TextMeshProUGUI clockText;
+//         public GameObject newDayPanel;
+//         public TextMeshProUGUI newDayDateText;
+//         public Button nextDayButton;
+
+//         [Header("=== Time Settings ===")]
+//         public float dayDurationInSeconds = 300f;   // 5-minute day. Must match WorldLight.duration!
+
+//         [Header("=== Start Time ===")]
+//         [Range(0f, 23.99f)]
+//         [Tooltip("What hour the game starts at (6 = 6:00 AM)")]
+//         public float startHour = 6f;   // ← Change this in Inspector anytime
+
+//         private float currentTimeOfDay = 0f; // 0..1 (0 = midnight)
+//         private bool isSleeping = false;
+
+//         private void Start()
+//         {
+//             // Set starting time (6 AM by default)
+//             currentTimeOfDay = startHour / 24f;
+
+//             // Force WorldLight to match this exact time immediately
+//             var worldLight = FindObjectOfType<WorldLight>();
+//             if (worldLight != null)
+//             {
+//                 float elapsedToday = currentTimeOfDay * worldLight.duration;
+//                 worldLight.startTime = Time.time - elapsedToday;
+//                 worldLight.lastDayTime = Time.time - elapsedToday;
+//                 worldLight.SetTimeOfDay(currentTimeOfDay);
+//             }
+
+//             if (newDayPanel) newDayPanel.SetActive(false);
+//             nextDayButton?.onClick.AddListener(OnNextDayClicked);
+
+//             UpdateClockDisplay();
+//         }
+
+//         private void Update()
+//         {
+//             // Advance time
+//             currentTimeOfDay += Time.deltaTime / dayDurationInSeconds;
+//             if (currentTimeOfDay >= 1f) currentTimeOfDay -= 1f;
+
+//             UpdateClockDisplay();
+
+//             // Auto show "New Day" screen at 2:00 AM
+//             float currentHour = currentTimeOfDay * 24f;
+//             if (currentHour >= 2f && currentHour < 3f && !isSleeping && newDayPanel && !newDayPanel.activeSelf)
+//             {
+//                 ShowNewDayScreen();
+//             }
+//         }
+
+//         private void UpdateClockDisplay()
+//         {
+//             if (!clockText) return;
+
+//             float hours24 = currentTimeOfDay * 24f;
+//             int hour = Mathf.FloorToInt(hours24);
+//             int minute = Mathf.FloorToInt((hours24 - hour) * 60f);
+
+//             string period = hour < 12 ? "AM" : "PM";
+//             int displayHour = hour % 12;
+//             if (displayHour == 0) displayHour = 12;
+
+//             clockText.text = $"{displayHour:D2}:{minute:00} {period}";
+//         }
+
+//         public void ShowNewDayScreen()
+//         {
+//             if (!newDayPanel) return;
+
+//             newDayPanel.SetActive(true);
+//             Time.timeScale = 0f;
+
+//             if (newDayDateText && CalendarManager.Instance)
+//             {
+//                 string suffix = GetDaySuffix(CalendarManager.Instance.CurrentDay);
+//                 newDayDateText.text = $"{CalendarManager.Instance.CurrentMonth} {CalendarManager.Instance.CurrentDay}{suffix}";
+//             }
+//         }
+
+//         private void OnNextDayClicked()
+//         {
+//             // Advance calendar
+//             CalendarManager.Instance.AdvanceDay();
+
+//             // Jump to 6:00 AM
+//             currentTimeOfDay = 6f / 24f;
+
+//             // Sync light perfectly
+//             var light = FindObjectOfType<WorldLight>();
+//             if (light != null)
+//             {
+//                 float elapsed = currentTimeOfDay * light.duration;
+//                 light.startTime = Time.time - elapsed;
+//                 light.lastDayTime = Time.time - elapsed;
+//                 light.SetTimeOfDay(currentTimeOfDay);
+//             }
+
+//             newDayPanel.SetActive(false);
+//             Time.timeScale = 1f;
+//             isSleeping = false;
+//             UpdateClockDisplay();
+//         }
+
+//         // Called by Bed.cs when player sleeps
+//         public void PlayerEnteredBed()
+//         {
+//             if (currentTimeOfDay * 24f < 20f) // before 8 PM
+//             {
+//                 Debug.Log("Too early to sleep! Come back after 8 PM.");
+//                 return;
+//             }
+
+//             isSleeping = true;
+//             ShowNewDayScreen();
+//         }
+
+//         private string GetDaySuffix(int day)
+//         {
+//             if (day >= 11 && day <= 13) return "th";
+//             return (day % 10) switch { 1 => "st", 2 => "nd", 3 => "rd", _ => "th" };
+//         }
+//     }
+// }
