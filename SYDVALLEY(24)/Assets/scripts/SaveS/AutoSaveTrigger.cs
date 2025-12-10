@@ -9,16 +9,6 @@ public class AutoSaveTrigger : MonoBehaviour
     [SerializeField] private bool showSaveNotification = true;
     
     private float timeSinceLastSave = 0f;
-    private bool isSavingBeforeSceneChange = false;
-
-    void Start()
-    {
-        if (saveOnSceneChange)
-        {
-            // Save BEFORE the scene unloads
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
-        }
-    }
 
     void Update()
     {
@@ -40,14 +30,18 @@ public class AutoSaveTrigger : MonoBehaviour
         }
     }
 
-    private void OnSceneUnloaded(Scene scene)
+    private void OnDestroy()
     {
-        // Don't save when unloading menu scenes
-        if (scene.name == "MainMenu" || scene.name == "Menu")
+        // Don't save when destroying in menu scenes
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "MainMenu" || sceneName == "Menu")
             return;
         
-        Debug.Log($"Auto-saving before leaving {scene.name}");
-        SaveGame();
+        if (saveOnSceneChange)
+        {
+            Debug.Log($"Auto-saving before destroying/unloading {sceneName}");
+            SaveGame();
+        }
     }
 
     private void SaveGame()
@@ -67,15 +61,103 @@ public class AutoSaveTrigger : MonoBehaviour
     {
         Debug.Log("✓ Game Saved");
     }
-
-    private void OnDestroy()
-    {
-        if (saveOnSceneChange)
-        {
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        }
-    }
 }
+
+
+
+// using UnityEngine;
+// using UnityEngine.SceneManagement;
+
+// public class AutoSaveTrigger : MonoBehaviour
+// {
+//     [Header("Auto-Save Settings")]
+//     [SerializeField] private bool saveOnSceneChange = true;
+//     [SerializeField] private float autoSaveInterval = 300f;
+//     [SerializeField] private bool showSaveNotification = true;
+    
+//     private float timeSinceLastSave = 0f;
+//     private bool isSavingBeforeSceneChange = false;
+
+//     void Start()
+//     {
+//         if (saveOnSceneChange)
+//         {
+//             // Save BEFORE the scene unloads
+//             SceneManager.sceneUnloaded += OnSceneUnloaded;
+//         }
+//     }
+
+//     void Update()
+//     {
+//         if (autoSaveInterval > 0)
+//         {
+//             timeSinceLastSave += Time.deltaTime;
+            
+//             if (timeSinceLastSave >= autoSaveInterval)
+//             {
+//                 SaveGame();
+//                 timeSinceLastSave = 0f;
+//             }
+//         }
+        
+//         if (Input.GetKeyDown(KeyCode.F5))
+//         {
+//             SaveGame();
+//             Debug.Log("Manual save triggered (F5)");
+//         }
+//     }
+
+//     private void OnSceneUnloaded(Scene scene)
+//     {
+//         // Don't save when unloading menu scenes
+//         if (scene.name == "MainMenu" || scene.name == "Menu")
+//             return;
+        
+//         Debug.Log($"Auto-saving before leaving {scene.name}");
+//         SaveGame();
+//     }
+
+//     private void SaveGame()
+//     {
+//         if (SaveSystem.Instance != null)
+//         {
+//             SaveSystem.Instance.AutoSave();
+            
+//             if (showSaveNotification)
+//             {
+//                 ShowSaveNotification();
+//             }
+//         }
+//     }
+
+//     private void ShowSaveNotification()
+//     {
+//         Debug.Log("✓ Game Saved");
+//     }
+
+//     private void OnDestroy()
+//     {
+//         if (saveOnSceneChange)
+//         {
+//             SceneManager.sceneUnloaded -= OnSceneUnloaded;
+//         }
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // using UnityEngine;
 // using UnityEngine.SceneManagement;

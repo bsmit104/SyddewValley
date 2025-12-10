@@ -71,7 +71,6 @@
 // }
 
 
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -106,13 +105,19 @@ public class ChangeScenes : MonoBehaviour
         // Record where we came from
         lastEntrance = entranceID;
 
-        // Prevent accidental double-trigger
         isChangingScene = true;
 
-        // Use the NEW FadeController method
+        // Save BEFORE starting the load (items still exist)
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.AutoSave();
+            Debug.Log("Auto-saved before scene change");
+        }
+
+        // Fade and load
         if (FadeController.Instance != null)
         {
-            FadeController.Instance.LoadScene(sceneName);
+            FadeController.Instance.FadeOutAndLoadScene(sceneName);
         }
         else
         {
@@ -135,13 +140,9 @@ public class ChangeScenes : MonoBehaviour
                 player.transform.position = transform.position;
                 Debug.Log($"Player spawned at spawn point: {spawnID}");
             }
-
-            // Optional: Clear lastEntrance after use (prevents respawning here on reload)
-            // lastEntrance = null;
         }
     }
 
-    // Reset flag when scene fully loads (in case of manual reloads)
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -156,7 +157,97 @@ public class ChangeScenes : MonoBehaviour
     {
         isChangingScene = false; // Allow new transitions in the new scene
     }
-} 
+}
+
+
+
+
+//////////////////recent///////////////
+// using UnityEngine;
+// using UnityEngine.SceneManagement;
+// using System.Collections;
+
+// public class ChangeScenes : MonoBehaviour
+// {
+//     [Header("Scene Change Settings")]
+//     [Tooltip("Name of the scene to load when player enters this trigger")]
+//     public string sceneName;
+
+//     [Tooltip("Unique ID of this entrance (e.g., 'FromVillageNorth', 'HouseDoor')")]
+//     public string entranceID;
+
+//     // Static: survives scene loads
+//     public static string lastEntrance;
+
+//     [Header("Spawn Point Settings")]
+//     [Tooltip("Enable ONLY on objects that are player spawn points in the target scene")]
+//     public bool isSpawnPoint = false;
+
+//     [Tooltip("This spawn point will be used if lastEntrance matches this ID")]
+//     public string spawnID;
+
+//     private bool isChangingScene = false; // Prevent double-trigger during fade
+
+//     private void OnTriggerEnter2D(Collider2D other)
+//     {
+//         // Only trigger entrances (not spawn points)
+//         if (isSpawnPoint || !other.CompareTag("Player") || isChangingScene)
+//             return;
+
+//         // Record where we came from
+//         lastEntrance = entranceID;
+
+//         // Prevent accidental double-trigger
+//         isChangingScene = true;
+
+//         // Use the NEW FadeController method
+//         if (FadeController.Instance != null)
+//         {
+//             FadeController.Instance.LoadScene(sceneName);
+//         }
+//         else
+//         {
+//             Debug.LogWarning("FadeController not found! Loading scene without fade.");
+//             SceneManager.LoadScene(sceneName);
+//         }
+//     }
+
+//     private void Start()
+//     {
+//         // Only spawn points run this logic
+//         if (!isSpawnPoint) return;
+
+//         // If player just arrived from a door that matches this spawn point
+//         if (!string.IsNullOrEmpty(lastEntrance) && spawnID == lastEntrance)
+//         {
+//             GameObject player = GameObject.FindGameObjectWithTag("Player");
+//             if (player != null)
+//             {
+//                 player.transform.position = transform.position;
+//                 Debug.Log($"Player spawned at spawn point: {spawnID}");
+//             }
+
+//             // Optional: Clear lastEntrance after use (prevents respawning here on reload)
+//             // lastEntrance = null;
+//         }
+//     }
+
+//     // Reset flag when scene fully loads (in case of manual reloads)
+//     private void OnEnable()
+//     {
+//         SceneManager.sceneLoaded += OnSceneLoaded;
+//     }
+
+//     private void OnDisable()
+//     {
+//         SceneManager.sceneLoaded -= OnSceneLoaded;
+//     }
+
+//     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+//     {
+//         isChangingScene = false; // Allow new transitions in the new scene
+//     }
+// } 
 
 
 

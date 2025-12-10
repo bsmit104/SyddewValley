@@ -5,13 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using WorldTime;
 using System.Collections;
+using System.Linq;
 
 [System.Serializable]
 public class SaveData
 {
-    public int health;
-    public int energy;
-    public int hunger;
+    public int health, energy, hunger;
     public Vector3 playerPosition;
     public string currentScene;
 
@@ -47,14 +46,15 @@ public class PlacedItemData
 
 public class SaveSystem : MonoBehaviour
 {
-    public static SaveSystem Instance { get; private set; }
+    public static SaveSystem Instance;
 
     private string saveDirectory;
     private int currentSlot = -1;
     private float sessionStartTime;
 
-    [Header("Settings")]
-    [SerializeField] private int maxSaveSlots = 3;
+    [Header("Auto-Save")]
+    [SerializeField] private float autoSaveInterval = 300f;
+    private float timeSinceLastSave = 0f;
 
     void Awake()
     {
@@ -65,9 +65,7 @@ public class SaveSystem : MonoBehaviour
 
             saveDirectory = Application.persistentDataPath + "/Saves/";
             if (!Directory.Exists(saveDirectory))
-            {
                 Directory.CreateDirectory(saveDirectory);
-            }
 
             sessionStartTime = Time.time;
         }
@@ -77,127 +75,131 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        timeSinceLastSave += Time.deltaTime;
+        if (timeSinceLastSave >= autoSaveInterval && currentSlot >= 0)
+        {
+            AutoSave();
+            timeSinceLastSave = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            AutoSave();
+            Debug.Log("Manual save (F5)");
+        }
+    }
+
+    private void OnApplicationQuit() => AutoSave();
+
+    // ================================================================
+    // SAVE
+    // ================================================================
     public void SaveGame(int slot, string saveName = null)
     {
         currentSlot = slot;
         SaveData data = new SaveData();
 
-        if (PlayerHealth.Instance != null)
+        // Player stats
+        if (PlayerHealth.Instance)
         {
             data.health = PlayerHealth.Instance.CurrentHealth;
             data.energy = PlayerHealth.Instance.CurrentEnergy;
             data.hunger = PlayerHealth.Instance.CurrentHunger;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            data.playerPosition = player.transform.position;
-        }
-
+        // Player position & current scene
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player) data.playerPosition = player.transform.position;
         data.currentScene = SceneManager.GetActiveScene().name;
 
-        if (Inventory.Instance != null)
+        // Inventory
+        if (Inventory.Instance)
         {
             data.inventoryItems.Clear();
-            foreach (var itemStack in Inventory.Instance.items)
+            foreach (var stack in Inventory.Instance.items)
             {
-                if (itemStack?.item != null)
-                {
-                    data.inventoryItems.Add(new InventoryItemData
-                    {
-                        itemName = itemStack.item.itemName,
-                        stackSize = itemStack.stackSize
-                    });
-                }
-                else
-                {
-                    data.inventoryItems.Add(null);
-                }
+                data.inventoryItems.Add(stack?.item != null
+                    ? new InventoryItemData { itemName = stack.item.itemName, stackSize = stack.stackSize }
+                    : null);
             }
 
-            Item selectedItem = Inventory.Instance.GetSelectedItem();
-            if (selectedItem != null)
-            {
-                for (int i = 0; i < Inventory.Instance.items.Count; i++)
-                {
-                    if (Inventory.Instance.items[i]?.item == selectedItem)
-                    {
-                        data.selectedItemIndex = i;
-                        break;
-                    }
-                }
-            }
+            var selected = Inventory.Instance.GetSelectedItem();
+            data.selectedItemIndex = Inventory.Instance.items.FindIndex(s => s?.item == selected);
         }
 
-        if (CalendarManager.Instance != null)
+        // Time / Calendar
+        if (CalendarManager.Instance)
         {
             data.currentMonth = CalendarManager.Instance.CurrentMonth.ToString();
             data.currentDay = CalendarManager.Instance.CurrentDay;
         }
+        var clock = FindObjectOfType<WorldClock>();
+        if (clock) data.timeOfDay = clock.CurrentTimeOfDay;
 
-        WorldClock clock = FindObjectOfType<WorldClock>();
-        if (clock != null)
+        // === PLACED ITEMS (merge across all scenes) ===
+        List<PlacedItemData> merged = new List<PlacedItemData>();
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Load existing save and keep items from OTHER scenes
+        string path = GetSavePath(slot);
+        if (File.Exists(path))
         {
-            data.timeOfDay = clock.CurrentTimeOfDay;
-        }
-
-        // Save all placed items across all scenes
-        data.placedItems.Clear();
-        PlacedItem[] allPlacedItems = FindObjectsOfType<PlacedItem>(true);
-        Debug.Log($"Saving: Found {allPlacedItems.Length} placed items total");
-
-        foreach (PlacedItem item in allPlacedItems)
-        {
-            if (item.itemData != null)
+            try
             {
-                data.placedItems.Add(new PlacedItemData
+                SaveData old = JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
+                if (old.placedItems != null)
                 {
-                    itemName = item.itemData.itemName,
-                    position = item.transform.position,
-                    sceneName = item.gameObject.scene.name,
-                    gridPosition = item.gridPosition
-                });
-                Debug.Log($"Saved: {item.itemData.itemName} in scene {item.gameObject.scene.name} at {item.transform.position}");
+                    foreach (var p in old.placedItems)
+                    {
+                        if (p != null && p.sceneName != currentSceneName)
+                            merged.Add(p);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Could not load previous save data: {e.Message}");
             }
         }
 
+        // Add current scene items (they are still alive here)
+        PlacedItem[] currentSceneItems = FindObjectsOfType<PlacedItem>(true);
+        foreach (var item in currentSceneItems)
+        {
+            if (item != null && item.itemData != null)
+            {
+                merged.Add(new PlacedItemData
+                {
+                    itemName = item.itemData.itemName,
+                    position = item.transform.position,
+                    sceneName = currentSceneName,
+                    gridPosition = item.gridPosition
+                });
+            }
+        }
+
+        data.placedItems = merged;
+
+        // Final metadata
         data.saveName = saveName ?? $"Save {slot + 1}";
         data.lastSaveTime = DateTime.Now;
         data.totalPlayTime = Time.time - sessionStartTime;
 
-        string path = GetSavePath(slot);
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(path, json);
-
-        Debug.Log($"Game saved to slot {slot} with {data.placedItems.Count} placed items");
+        File.WriteAllText(path, JsonUtility.ToJson(data, true));
+        Debug.Log($"SAVED slot {slot} – {merged.Count} placed items total");
     }
 
-    // public void LoadGame(int slot)
-    // {
-    //     string path = GetSavePath(slot);
-
-    //     if (!File.Exists(path))
-    //     {
-    //         Debug.LogError($"Save file not found: {path}");
-    //         return;
-    //     }
-
-    //     currentSlot = slot;
-    //     string json = File.ReadAllText(path);
-    //     SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-    //     SceneManager.sceneLoaded += (scene, mode) => OnSceneLoadedForLoad(data);
-    //     SceneManager.LoadScene("Town");
-    // }
-
+    // ================================================================
+    // LOAD
+    // ================================================================
     public void LoadGame(int slot)
     {
         string path = GetSavePath(slot);
-
         if (!File.Exists(path))
         {
-            Debug.LogError($"Save file not found: {path}");
+            Debug.LogError("Save file not found!");
             return;
         }
 
@@ -205,67 +207,38 @@ public class SaveSystem : MonoBehaviour
         string json = File.ReadAllText(path);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-        // Use FadeController to load scene with proper fade
-        if (FadeController.Instance != null)
-        {
-            FadeController.Instance.LoadScene("Town");
-        }
-        else
-        {
-            // Fallback if fade not ready
-            SceneManager.LoadScene("Town");
-        }
-
-        // Store data for when scene finishes loading
-        StartCoroutine(WaitForSceneLoadAndApply(data));
+        SceneManager.LoadScene("Town");
+        StartCoroutine(ApplyAfterTownLoad(data));
     }
 
-    private IEnumerator WaitForSceneLoadAndApply(SaveData data)
+    private IEnumerator ApplyAfterTownLoad(SaveData data)
     {
-        // Wait until the Town scene is fully loaded
         while (SceneManager.GetActiveScene().name != "Town")
-        {
             yield return null;
-        }
-
-        // Small delay to ensure everything is initialized
         yield return new WaitForEndOfFrame();
 
-        ApplyLoadedDataAfterFade(data);
-    }
-
-    private void ApplyLoadedDataAfterFade(SaveData data)
-    {
-        // Same as your previous ApplyLoadedData but without coroutine hell
-        if (PlayerHealth.Instance != null)
+        // Health
+        if (PlayerHealth.Instance)
         {
             PlayerHealth.Instance.SetHealth(data.health);
             PlayerHealth.Instance.SetEnergy(data.energy);
             PlayerHealth.Instance.SetHunger(data.hunger);
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.transform.position = new Vector3(0.21f, -2.93f, 0f);
-        }
+        // Fixed spawn position
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player) player.transform.position = new Vector3(0.21f, -2.93f, 0f);
 
-        if (Inventory.Instance != null)
+        // Inventory
+        if (Inventory.Instance)
         {
             Inventory.Instance.items.Clear();
-            foreach (var itemData in data.inventoryItems)
+            foreach (var id in data.inventoryItems)
             {
-                if (itemData != null)
+                if (id != null)
                 {
-                    Item item = GetItemByName(itemData.itemName);
-                    if (item != null)
-                    {
-                        Inventory.Instance.items.Add(new Inventory.ItemStack
-                        {
-                            item = item,
-                            stackSize = itemData.stackSize
-                        });
-                    }
+                    var item = GetItemByName(id.itemName);
+                    Inventory.Instance.items.Add(new Inventory.ItemStack { item = item, stackSize = id.stackSize });
                 }
                 else
                 {
@@ -274,226 +247,222 @@ public class SaveSystem : MonoBehaviour
             }
 
             if (data.selectedItemIndex >= 0 && data.selectedItemIndex < Inventory.Instance.items.Count)
-            {
                 Inventory.Instance.SelectItem(data.selectedItemIndex);
-            }
 
             InventoryUI.Instance?.UpdateInventoryUI();
         }
 
-        if (CalendarManager.Instance != null)
-        {
-            if (Enum.TryParse(data.currentMonth, out CalendarManager.Month month))
-            {
-                CalendarManager.Instance.SetDate(month, data.currentDay);
-            }
-        }
+        // Calendar & time
+        if (CalendarManager.Instance && Enum.TryParse(data.currentMonth, out CalendarManager.Month m))
+            CalendarManager.Instance.SetDate(m, data.currentDay);
+        var clock = FindObjectOfType<WorldClock>();
+        if (clock) clock.SetTimeOfDay(data.timeOfDay);
 
-        WorldClock clock = FindObjectOfType<WorldClock>();
-        clock?.SetTimeOfDay(data.timeOfDay);
-
-        LoadPlacedItemsForScene("Town", data);
+        // Spawn placed items for Town
+        SpawnPlacedItemsForCurrentScene(data);
 
         sessionStartTime = Time.time - data.totalPlayTime;
-
-        Debug.Log($"Save loaded successfully! Player in Town.");
+        Debug.Log("LOAD COMPLETE");
     }
 
-    private void OnSceneLoadedForLoad(SaveData data)
+    // ================================================================
+    // Called by PlacedItemLoader when entering any scene
+    // ================================================================
+    public void LoadPlacedItemsForCurrentScene()
     {
-        SceneManager.sceneLoaded -= (scene, mode) => OnSceneLoadedForLoad(data);
-        StartCoroutine(ApplyLoadedData(data));
+        if (currentSlot < 0)
+        {
+            Debug.Log("No active save slot, skipping placed items load");
+            return;
+        }
+
+        string path = GetSavePath(currentSlot);
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning($"Save file doesn't exist at: {path}");
+            return;
+        }
+
+        try
+        {
+            SaveData data = JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
+            SpawnPlacedItemsForCurrentScene(data);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to load placed items: {e.Message}");
+        }
     }
 
-    private System.Collections.IEnumerator ApplyLoadedData(SaveData data)
+    private void SpawnPlacedItemsForCurrentScene(SaveData data)
     {
-        yield return new WaitForEndOfFrame();
-
-        if (PlayerHealth.Instance != null)
+        Debug.Log("=== SpawnPlacedItemsForCurrentScene called ===");
+        
+        if (data == null)
         {
-            PlayerHealth.Instance.SetHealth(data.health);
-            PlayerHealth.Instance.SetEnergy(data.energy);
-            PlayerHealth.Instance.SetHunger(data.hunger);
+            Debug.LogError("SaveData is null!");
+            return;
         }
 
-        if (Inventory.Instance != null)
+        if (data.placedItems == null)
         {
-            Inventory.Instance.items.Clear();
-            foreach (var itemData in data.inventoryItems)
+            Debug.LogWarning("placedItems list is null, initializing empty list");
+            data.placedItems = new List<PlacedItemData>();
+            return;
+        }
+
+        string current = SceneManager.GetActiveScene().name;
+        Debug.Log($"Current scene: {current}, Total placed items in save: {data.placedItems.Count}");
+
+        // Destroy any existing placed items in this scene first
+        try
+        {
+            PlacedItem[] existingItems = FindObjectsOfType<PlacedItem>(true);
+            foreach (var p in existingItems)
             {
-                if (itemData != null)
+                if (p != null && p.gameObject != null && p.gameObject.scene.name == current)
                 {
-                    Item item = GetItemByName(itemData.itemName);
-                    if (item != null)
-                    {
-                        Inventory.Instance.items.Add(new Inventory.ItemStack
-                        {
-                            item = item,
-                            stackSize = itemData.stackSize
-                        });
-                    }
-                }
-                else
-                {
-                    Inventory.Instance.items.Add(new Inventory.ItemStack { item = null, stackSize = 0 });
-                }
-            }
-
-            if (data.selectedItemIndex >= 0)
-            {
-                Inventory.Instance.SelectItem(data.selectedItemIndex);
-            }
-
-            if (InventoryUI.Instance != null)
-            {
-                InventoryUI.Instance.UpdateInventoryUI();
-            }
-        }
-
-        if (CalendarManager.Instance != null)
-        {
-            CalendarManager.Month month = (CalendarManager.Month)Enum.Parse(typeof(CalendarManager.Month), data.currentMonth);
-            CalendarManager.Instance.SetDate(month, data.currentDay);
-        }
-
-        WorldClock clock = FindObjectOfType<WorldClock>();
-        if (clock != null)
-        {
-            clock.SetTimeOfDay(data.timeOfDay);
-        }
-
-        // Set player to spawn point (0.21, -2.93, 0)
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.transform.position = new Vector3(0.21f, -2.93f, 0f);
-        }
-
-        // Load placed items for Town only
-        LoadPlacedItemsForScene("Town", data);
-
-        sessionStartTime = Time.time - data.totalPlayTime;
-
-        Debug.Log($"Game loaded from slot {currentSlot} - Player spawned at Town spawn point");
-    }
-
-    private void LoadPlacedItemsForScene(string sceneName, SaveData data)
-    {
-        Debug.Log($"LoadPlacedItemsForScene called for: {sceneName}");
-
-        PlacedItem[] existingItems = FindObjectsOfType<PlacedItem>();
-        foreach (var item in existingItems)
-        {
-            if (item.gameObject.scene.name == sceneName)
-            {
-                Debug.Log($"Destroying existing placed item: {item.itemData?.itemName}");
-                Destroy(item.gameObject);
-            }
-        }
-
-        int loadedCount = 0;
-        foreach (var itemData in data.placedItems)
-        {
-            if (itemData.sceneName == sceneName)
-            {
-                Item item = GetItemByName(itemData.itemName);
-                if (item != null)
-                {
-                    SpawnPlacedItem(item, itemData.position, itemData.gridPosition);
-                    loadedCount++;
-                }
-                else
-                {
-                    Debug.LogWarning($"Could not find item: {itemData.itemName}");
+                    Destroy(p.gameObject);
                 }
             }
         }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"Error destroying existing items: {e.Message}");
+        }
 
-        Debug.Log($"Loaded {loadedCount} placed items for scene {sceneName}");
+        int spawned = 0;
+        int skipped = 0;
+        
+        for (int i = 0; i < data.placedItems.Count; i++)
+        {
+            PlacedItemData pd = data.placedItems[i];
+            
+            if (pd == null)
+            {
+                Debug.LogWarning($"PlacedItemData at index {i} is null");
+                skipped++;
+                continue;
+            }
+
+            if (string.IsNullOrEmpty(pd.sceneName))
+            {
+                Debug.LogWarning($"PlacedItemData at index {i} has null/empty sceneName");
+                skipped++;
+                continue;
+            }
+
+            if (pd.sceneName != current)
+            {
+                skipped++;
+                continue;
+            }
+
+            Debug.Log($"Attempting to spawn: {pd.itemName} at {pd.position}");
+
+            if (string.IsNullOrEmpty(pd.itemName))
+            {
+                Debug.LogWarning($"PlacedItemData at index {i} has null/empty itemName");
+                skipped++;
+                continue;
+            }
+
+            Item item = GetItemByName(pd.itemName);
+            if (item == null)
+            {
+                Debug.LogWarning($"Could not find item definition: {pd.itemName}");
+                skipped++;
+                continue;
+            }
+
+            try
+            {
+                // CREATE THE PLACED ITEM
+                GameObject go = new GameObject($"Placed_{item.itemName}");
+                if (go == null)
+                {
+                    Debug.LogError("Failed to create GameObject!");
+                    continue;
+                }
+                
+                go.transform.position = pd.position;
+
+                // Add PlacedItem component and initialize
+                // Initialize() will call SetupVisuals() which adds SpriteRenderer and Collider
+                PlacedItem pi = go.AddComponent<PlacedItem>();
+                if (pi == null)
+                {
+                    Debug.LogError("Failed to add PlacedItem component!");
+                    Destroy(go);
+                    continue;
+                }
+                
+                pi.Initialize(item, pd.gridPosition);
+
+                // Set sorting layer to make items visible above ground
+                SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sortingLayerName = "Default"; // or whatever your layer is named
+                    sr.sortingOrder = 6; // Render above tilemap
+                }
+
+                spawned++;
+                Debug.Log($"Successfully spawned: {item.itemName}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error spawning {pd.itemName}: {e.Message}\nStack: {e.StackTrace}");
+                skipped++;
+            }
+        }
+
+        Debug.Log($"=== SPAWNING COMPLETE: {spawned} spawned, {skipped} skipped in {current} ===");
     }
 
-    private Item GetItemByName(string itemName)
+    private Item GetItemByName(string name)
     {
+        if (string.IsNullOrEmpty(name)) return null;
+        
         Item[] allItems = Resources.LoadAll<Item>("Items");
-        foreach (Item item in allItems)
-        {
-            if (item.itemName == itemName)
-                return item;
-        }
-        return null;
+        return allItems.FirstOrDefault(i => i != null && i.itemName == name);
     }
 
-    private void SpawnPlacedItem(Item item, Vector3 position, Vector3Int gridPos)
-    {
-        GameObject obj = new GameObject($"Placed_{item.itemName}");
-        obj.transform.position = position;
+    private string GetSavePath(int slot) => saveDirectory + $"save_{slot}.json";
 
-        SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-        renderer.sprite = item.itemIcon;
-        renderer.sortingOrder = 5;
-
-        PlacedItem placedItem = obj.AddComponent<PlacedItem>();
-        placedItem.Initialize(item, gridPos);
-
-        BoxCollider2D collider = obj.AddComponent<BoxCollider2D>();
-        collider.isTrigger = true;
-
-        Debug.Log($"Spawned placed item: {item.itemName} at {position}");
-    }
-
-    public void DeleteSave(int slot)
-    {
-        string path = GetSavePath(slot);
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-            Debug.Log($"Save slot {slot} deleted");
-        }
-    }
-
-    public bool SaveExists(int slot)
-    {
-        return File.Exists(GetSavePath(slot));
-    }
-
-    public SaveData GetSaveData(int slot)
-    {
-        string path = GetSavePath(slot);
-        if (!File.Exists(path)) return null;
-
-        string json = File.ReadAllText(path);
-        return JsonUtility.FromJson<SaveData>(json);
-    }
-
-    private string GetSavePath(int slot)
-    {
-        return saveDirectory + $"save_{slot}.json";
-    }
-
+    // ================================================================
+    // Public helpers
+    // ================================================================
     public void AutoSave()
     {
         if (currentSlot >= 0)
         {
             SaveGame(currentSlot);
-            Debug.Log("Auto-saved!");
+            Debug.Log("Auto-saved");
         }
     }
 
-    public void LoadPlacedItemsForCurrentScene()
+    public void DeleteSave(int slot)
     {
-        if (currentSlot < 0) return;
+        var p = GetSavePath(slot);
+        if (File.Exists(p)) File.Delete(p);
+    }
 
-        string path = GetSavePath(currentSlot);
-        if (!File.Exists(path)) return;
+    public bool SaveExists(int slot) => File.Exists(GetSavePath(slot));
 
-        string json = File.ReadAllText(path);
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-        string currentScene = SceneManager.GetActiveScene().name;
-        LoadPlacedItemsForScene(currentScene, data);
+    public SaveData GetSaveData(int slot)
+    {
+        if (!SaveExists(slot)) return null;
+        try
+        {
+            return JsonUtility.FromJson<SaveData>(File.ReadAllText(GetSavePath(slot)));
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
-
 
 // using System;
 // using System.IO;
@@ -501,30 +470,25 @@ public class SaveSystem : MonoBehaviour
 // using UnityEngine;
 // using UnityEngine.SceneManagement;
 // using WorldTime;
+// using System.Collections;
+// using System.Linq;
 
 // [System.Serializable]
 // public class SaveData
 // {
-//     // Player Data
-//     public int health;
-//     public int energy;
-//     public int hunger;
+//     public int health, energy, hunger;
 //     public Vector3 playerPosition;
 //     public string currentScene;
 
-//     // Inventory Data
 //     public List<InventoryItemData> inventoryItems = new List<InventoryItemData>();
 //     public int selectedItemIndex = -1;
 
-//     // World Data
 //     public string currentMonth;
 //     public int currentDay;
-//     public float timeOfDay; // 0-1, where 0 = midnight
+//     public float timeOfDay;
 
-//     // Placed Items Data
 //     public List<PlacedItemData> placedItems = new List<PlacedItemData>();
 
-//     // Metadata
 //     public string saveName;
 //     public DateTime lastSaveTime;
 //     public float totalPlayTime;
@@ -548,14 +512,15 @@ public class SaveSystem : MonoBehaviour
 
 // public class SaveSystem : MonoBehaviour
 // {
-//     public static SaveSystem Instance { get; private set; }
+//     public static SaveSystem Instance;
 
 //     private string saveDirectory;
 //     private int currentSlot = -1;
 //     private float sessionStartTime;
 
-//     [Header("Settings")]
-//     [SerializeField] private int maxSaveSlots = 3;
+//     [Header("Auto-Save")]
+//     [SerializeField] private float autoSaveInterval = 300f;
+//     private float timeSinceLastSave = 0f;
 
 //     void Awake()
 //     {
@@ -566,9 +531,7 @@ public class SaveSystem : MonoBehaviour
 
 //             saveDirectory = Application.persistentDataPath + "/Saves/";
 //             if (!Directory.Exists(saveDirectory))
-//             {
 //                 Directory.CreateDirectory(saveDirectory);
-//             }
 
 //             sessionStartTime = Time.time;
 //         }
@@ -578,114 +541,131 @@ public class SaveSystem : MonoBehaviour
 //         }
 //     }
 
+//     void Update()
+//     {
+//         timeSinceLastSave += Time.deltaTime;
+//         if (timeSinceLastSave >= autoSaveInterval && currentSlot >= 0)
+//         {
+//             AutoSave();
+//             timeSinceLastSave = 0f;
+//         }
+
+//         if (Input.GetKeyDown(KeyCode.F5))
+//         {
+//             AutoSave();
+//             Debug.Log("Manual save (F5)");
+//         }
+//     }
+
+//     private void OnApplicationQuit() => AutoSave();
+
+//     // ================================================================
+//     // SAVE
+//     // ================================================================
 //     public void SaveGame(int slot, string saveName = null)
 //     {
 //         currentSlot = slot;
 //         SaveData data = new SaveData();
 
-//         // Save player data
-//         if (PlayerHealth.Instance != null)
+//         // Player stats
+//         if (PlayerHealth.Instance)
 //         {
 //             data.health = PlayerHealth.Instance.CurrentHealth;
 //             data.energy = PlayerHealth.Instance.CurrentEnergy;
 //             data.hunger = PlayerHealth.Instance.CurrentHunger;
 //         }
 
-//         // Save player position
-//         GameObject player = GameObject.FindGameObjectWithTag("Player");
-//         if (player != null)
-//         {
-//             data.playerPosition = player.transform.position;
-//         }
-
-//         // Save current scene
+//         // Player position & current scene
+//         var player = GameObject.FindGameObjectWithTag("Player");
+//         if (player) data.playerPosition = player.transform.position;
 //         data.currentScene = SceneManager.GetActiveScene().name;
 
-//         // Save inventory
-//         if (Inventory.Instance != null)
+//         // Inventory
+//         if (Inventory.Instance)
 //         {
 //             data.inventoryItems.Clear();
-//             foreach (var itemStack in Inventory.Instance.items)
+//             foreach (var stack in Inventory.Instance.items)
 //             {
-//                 if (itemStack?.item != null)
-//                 {
-//                     data.inventoryItems.Add(new InventoryItemData
-//                     {
-//                         itemName = itemStack.item.itemName,
-//                         stackSize = itemStack.stackSize
-//                     });
-//                 }
-//                 else
-//                 {
-//                     data.inventoryItems.Add(null); // Preserve empty slots
-//                 }
+//                 data.inventoryItems.Add(stack?.item != null
+//                     ? new InventoryItemData { itemName = stack.item.itemName, stackSize = stack.stackSize }
+//                     : null);
 //             }
 
-//             Item selectedItem = Inventory.Instance.GetSelectedItem();
-//             if (selectedItem != null)
-//             {
-//                 for (int i = 0; i < Inventory.Instance.items.Count; i++)
-//                 {
-//                     if (Inventory.Instance.items[i]?.item == selectedItem)
-//                     {
-//                         data.selectedItemIndex = i;
-//                         break;
-//                     }
-//                 }
-//             }
+//             var selected = Inventory.Instance.GetSelectedItem();
+//             data.selectedItemIndex = Inventory.Instance.items.FindIndex(s => s?.item == selected);
 //         }
 
-//         // Save calendar data
-//         if (CalendarManager.Instance != null)
+//         // Time / Calendar
+//         if (CalendarManager.Instance)
 //         {
 //             data.currentMonth = CalendarManager.Instance.CurrentMonth.ToString();
 //             data.currentDay = CalendarManager.Instance.CurrentDay;
 //         }
+//         var clock = FindObjectOfType<WorldClock>();
+//         if (clock) data.timeOfDay = clock.CurrentTimeOfDay;
 
-//         // Save time of day
-//         WorldClock clock = FindObjectOfType<WorldClock>();
-//         if (clock != null)
+//         // === PLACED ITEMS (merge across all scenes) ===
+//         List<PlacedItemData> merged = new List<PlacedItemData>();
+//         string currentSceneName = SceneManager.GetActiveScene().name;
+
+//         // Load existing save and keep items from OTHER scenes
+//         string path = GetSavePath(slot);
+//         if (File.Exists(path))
 //         {
-//             data.timeOfDay = clock.CurrentTimeOfDay;
+//             try
+//             {
+//                 SaveData old = JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
+//                 if (old.placedItems != null)
+//                 {
+//                     foreach (var p in old.placedItems)
+//                     {
+//                         if (p != null && p.sceneName != currentSceneName)
+//                             merged.Add(p);
+//                     }
+//                 }
+//             }
+//             catch (Exception e)
+//             {
+//                 Debug.LogWarning($"Could not load previous save data: {e.Message}");
+//             }
 //         }
 
-//         // Save all placed items across all scenes
-//         data.placedItems.Clear();
-//         PlacedItem[] allPlacedItems = FindObjectsOfType<PlacedItem>(true);
-//         foreach (PlacedItem item in allPlacedItems)
+//         // Add current scene items (they are still alive here)
+//         PlacedItem[] currentSceneItems = FindObjectsOfType<PlacedItem>(true);
+//         foreach (var item in currentSceneItems)
 //         {
-//             if (item.itemData != null)
+//             if (item != null && item.itemData != null)
 //             {
-//                 data.placedItems.Add(new PlacedItemData
+//                 merged.Add(new PlacedItemData
 //                 {
 //                     itemName = item.itemData.itemName,
 //                     position = item.transform.position,
-//                     sceneName = item.gameObject.scene.name,
+//                     sceneName = currentSceneName,
 //                     gridPosition = item.gridPosition
 //                 });
 //             }
 //         }
 
-//         // Save metadata
+//         data.placedItems = merged;
+
+//         // Final metadata
 //         data.saveName = saveName ?? $"Save {slot + 1}";
 //         data.lastSaveTime = DateTime.Now;
 //         data.totalPlayTime = Time.time - sessionStartTime;
 
-//         // Write to file
-//         string path = GetSavePath(slot);
-//         string json = JsonUtility.ToJson(data, true);
-//         File.WriteAllText(path, json);
-
-//         Debug.Log($"Game saved to slot {slot}: {path}");
+//         File.WriteAllText(path, JsonUtility.ToJson(data, true));
+//         Debug.Log($"SAVED slot {slot} – {merged.Count} placed items total");
 //     }
 
+//     // ================================================================
+//     // LOAD
+//     // ================================================================
 //     public void LoadGame(int slot)
 //     {
 //         string path = GetSavePath(slot);
-
 //         if (!File.Exists(path))
 //         {
-//             Debug.LogError($"Save file not found: {path}");
+//             Debug.LogError("Save file not found!");
 //             return;
 //         }
 
@@ -693,55 +673,38 @@ public class SaveSystem : MonoBehaviour
 //         string json = File.ReadAllText(path);
 //         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-//         // Load the saved scene first
-//         SceneManager.sceneLoaded += (scene, mode) => OnSceneLoadedForLoad(data);
-//         SceneManager.LoadScene(data.currentScene);
+//         SceneManager.LoadScene("Town");
+//         StartCoroutine(ApplyAfterTownLoad(data));
 //     }
 
-//     private void OnSceneLoadedForLoad(SaveData data)
+//     private IEnumerator ApplyAfterTownLoad(SaveData data)
 //     {
-//         SceneManager.sceneLoaded -= (scene, mode) => OnSceneLoadedForLoad(data);
-
-//         // Wait a frame for everything to initialize
-//         StartCoroutine(ApplyLoadedData(data));
-//     }
-
-//     private System.Collections.IEnumerator ApplyLoadedData(SaveData data)
-//     {
+//         while (SceneManager.GetActiveScene().name != "Town")
+//             yield return null;
 //         yield return new WaitForEndOfFrame();
 
-//         // Restore player health
-//         if (PlayerHealth.Instance != null)
+//         // Health
+//         if (PlayerHealth.Instance)
 //         {
 //             PlayerHealth.Instance.SetHealth(data.health);
 //             PlayerHealth.Instance.SetEnergy(data.energy);
 //             PlayerHealth.Instance.SetHunger(data.hunger);
 //         }
 
-//         // Restore player position
-//         GameObject player = GameObject.FindGameObjectWithTag("Player");
-//         if (player != null)
-//         {
-//             player.transform.position = data.playerPosition;
-//         }
+//         // Fixed spawn position
+//         var player = GameObject.FindGameObjectWithTag("Player");
+//         if (player) player.transform.position = new Vector3(0.21f, -2.93f, 0f);
 
-//         // Restore inventory
-//         if (Inventory.Instance != null)
+//         // Inventory
+//         if (Inventory.Instance)
 //         {
 //             Inventory.Instance.items.Clear();
-//             foreach (var itemData in data.inventoryItems)
+//             foreach (var id in data.inventoryItems)
 //             {
-//                 if (itemData != null)
+//                 if (id != null)
 //                 {
-//                     Item item = GetItemByName(itemData.itemName);
-//                     if (item != null)
-//                     {
-//                         Inventory.Instance.items.Add(new Inventory.ItemStack
-//                         {
-//                             item = item,
-//                             stackSize = itemData.stackSize
-//                         });
-//                     }
+//                     var item = GetItemByName(id.itemName);
+//                     Inventory.Instance.items.Add(new Inventory.ItemStack { item = item, stackSize = id.stackSize });
 //                 }
 //                 else
 //                 {
@@ -749,126 +712,219 @@ public class SaveSystem : MonoBehaviour
 //                 }
 //             }
 
-//             if (data.selectedItemIndex >= 0)
-//             {
+//             if (data.selectedItemIndex >= 0 && data.selectedItemIndex < Inventory.Instance.items.Count)
 //                 Inventory.Instance.SelectItem(data.selectedItemIndex);
-//             }
 
-//             // Trigger inventory update through InventoryUI instead
-//             if (InventoryUI.Instance != null)
-//             {
-//                 InventoryUI.Instance.UpdateInventoryUI();
-//             }
+//             InventoryUI.Instance?.UpdateInventoryUI();
 //         }
 
-//         // Restore calendar
-//         if (CalendarManager.Instance != null)
-//         {
-//             CalendarManager.Month month = (CalendarManager.Month)Enum.Parse(typeof(CalendarManager.Month), data.currentMonth);
-//             CalendarManager.Instance.SetDate(month, data.currentDay);
-//         }
+//         // Calendar & time
+//         if (CalendarManager.Instance && Enum.TryParse(data.currentMonth, out CalendarManager.Month m))
+//             CalendarManager.Instance.SetDate(m, data.currentDay);
+//         var clock = FindObjectOfType<WorldClock>();
+//         if (clock) clock.SetTimeOfDay(data.timeOfDay);
 
-//         // Restore time of day
-//         WorldClock clock = FindObjectOfType<WorldClock>();
-//         if (clock != null)
-//         {
-//             clock.SetTimeOfDay(data.timeOfDay);
-//         }
-
-//         // Restore placed items for current scene
-//         string currentScene = SceneManager.GetActiveScene().name;
-//         foreach (var itemData in data.placedItems)
-//         {
-//             if (itemData.sceneName == currentScene)
-//             {
-//                 Item item = GetItemByName(itemData.itemName);
-//                 if (item != null)
-//                 {
-//                     ItemPlacement placement = FindObjectOfType<ItemPlacement>();
-//                     if (placement != null)
-//                     {
-//                         // You'll need a public method to spawn items
-//                         SpawnPlacedItem(item, itemData.position, itemData.gridPosition);
-//                     }
-//                 }
-//             }
-//         }
+//         // Spawn placed items for Town
+//         SpawnPlacedItemsForCurrentScene(data);
 
 //         sessionStartTime = Time.time - data.totalPlayTime;
-//         Debug.Log($"Game loaded from slot {currentSlot}");
+//         Debug.Log("LOAD COMPLETE");
 //     }
 
-//     public void DeleteSave(int slot)
+//     // ================================================================
+//     // Called by PlacedItemLoader when entering any scene
+//     // ================================================================
+//     public void LoadPlacedItemsForCurrentScene()
 //     {
-//         string path = GetSavePath(slot);
-//         if (File.Exists(path))
+//         if (currentSlot < 0)
 //         {
-//             File.Delete(path);
-//             Debug.Log($"Save slot {slot} deleted");
-//         }
-//     }
-
-//     public bool SaveExists(int slot)
-//     {
-//         return File.Exists(GetSavePath(slot));
-//     }
-
-//     public SaveData GetSaveData(int slot)
-//     {
-//         string path = GetSavePath(slot);
-//         if (!File.Exists(path)) return null;
-
-//         string json = File.ReadAllText(path);
-//         return JsonUtility.FromJson<SaveData>(json);
-//     }
-
-//     private string GetSavePath(int slot)
-//     {
-//         return saveDirectory + $"save_{slot}.json";
-//     }
-
-//     private Item GetItemByName(string itemName)
-//     {
-//         // Load all Item ScriptableObjects
-//         Item[] allItems = Resources.LoadAll<Item>("Items");
-//         foreach (Item item in allItems)
-//         {
-//             if (item.itemName == itemName)
-//                 return item;
-//         }
-//         return null;
-//     }
-
-//     private void SpawnPlacedItem(Item item, Vector3 position, Vector3Int gridPos)
-//     {
-//         // Load prefab from Resources
-//         GameObject prefab = Resources.Load<GameObject>("Prefabs/PlacedItem");
-
-//         if (prefab == null)
-//         {
-//             Debug.LogError("Could not load PlacedItem prefab from Resources/Prefabs/PlacedItem");
+//             Debug.Log("No active save slot, skipping placed items load");
 //             return;
 //         }
 
-//         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
-//         PlacedItem placedItem = obj.GetComponent<PlacedItem>();
-
-//         if (placedItem != null)
+//         string path = GetSavePath(currentSlot);
+//         if (!File.Exists(path))
 //         {
-//             placedItem.Initialize(item, gridPos);
+//             Debug.LogWarning($"Save file doesn't exist at: {path}");
+//             return;
 //         }
-//         else
+
+//         try
 //         {
-//             Debug.LogError("PlacedItem component not found on spawned prefab!");
+//             SaveData data = JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
+//             SpawnPlacedItemsForCurrentScene(data);
+//         }
+//         catch (Exception e)
+//         {
+//             Debug.LogError($"Failed to load placed items: {e.Message}");
 //         }
 //     }
 
+//     private void SpawnPlacedItemsForCurrentScene(SaveData data)
+//     {
+//         Debug.Log("=== SpawnPlacedItemsForCurrentScene called ===");
+        
+//         if (data == null)
+//         {
+//             Debug.LogError("SaveData is null!");
+//             return;
+//         }
+
+//         if (data.placedItems == null)
+//         {
+//             Debug.LogWarning("placedItems list is null, initializing empty list");
+//             data.placedItems = new List<PlacedItemData>();
+//             return;
+//         }
+
+//         string current = SceneManager.GetActiveScene().name;
+//         Debug.Log($"Current scene: {current}, Total placed items in save: {data.placedItems.Count}");
+
+//         // Destroy any existing placed items in this scene first
+//         try
+//         {
+//             PlacedItem[] existingItems = FindObjectsOfType<PlacedItem>(true);
+//             foreach (var p in existingItems)
+//             {
+//                 if (p != null && p.gameObject != null && p.gameObject.scene.name == current)
+//                 {
+//                     Destroy(p.gameObject);
+//                 }
+//             }
+//         }
+//         catch (Exception e)
+//         {
+//             Debug.LogWarning($"Error destroying existing items: {e.Message}");
+//         }
+
+//         int spawned = 0;
+//         int skipped = 0;
+        
+//         for (int i = 0; i < data.placedItems.Count; i++)
+//         {
+//             PlacedItemData pd = data.placedItems[i];
+            
+//             if (pd == null)
+//             {
+//                 Debug.LogWarning($"PlacedItemData at index {i} is null");
+//                 skipped++;
+//                 continue;
+//             }
+
+//             if (string.IsNullOrEmpty(pd.sceneName))
+//             {
+//                 Debug.LogWarning($"PlacedItemData at index {i} has null/empty sceneName");
+//                 skipped++;
+//                 continue;
+//             }
+
+//             if (pd.sceneName != current)
+//             {
+//                 skipped++;
+//                 continue;
+//             }
+
+//             Debug.Log($"Attempting to spawn: {pd.itemName} at {pd.position}");
+
+//             if (string.IsNullOrEmpty(pd.itemName))
+//             {
+//                 Debug.LogWarning($"PlacedItemData at index {i} has null/empty itemName");
+//                 skipped++;
+//                 continue;
+//             }
+
+//             Item item = GetItemByName(pd.itemName);
+//             if (item == null)
+//             {
+//                 Debug.LogWarning($"Could not find item definition: {pd.itemName}");
+//                 skipped++;
+//                 continue;
+//             }
+
+//             try
+//             {
+//                 // CREATE THE PLACED ITEM
+//                 GameObject go = new GameObject($"Placed_{item.itemName}");
+//                 if (go == null)
+//                 {
+//                     Debug.LogError("Failed to create GameObject!");
+//                     continue;
+//                 }
+                
+//                 go.transform.position = pd.position;
+
+//                 // Add PlacedItem component and initialize
+//                 // Initialize() will call SetupVisuals() which adds SpriteRenderer and Collider
+//                 PlacedItem pi = go.AddComponent<PlacedItem>();
+//                 if (pi == null)
+//                 {
+//                     Debug.LogError("Failed to add PlacedItem component!");
+//                     Destroy(go);
+//                     continue;
+//                 }
+                
+//                 pi.Initialize(item, pd.gridPosition);
+
+//                 // The PlacedItem.Initialize() method already adds:
+//                 // - SpriteRenderer
+//                 // - BoxCollider2D
+//                 // - Sets the sprite
+//                 // So we don't need to do it here!
+
+//                 spawned++;
+//                 Debug.Log($"Successfully spawned: {item.itemName}");
+//             }
+//             catch (Exception e)
+//             {
+//                 Debug.LogError($"Error spawning {pd.itemName}: {e.Message}\nStack: {e.StackTrace}");
+//                 skipped++;
+//             }
+//         }
+
+//         Debug.Log($"=== SPAWNING COMPLETE: {spawned} spawned, {skipped} skipped in {current} ===");
+//     }
+
+//     private Item GetItemByName(string name)
+//     {
+//         if (string.IsNullOrEmpty(name)) return null;
+        
+//         Item[] allItems = Resources.LoadAll<Item>("Items");
+//         return allItems.FirstOrDefault(i => i != null && i.itemName == name);
+//     }
+
+//     private string GetSavePath(int slot) => saveDirectory + $"save_{slot}.json";
+
+//     // ================================================================
+//     // Public helpers
+//     // ================================================================
 //     public void AutoSave()
 //     {
 //         if (currentSlot >= 0)
 //         {
 //             SaveGame(currentSlot);
-//             Debug.Log("Auto-saved!");
+//             Debug.Log("Auto-saved");
+//         }
+//     }
+
+//     public void DeleteSave(int slot)
+//     {
+//         var p = GetSavePath(slot);
+//         if (File.Exists(p)) File.Delete(p);
+//     }
+
+//     public bool SaveExists(int slot) => File.Exists(GetSavePath(slot));
+
+//     public SaveData GetSaveData(int slot)
+//     {
+//         if (!SaveExists(slot)) return null;
+//         try
+//         {
+//             return JsonUtility.FromJson<SaveData>(File.ReadAllText(GetSavePath(slot)));
+//         }
+//         catch
+//         {
+//             return null;
 //         }
 //     }
 // }
+

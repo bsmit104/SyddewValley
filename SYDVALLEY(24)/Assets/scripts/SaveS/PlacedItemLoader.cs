@@ -1,35 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-/// <summary>
-/// Add this to your SaveSystem GameObject to automatically load placed items when entering scenes
-/// </summary>
 public class PlacedItemLoader : MonoBehaviour
 {
-    void Awake()
+    private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Don't load items in MainMenu
-        if (scene.name == "MainMenu" || scene.name == "Menu")
-            return;
-        
-        // Small delay to ensure everything is initialized
-        StartCoroutine(LoadPlacedItemsForCurrentScene());
+        if (scene.name == "MainMenu" || scene.name == "Menu") return;
+
+        // Wait TWO frames so GetActiveScene() is definitely correct
+        StartCoroutine(LoadAfterFrame());
     }
 
-    private System.Collections.IEnumerator LoadPlacedItemsForCurrentScene()
+    private IEnumerator LoadAfterFrame()
     {
-        yield return new WaitForEndOfFrame();
-        
-        // Only load if we have an active save
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.LoadPlacedItemsForCurrentScene();
-        }
+        yield return null;
+        yield return null;
+
+        SaveSystem.Instance?.LoadPlacedItemsForCurrentScene();
     }
 
     private void OnDestroy()

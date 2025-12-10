@@ -8,17 +8,17 @@ public class FadeController : MonoBehaviour
     public static FadeController Instance;
 
     [Header("References (drag in Inspector)")]
-    [SerializeField] private Image fadeOverlay;         // Your full-screen black Image
-    [SerializeField] private GameObject mainMenuRoot;   // The "Main Menu" parent object
+    [SerializeField] private Image fadeOverlay;         // Full-screen black Image for fade
+    [SerializeField] private GameObject mainMenuRoot;   // "Main Menu" parent object to show/hide
 
     [Header("Settings")]
-    [SerializeField] private float fadeTime = 0.7f;
+    [SerializeField] private float fadeTime = 0.7f;     // Duration of fade in seconds
 
     private Canvas parentCanvas;
 
     private void Awake()
     {
-        // Singleton + make the whole canvas persistent
+        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -26,26 +26,42 @@ public class FadeController : MonoBehaviour
         }
 
         Instance = this;
-        parentCanvas = GetComponentInParent<Canvas>();
 
-        // THIS IS THE IMPORTANT LINE — keeps your entire UI canvas alive
+        // Find parent canvas
+        parentCanvas = GetComponentInParent<Canvas>();
+        if (parentCanvas == null)
+        {
+            Debug.LogError("FadeController: No parent Canvas found! Attach this to a UI element under a Canvas.");
+            return;
+        }
+
+        // Make the entire canvas persistent
         DontDestroyOnLoad(parentCanvas.gameObject);
 
-        // Auto-find if you forgot to assign in inspector
+        // Auto-find references if not assigned
         if (fadeOverlay == null)
             fadeOverlay = GetComponentInChildren<Image>();
+
+        if (fadeOverlay == null)
+        {
+            Debug.LogError("FadeController: No fadeOverlay Image found! Add a full-screen black Image.");
+            return;
+        }
 
         if (mainMenuRoot == null)
             mainMenuRoot = parentCanvas.transform.Find("Main Menu")?.gameObject;
 
-        // Setup overlay
-        if (fadeOverlay != null)
-        {
-            fadeOverlay.raycastTarget = false;
-            fadeOverlay.color = Color.black;
-        }
+        // Setup fade overlay
+        fadeOverlay.raycastTarget = false;
+        fadeOverlay.color = Color.black;  // Start fully black for initial fade in
 
+        // Ensure canvas is Overlay mode for persistence
+        parentCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+        // Subscribe to scene load
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Initial fade in
         StartCoroutine(FadeIn());
     }
 
@@ -56,29 +72,30 @@ public class FadeController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Force the canvas to render on top every time a new scene loads
+        // Ensure canvas renders on top
         parentCanvas.sortingOrder = 9999;
 
-        // Show menu only in MainMenu scene
+        // Show/hide main menu based on scene
         if (mainMenuRoot != null)
-            mainMenuRoot.SetActive(scene.name == "MainMenu");   // <-- change "MainMenu" to your exact scene name if different
+            mainMenuRoot.SetActive(scene.name == "MainMenu");  // Change "MainMenu" if your scene name differs
 
+        // Fade in on every scene load
         StartCoroutine(FadeIn());
     }
 
-    // Call this from buttons or your ChangeScenes script
-    public void LoadScene(string sceneName)
+    // Public method to load scene with fade (call this from buttons or ChangeScenes)
+    public void FadeOutAndLoadScene(string sceneName)
     {
         StartCoroutine(LoadRoutine(sceneName));
     }
 
     private IEnumerator LoadRoutine(string sceneName)
     {
-        // Hide menu immediately when leaving
-        if (mainMenuRoot != null)
+        // Hide main menu if leaving MainMenu
+        if (mainMenuRoot != null && SceneManager.GetActiveScene().name == "MainMenu")
             mainMenuRoot.SetActive(false);
 
-        yield return FadeOut();
+        yield return StartCoroutine(FadeOut());
         SceneManager.LoadScene(sceneName);
     }
 
@@ -86,32 +103,172 @@ public class FadeController : MonoBehaviour
     {
         if (fadeOverlay == null) yield break;
 
-        fadeOverlay.color = new Color(0, 0, 0, 0);
-        float t = 0;
+        float t = 0f;
+        Color startColor = fadeOverlay.color = Color.clear;  // Ensure starting from transparent
+        Color endColor = Color.black;
+
         while (t < fadeTime)
         {
             t += Time.unscaledDeltaTime;
-            fadeOverlay.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, t / fadeTime));
+            fadeOverlay.color = Color.Lerp(startColor, endColor, t / fadeTime);
             yield return null;
         }
-        fadeOverlay.color = Color.black;
+
+        fadeOverlay.color = endColor;
     }
 
     private IEnumerator FadeIn()
     {
         if (fadeOverlay == null) yield break;
 
-        fadeOverlay.color = Color.black;
-        float t = 0;
+        float t = 0f;
+        Color startColor = fadeOverlay.color = Color.black;  // Ensure starting from black
+        Color endColor = Color.clear;
+
         while (t < fadeTime)
         {
             t += Time.unscaledDeltaTime;
-            fadeOverlay.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, t / fadeTime));
+            fadeOverlay.color = Color.Lerp(startColor, endColor, t / fadeTime);
             yield return null;
         }
-        fadeOverlay.color = Color.clear;
+
+        fadeOverlay.color = endColor;
     }
 }
+
+// using UnityEngine;
+// using UnityEngine.SceneManagement;
+// using UnityEngine.UI;
+// using System.Collections;
+
+// public class FadeController : MonoBehaviour
+// {
+//     public static FadeController Instance;
+
+//     [Header("References (drag in Inspector)")]
+//     [SerializeField] private Image fadeOverlay;         // Your full-screen black Image
+//     [SerializeField] private GameObject mainMenuRoot;   // The "Main Menu" parent object
+
+//     [Header("Settings")]
+//     [SerializeField] private float fadeTime = 0.7f;
+
+//     private Canvas parentCanvas;
+
+//     private void Awake()
+//     {
+//         // Singleton + make the whole canvas persistent
+//         if (Instance != null && Instance != this)
+//         {
+//             Destroy(gameObject);
+//             return;
+//         }
+
+//         Instance = this;
+//         parentCanvas = GetComponentInParent<Canvas>();
+
+//         // THIS IS THE IMPORTANT LINE — keeps your entire UI canvas alive
+//         DontDestroyOnLoad(parentCanvas.gameObject);
+
+//         // Auto-find if you forgot to assign in inspector
+//         if (fadeOverlay == null)
+//             fadeOverlay = GetComponentInChildren<Image>();
+
+//         if (mainMenuRoot == null)
+//             mainMenuRoot = parentCanvas.transform.Find("Main Menu")?.gameObject;
+
+//         // Setup overlay
+//         if (fadeOverlay != null)
+//         {
+//             fadeOverlay.raycastTarget = false;
+//             fadeOverlay.color = Color.black;
+//         }
+
+//         SceneManager.sceneLoaded += OnSceneLoaded;
+//         StartCoroutine(FadeIn());
+//     }
+
+//     private void OnDestroy()
+//     {
+//         SceneManager.sceneLoaded -= OnSceneLoaded;
+//     }
+
+//     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+//     {
+//         // Force the canvas to render on top every time a new scene loads
+//         parentCanvas.sortingOrder = 9999;
+
+//         // Show menu only in MainMenu scene
+//         if (mainMenuRoot != null)
+//             mainMenuRoot.SetActive(scene.name == "MainMenu");   // <-- change "MainMenu" to your exact scene name if different
+
+//         StartCoroutine(FadeIn());
+//     }
+
+//     // Call this from buttons or your ChangeScenes script
+//     public void LoadScene(string sceneName)
+//     {
+//         StartCoroutine(LoadRoutine(sceneName));
+//     }
+
+//     private IEnumerator LoadRoutine(string sceneName)
+//     {
+//         // Hide menu immediately when leaving
+//         if (mainMenuRoot != null)
+//             mainMenuRoot.SetActive(false);
+
+//         yield return FadeOut();
+//         SceneManager.LoadScene(sceneName);
+//     }
+
+//     private IEnumerator FadeOut()
+//     {
+//         if (fadeOverlay == null) yield break;
+
+//         fadeOverlay.color = new Color(0, 0, 0, 0);
+//         float t = 0;
+//         while (t < fadeTime)
+//         {
+//             t += Time.unscaledDeltaTime;
+//             fadeOverlay.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, t / fadeTime));
+//             yield return null;
+//         }
+//         fadeOverlay.color = Color.black;
+//     }
+
+//     private IEnumerator FadeIn()
+//     {
+//         if (fadeOverlay == null) yield break;
+
+//         fadeOverlay.color = Color.black;
+//         float t = 0;
+//         while (t < fadeTime)
+//         {
+//             t += Time.unscaledDeltaTime;
+//             fadeOverlay.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, t / fadeTime));
+//             yield return null;
+//         }
+//         fadeOverlay.color = Color.clear;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // using UnityEngine;
