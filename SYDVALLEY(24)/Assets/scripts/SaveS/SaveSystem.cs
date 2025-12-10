@@ -23,6 +23,9 @@ public class SaveData
 
     public List<PlacedItemData> placedItems = new List<PlacedItemData>();
 
+    // NEW: Money
+    public int money;
+
     public string saveName;
     public DateTime lastSaveTime;
     public float totalPlayTime;
@@ -109,6 +112,12 @@ public class SaveSystem : MonoBehaviour
             data.hunger = PlayerHealth.Instance.CurrentHunger;
         }
 
+        // Money
+        if (MoneyManager.Instance)
+        {
+            data.money = MoneyManager.Instance.GetCurrentMoney();
+        }
+
         // Player position & current scene
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player) data.playerPosition = player.transform.position;
@@ -188,7 +197,7 @@ public class SaveSystem : MonoBehaviour
         data.totalPlayTime = Time.time - sessionStartTime;
 
         File.WriteAllText(path, JsonUtility.ToJson(data, true));
-        Debug.Log($"SAVED slot {slot} – {merged.Count} placed items total");
+        Debug.Log($"SAVED slot {slot} – Money: ${data.money}, Time: {data.timeOfDay:F2}");
     }
 
     // ================================================================
@@ -225,6 +234,12 @@ public class SaveSystem : MonoBehaviour
             PlayerHealth.Instance.SetHunger(data.hunger);
         }
 
+        // Money
+        if (MoneyManager.Instance)
+        {
+            MoneyManager.Instance.SetMoney(data.money);
+        }
+
         // Fixed spawn position
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player) player.transform.position = new Vector3(0.21f, -2.93f, 0f);
@@ -255,6 +270,7 @@ public class SaveSystem : MonoBehaviour
         // Calendar & time
         if (CalendarManager.Instance && Enum.TryParse(data.currentMonth, out CalendarManager.Month m))
             CalendarManager.Instance.SetDate(m, data.currentDay);
+        
         var clock = FindObjectOfType<WorldClock>();
         if (clock) clock.SetTimeOfDay(data.timeOfDay);
 
@@ -296,128 +312,52 @@ public class SaveSystem : MonoBehaviour
 
     private void SpawnPlacedItemsForCurrentScene(SaveData data)
     {
-        Debug.Log("=== SpawnPlacedItemsForCurrentScene called ===");
-        
-        if (data == null)
-        {
-            Debug.LogError("SaveData is null!");
-            return;
-        }
-
-        if (data.placedItems == null)
-        {
-            Debug.LogWarning("placedItems list is null, initializing empty list");
-            data.placedItems = new List<PlacedItemData>();
-            return;
-        }
+        if (data == null || data.placedItems == null) return;
 
         string current = SceneManager.GetActiveScene().name;
-        Debug.Log($"Current scene: {current}, Total placed items in save: {data.placedItems.Count}");
 
-        // Destroy any existing placed items in this scene first
-        try
+        // Destroy existing placed items
+        PlacedItem[] existingItems = FindObjectsOfType<PlacedItem>(true);
+        foreach (var p in existingItems)
         {
-            PlacedItem[] existingItems = FindObjectsOfType<PlacedItem>(true);
-            foreach (var p in existingItems)
-            {
-                if (p != null && p.gameObject != null && p.gameObject.scene.name == current)
-                {
-                    Destroy(p.gameObject);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogWarning($"Error destroying existing items: {e.Message}");
+            if (p != null && p.gameObject != null && p.gameObject.scene.name == current)
+                Destroy(p.gameObject);
         }
 
         int spawned = 0;
-        int skipped = 0;
         
-        for (int i = 0; i < data.placedItems.Count; i++)
+        foreach (var pd in data.placedItems)
         {
-            PlacedItemData pd = data.placedItems[i];
-            
-            if (pd == null)
-            {
-                Debug.LogWarning($"PlacedItemData at index {i} is null");
-                skipped++;
-                continue;
-            }
-
-            if (string.IsNullOrEmpty(pd.sceneName))
-            {
-                Debug.LogWarning($"PlacedItemData at index {i} has null/empty sceneName");
-                skipped++;
-                continue;
-            }
-
-            if (pd.sceneName != current)
-            {
-                skipped++;
-                continue;
-            }
-
-            Debug.Log($"Attempting to spawn: {pd.itemName} at {pd.position}");
-
-            if (string.IsNullOrEmpty(pd.itemName))
-            {
-                Debug.LogWarning($"PlacedItemData at index {i} has null/empty itemName");
-                skipped++;
-                continue;
-            }
+            if (pd == null || pd.sceneName != current) continue;
 
             Item item = GetItemByName(pd.itemName);
-            if (item == null)
-            {
-                Debug.LogWarning($"Could not find item definition: {pd.itemName}");
-                skipped++;
-                continue;
-            }
+            if (item == null) continue;
 
             try
             {
-                // CREATE THE PLACED ITEM
                 GameObject go = new GameObject($"Placed_{item.itemName}");
-                if (go == null)
-                {
-                    Debug.LogError("Failed to create GameObject!");
-                    continue;
-                }
-                
                 go.transform.position = pd.position;
 
-                // Add PlacedItem component and initialize
-                // Initialize() will call SetupVisuals() which adds SpriteRenderer and Collider
                 PlacedItem pi = go.AddComponent<PlacedItem>();
-                if (pi == null)
-                {
-                    Debug.LogError("Failed to add PlacedItem component!");
-                    Destroy(go);
-                    continue;
-                }
-                
                 pi.Initialize(item, pd.gridPosition);
 
-                // Set sorting layer to make items visible above ground
+                // Set sorting layer
                 SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
                 if (sr != null)
                 {
-                    sr.sortingLayerName = "Default"; // or whatever your layer is named
-                    sr.sortingOrder = 6; // Render above tilemap
+                    sr.sortingLayerName = "Default";
+                    sr.sortingOrder = 6;
                 }
 
                 spawned++;
-                Debug.Log($"Successfully spawned: {item.itemName}");
             }
             catch (Exception e)
             {
-                Debug.LogError($"Error spawning {pd.itemName}: {e.Message}\nStack: {e.StackTrace}");
-                skipped++;
+                Debug.LogError($"Error spawning {pd.itemName}: {e.Message}");
             }
         }
 
-        Debug.Log($"=== SPAWNING COMPLETE: {spawned} spawned, {skipped} skipped in {current} ===");
+        Debug.Log($"SPAWNED {spawned} placed items in {current}");
     }
 
     private Item GetItemByName(string name)
@@ -462,8 +402,11 @@ public class SaveSystem : MonoBehaviour
             return null;
         }
     }
+
+    public int GetCurrentSlot() => currentSlot;
 }
 
+/////////////so good//////////
 // using System;
 // using System.IO;
 // using System.Collections.Generic;
@@ -865,11 +808,13 @@ public class SaveSystem : MonoBehaviour
                 
 //                 pi.Initialize(item, pd.gridPosition);
 
-//                 // The PlacedItem.Initialize() method already adds:
-//                 // - SpriteRenderer
-//                 // - BoxCollider2D
-//                 // - Sets the sprite
-//                 // So we don't need to do it here!
+//                 // Set sorting layer to make items visible above ground
+//                 SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+//                 if (sr != null)
+//                 {
+//                     sr.sortingLayerName = "Default"; // or whatever your layer is named
+//                     sr.sortingOrder = 6; // Render above tilemap
+//                 }
 
 //                 spawned++;
 //                 Debug.Log($"Successfully spawned: {item.itemName}");
@@ -927,4 +872,3 @@ public class SaveSystem : MonoBehaviour
 //         }
 //     }
 // }
-
