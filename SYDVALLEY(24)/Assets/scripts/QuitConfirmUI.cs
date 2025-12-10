@@ -7,8 +7,10 @@ using System;
 
 public class QuitConfirmUI : MonoBehaviour
 {
+    public static QuitConfirmUI Instance { get; private set; }
+
     [Header("UI References")]
-    [SerializeField] private GameObject quitConfirmPanel;
+    [SerializeField] public GameObject quitConfirmPanel;
     [SerializeField] private TextMeshProUGUI confirmationText;
     [SerializeField] private Button confirmButton;
     [SerializeField] private Button cancelButton;
@@ -16,6 +18,20 @@ public class QuitConfirmUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int quitPenalty = 5;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -27,6 +43,57 @@ public class QuitConfirmUI : MonoBehaviour
 
         if (cancelButton != null)
             cancelButton.onClick.AddListener(OnCancelQuit);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // ALWAYS hide the quit panel on any scene load – this is the nuclear option that guarantees it’s off
+        if (quitConfirmPanel != null)
+            quitConfirmPanel.SetActive(false);
+
+        // Only show the panel container in game scenes (optional – keeps your HUD parent clean)
+        if (quitConfirmPanel.transform.parent != null)
+            quitConfirmPanel.transform.parent.gameObject.SetActive(scene.name != mainMenuSceneName);
+    }
+    
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     // Hide ONLY the Quit Confirmation panel in Main Menu
+    //     // NEVER disable the parent Canvas or any shared UI panel!
+    //     if (quitConfirmPanel != null)
+    //     {
+    //         bool shouldShow = scene.name != mainMenuSceneName;
+    //         quitConfirmPanel.SetActive(shouldShow);
+    //     }
+    // }
+
+
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     // Hide the quit UI in main menu
+    //     if (scene.name == mainMenuSceneName)
+    //     {
+    //         if (quitConfirmPanel != null)
+    //             quitConfirmPanel.transform.parent.gameObject.SetActive(false);
+    //     }
+    //     else
+    //     {
+    //         if (quitConfirmPanel != null)
+    //             quitConfirmPanel.transform.parent.gameObject.SetActive(true);
+    //     }
+    // }
+
+    // private void OnDestroy()
+    // {
+    //     SceneManager.sceneLoaded -= OnSceneLoaded;
+    // }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // If this was the singleton instance, null it out (good practice)
+        if (Instance == this)
+            Instance = null;
     }
 
     public void ShowQuitConfirmation()

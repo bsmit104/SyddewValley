@@ -47271,136 +47271,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260365443}
   m_CullTransparentMesh: 1
---- !u!1 &1267845117
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267845119}
-  - component: {fileID: 1267845118}
-  - component: {fileID: 1267845120}
-  m_Layer: 0
-  m_Name: Global Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1267845118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267845117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 4
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0.3
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
---- !u!4 &1267845119
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267845117}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8146048, y: -5.1009245, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1267845120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267845117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de876a979f559e8498e539fbfc4f4e62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 600
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0.04331076, g: 0.05122295, b: 0.2905661, a: 1}
-    key1: {r: 0.0627451, g: 0.078431375, b: 0.5529412, a: 1}
-    key2: {r: 0.42736518, g: 0.17708078, b: 0.5018867, a: 0}
-    key3: {r: 0.7735849, g: 0.5077167, b: 0.121146254, a: 0}
-    key4: {r: 1, g: 1, b: 1, a: 0}
-    key5: {r: 0.9924528, g: 0.9924528, b: 0.9924528, a: 0}
-    key6: {r: 0.77254903, g: 0.5058824, b: 0.12156863, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 4703
-    ctime1: 17656
-    ctime2: 21665
-    ctime3: 25674
-    ctime4: 32768
-    ctime5: 57594
-    ctime6: 64379
-    ctime7: 0
-    atime0: 77
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 7
-    m_NumAlphaKeys: 2
-  startTime: 0
-  lastDayTime: 0
 --- !u!224 &1282387558 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4235883509557159637, guid: 4718652c06b85054ca6437613c3b170d, type: 3}
@@ -55190,9 +55060,6 @@ MonoBehaviour:
   healthBar: {fileID: 1159776337}
   energyBar: {fileID: 1652627366}
   hungerBar: {fileID: 798129531}
-  healthBg: {fileID: 1393332087}
-  energyBg: {fileID: 1462781717}
-  hungerBg: {fileID: 1090745960}
   hungerDrainInterval: 60
   healthRegenInterval: 20
   damageKey: 112
@@ -55399,9 +55266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3726de1f467bf34882ec1d379dbd0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 533837612}
-  groundTilemap: {fileID: 1257460803}
-  mainCamera: {fileID: 519420031}
   placedItemPrefab: {fileID: 605843826063382869, guid: 89ac5fc372915c14093c55f2410d2e98, type: 3}
   blockingLayers:
     serializedVersion: 2
@@ -58267,6 +58131,7 @@ MonoBehaviour:
   nextDayButton: {fileID: 1593157998}
   dayDurationInSeconds: 300
   startHour: 6
+  currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58784,7 +58649,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1267845119}
   - {fileID: 494494063}
   - {fileID: 1518067402}
   - {fileID: 321587877}

@@ -48,6 +48,14 @@ public class FadeController : MonoBehaviour
             return;
         }
 
+        // After auto-finding or assigning fadeOverlay...
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.raycastTarget = false;
+            fadeOverlay.color = Color.black;
+            fadeOverlay.gameObject.SetActive(true);  // ← Add this
+        }
+
         if (mainMenuRoot == null)
             mainMenuRoot = parentCanvas.transform.Find("Main Menu")?.gameObject;
 
@@ -72,16 +80,70 @@ public class FadeController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Ensure canvas renders on top
+        // Force these to stay active no matter what
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.gameObject.SetActive(true);           // The black Image itself
+            fadeOverlay.transform.parent?.gameObject.SetActive(true); // Its direct panel if it has one
+        }
+
         parentCanvas.sortingOrder = 9999;
 
-        // Show/hide main menu based on scene
+        // Show/hide Main Menu UI
         if (mainMenuRoot != null)
-            mainMenuRoot.SetActive(scene.name == "MainMenu");  // Change "MainMenu" if your scene name differs
+            mainMenuRoot.SetActive(scene.name == "MainMenu");
 
-        // Fade in on every scene load
+        // Hide in-game UI when in MainMenu
+        if (scene.name == "MainMenu")
+        {
+            HideInGameUI();  // We'll define this below
+        }
+        else
+        {
+            ShowInGameUI();
+        }
+
         StartCoroutine(FadeIn());
     }
+
+    private void HideInGameUI()
+    {
+        // Hide HUD
+        var hud = parentCanvas.transform.Find("HUD")?.gameObject;
+        if (hud != null) hud.SetActive(false);
+
+        // Hide Quit Confirm panel
+        if (QuitConfirmUI.Instance?.quitConfirmPanel != null)
+            QuitConfirmUI.Instance.quitConfirmPanel.SetActive(false);
+
+        // Hide any other in-game panels (PauseMenu, Inventory, etc.)
+        var pauseMenu = parentCanvas.transform.Find("PauseMenu")?.gameObject;
+        if (pauseMenu != null) pauseMenu.SetActive(false);
+
+        // ... add more as needed
+    }
+
+    private void ShowInGameUI()
+    {
+        var hud = parentCanvas.transform.Find("HUD")?.gameObject;
+        if (hud != null) hud.SetActive(true);
+
+        // Quit panel starts hidden anyway — only shown when player presses Quit
+    }
+
+
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     // Ensure canvas renders on top
+    //     parentCanvas.sortingOrder = 9999;
+
+    //     // Show/hide main menu based on scene
+    //     if (mainMenuRoot != null)
+    //         mainMenuRoot.SetActive(scene.name == "MainMenu");  // Change "MainMenu" if your scene name differs
+
+    //     // Fade in on every scene load
+    //     StartCoroutine(FadeIn());
+    // }
 
     // Public method to load scene with fade (call this from buttons or ChangeScenes)
     public void FadeOutAndLoadScene(string sceneName)
@@ -404,13 +466,13 @@ public class FadeController : MonoBehaviour
 //         if (Instance == null)
 //         {
 //             Instance = this;
-            
+
 //             // Make sure we're on a root GameObject
 //             if (transform.parent != null)
 //             {
 //                 transform.SetParent(null);
 //             }
-            
+
 //             DontDestroyOnLoad(gameObject);
 //         }
 //         else
@@ -420,13 +482,13 @@ public class FadeController : MonoBehaviour
 //         }
 
 //         fadeImage = GetComponent<Image>();
-        
+
 //         // If no Image component, try to find it in children
 //         if (fadeImage == null)
 //         {
 //             fadeImage = GetComponentInChildren<Image>();
 //         }
-        
+
 //         if (fadeImage == null)
 //         {
 //             Debug.LogError("FadeController: No Image component found!");
@@ -442,7 +504,7 @@ public class FadeController : MonoBehaviour
 //     public IEnumerator FadeIn()
 //     {
 //         if (fadeImage == null) yield break;
-        
+
 //         float t = fadeDuration;
 //         while (t > 0)
 //         {
@@ -457,7 +519,7 @@ public class FadeController : MonoBehaviour
 //     public IEnumerator FadeOutAndLoad(string sceneName)
 //     {
 //         if (fadeImage == null) yield break;
-        
+
 //         float t = 0;
 //         while (t < fadeDuration)
 //         {
