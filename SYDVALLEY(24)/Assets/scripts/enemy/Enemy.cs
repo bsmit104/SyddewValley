@@ -15,41 +15,66 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float knockbackDistance = 1.5f;
     [SerializeField] private float knockbackDuration = 0.15f;
 
-    [Header("References")]
-    [SerializeField] private Transform playerTransform;
+    // REMOVE the serialized field! We find player at runtime
+    // [SerializeField] private Transform playerTransform;  ← DELETE THIS LINE
 
-    private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
+    private Transform playerTransform;          // Now private, set at runtime
     private PlayerHealth playerHealth;
-    private float lastAttackTime;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+
+    private float lastAttackTime;
     private bool playerInRange = false;
     private bool isKnockedBack = false;
 
-    private void Start()
+    // Direction tracking
+    private float lastDirX = 0f;
+    private float lastDirY = -1f; // default down
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
+    private void Start()
+    {
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 0f;
 
-        if (playerTransform == null)
+        // CRITICAL: Find player at runtime instead of relying on prefab reference
+        FindPlayer();
+
+        // Initialize facing direction
+        if (animator != null)
         {
-            var playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                playerTransform = playerObj.transform;
-                playerHealth = playerObj.GetComponent<PlayerHealth>();
-            }
+            animator.SetFloat("LastInputX", lastDirX);
+            animator.SetFloat("LastInputY", lastDirY);
+        }
+    }
+
+    private void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
         }
         else
         {
-            playerHealth = playerTransform.GetComponent<PlayerHealth>();
+            Debug.LogWarning($"{name}: Player with tag 'Player' not found in scene!");
         }
+    }
 
+    private void OnEnable()
+    {
+        // In case enemy is pooled or re-enabled, re-find player
         if (playerTransform == null)
-            Debug.LogError("Enemy: Player not found!");
+            FindPlayer();
     }
 
     private void Update()
@@ -58,6 +83,8 @@ public class Enemy : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, playerTransform.position);
         playerInRange = dist <= chaseRange;
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -68,27 +95,68 @@ public class Enemy : MonoBehaviour
         {
             ChasePlayer();
         }
+        else
+        {
+            UpdateAnimatorDirection(Vector2.zero);
+        }
     }
 
     private void ChasePlayer()
     {
         Vector2 direction = (playerTransform.position - transform.position).normalized;
+        UpdateAnimatorDirection(direction);
+
         Vector2 targetPos = rb.position + direction * chaseSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPos);
 
         if (spriteRenderer != null)
-            spriteRenderer.flipX = direction.x < 0f;
+            spriteRenderer.flipX = direction.x < 0f && Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
+    }
+
+    private void UpdateAnimation()
+    {
+        if (animator == null) return;
+
+        bool isMoving = playerInRange && !isKnockedBack;
+
+        animator.SetBool("isWalking", isMoving);
+        animator.SetFloat("InputX", lastDirX);
+        animator.SetFloat("InputY", lastDirY);
+        animator.SetFloat("LastInputX", lastDirX);
+        animator.SetFloat("LastInputY", lastDirY);
+    }
+
+    private void UpdateAnimatorDirection(Vector2 moveDirection)
+    {
+        if (moveDirection.sqrMagnitude < 0.01f) return;
+
+        float newDirX = 0f;
+        float newDirY = 0f;
+
+        if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+        {
+            newDirX = Mathf.Sign(moveDirection.x);
+            newDirY = 0f;
+        }
+        else
+        {
+            newDirX = 0f;
+            newDirY = Mathf.Sign(moveDirection.y);
+        }
+
+        lastDirX = newDirX;
+        lastDirY = newDirY;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
         if (Time.time < lastAttackTime + attackCooldown) return;
+        if (playerHealth == null) return;
 
-        playerHealth?.TakeDamage(damageAmount);
+        playerHealth.TakeDamage(damageAmount);
         lastAttackTime = Time.time;
 
-        // ONE knockback at a time
         if (!isKnockedBack)
             StartCoroutine(KnockbackRoutine());
     }
@@ -100,7 +168,6 @@ public class Enemy : MonoBehaviour
         Vector2 startPos = rb.position;
         Vector2 awayFromPlayer = (startPos - (Vector2)playerTransform.position).normalized;
 
-        // Don't knockback outside chase range
         float currentDist = Vector2.Distance(startPos, playerTransform.position);
         float maxAllowed = chaseRange - currentDist - 0.2f;
         float actualDist = Mathf.Min(knockbackDistance, Mathf.Max(0f, maxAllowed));
@@ -127,105 +194,192 @@ public class Enemy : MonoBehaviour
     }
 }
 
-
+// // Enemy.cs - Updated version with full NPC-style animation support
 // using System.Collections;
-// using System.Collections.Generic;
 // using UnityEngine;
 
 // public class Enemy : MonoBehaviour
 // {
-//     public float idleTimeMin = 1.0f;
-//     public float idleTimeMax = 3.0f;
-//     public float walkTimeMin = 1.0f;
-//     public float walkTimeMax = 3.0f;
-//     public float walkSpeed = 2.0f;
-//     public float chaseDistance = 5.0f;
-//     public float attackStrength = 10.0f; // Default attack strength for all enemies
-//     public Transform player;
+//     [Header("Detection & Chase")]
+//     [SerializeField] private float chaseRange = 5f;
+//     [SerializeField] private float chaseSpeed = 3f;
 
-//     protected Rigidbody2D rb;
-//     //protected Animator animator;
-//     protected Vector2 movement;
-//     protected float idleTimer;
-//     protected float walkTimer;
-//     protected bool isChasing = false;
+//     [Header("Attack")]
+//     [SerializeField] private int damageAmount = 20;
+//     [SerializeField] private float attackCooldown = 1f;
 
-//     protected virtual void Start()
+//     [Header("Knockback")]
+//     [SerializeField] private float knockbackDistance = 1.5f;
+//     [SerializeField] private float knockbackDuration = 0.15f;
+
+//     [Header("References")]
+//     [SerializeField] private Transform playerTransform;
+
+//     // Animation variables (same pattern as ScheduledWaypointMover)
+//     private Animator animator;
+//     private SpriteRenderer spriteRenderer;
+//     private PlayerHealth playerHealth;
+
+//     private Rigidbody2D rb;
+//     private float lastAttackTime;
+
+//     private bool playerInRange = false;
+//     private bool isKnockedBack = false;
+
+//     // Direction tracking - exactly like your NPCs
+//     private float lastDirX = 0f;
+//     private float lastDirY = -1f; // default down (common for top-down games)
+
+//     private void Awake()
 //     {
 //         rb = GetComponent<Rigidbody2D>();
-//         //animator = GetComponent<Animator>();
-
-//         idleTimer = Random.Range(idleTimeMin, idleTimeMax);
-//         walkTimer = Random.Range(walkTimeMin, walkTimeMax);
-
-//         movement = Random.insideUnitCircle.normalized;
+//         animator = GetComponent<Animator>();
+//         spriteRenderer = GetComponent<SpriteRenderer>();
 //     }
 
-//     protected virtual void Update()
+//     private void Start()
 //     {
-//         if (!isChasing)
+//         rb.bodyType = RigidbodyType2D.Kinematic;
+//         rb.gravityScale = 0f;
+
+//         if (playerTransform == null)
 //         {
-//             idleTimer -= Time.deltaTime;
+//             var playerObj = GameObject.FindGameObjectWithTag("Player");
+//             if (playerObj != null) return;
 
-//             if (idleTimer <= 0f)
-//             {
-//                 walkTimer -= Time.deltaTime;
-//                 if (walkTimer > 0f)
-//                 {
-//                     MoveCharacter(movement);
-//                 }
-//                 else
-//                 {
-//                     movement = Random.insideUnitCircle.normalized;
-//                     walkTimer = Random.Range(walkTimeMin, walkTimeMax);
-//                 }
-//             }
+//             playerTransform = playerObj.transform;
+//             playerHealth = playerObj.GetComponent<PlayerHealth>();
+//         }
+//         else
+//         {
+//             playerHealth = playerTransform.GetComponent<PlayerHealth>();
+//         }
 
-//             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-//             if (distanceToPlayer < chaseDistance)
-//             {
-//                 StartChase();
-//             }
+//         // Initialize animator with default facing direction
+//         UpdateAnimatorDirection(Vector2.down);
+//     }
+
+//     private void Update()
+//     {
+//         if (playerTransform == null) return;
+
+//         float dist = Vector2.Distance(transform.position, playerTransform.position);
+//         playerInRange = dist <= chaseRange;
+
+//         // Always update animation based on movement direction (even when standing)
+//         UpdateAnimation();
+//     }
+
+//     private void FixedUpdate()
+//     {
+//         if (playerTransform == null || isKnockedBack) return;
+
+//         if (playerInRange)
+//         {
+//             ChasePlayer();
+//         }
+//         else
+//         {
+//             // Stop walking animation when not chasing
+//             UpdateAnimatorDirection(Vector2.zero);
 //         }
 //     }
 
-//     protected virtual void FixedUpdate()
+//     private void ChasePlayer()
 //     {
-//         if (isChasing)
+//         Vector2 direction = (playerTransform.position - transform.position).normalized;
+
+//         // Update facing direction BEFORE moving (so animation is correct on the same frame)
+//         UpdateAnimatorDirection(direction);
+
+//         Vector2 targetPos = rb.position + direction * chaseSpeed * Time.fixedDeltaTime;
+//         rb.MovePosition(targetPos);
+
+//         // Flip sprite horizontally if needed (optional - only if you don't use 8-dir animations)
+//         // if (spriteRenderer != null)
+//         //     spriteRenderer.flipX = direction.x < 0f && Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
+//     }
+
+//     private void UpdateAnimation()
+//     {
+//         if (animator == null) return;
+
+//         bool isMoving = playerInRange && !isKnockedBack;
+
+//         animator.SetBool("isWalking", isMoving);
+//         animator.SetFloat("InputX", lastDirX);
+//         animator.SetFloat("InputY", lastDirY);
+//         animator.SetFloat("LastInputX", lastDirX);
+//         animator.SetFloat("LastInputY", lastDirY);
+//     }
+
+//     private void UpdateAnimatorDirection(Vector2 moveDirection)
+//     {
+//         if (moveDirection.sqrMagnitude < 0.01f)
+//             return; // Don't change last direction when standing still
+
+//         float newDirX = 0f;
+//         float newDirY = 0f;
+
+//         // Prioritize horizontal if equal, or pure cardinal direction
+//         if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
 //         {
-//             Vector2 direction = (player.position - transform.position).normalized;
-//             MoveCharacter(direction);
+//             newDirX = Mathf.Sign(moveDirection.x);
+//             newDirY = 0f;
 //         }
-//     }
-
-//     protected void MoveCharacter(Vector2 direction)
-//     {
-//         rb.MovePosition((Vector2)transform.position + (direction * walkSpeed * Time.fixedDeltaTime));
-//     }
-
-//     protected void StartChase()
-//     {
-//         isChasing = true;
-//         Debug.Log("chase state started");
-//         //animator.SetBool("isChasing", true);
-//     }
-
-//     protected virtual void OnTriggerEnter2D(Collider2D other)
-//     {
-//         if (other.CompareTag("Player"))
+//         else
 //         {
-//             AttackPlayer(other);
+//             newDirX = 0f;
+//             newDirY = Mathf.Sign(moveDirection.y);
 //         }
+
+//         lastDirX = newDirX;
+//         lastDirY = newDirY;
 //     }
 
-//     protected virtual void AttackPlayer(Collider2D playerCollider)
+//     private void OnCollisionEnter2D(Collision2D collision)
 //     {
-//         Debug.Log("attack");
-//         PlayerHealth playerHealth = playerCollider.gameObject.GetComponent<PlayerHealth>();
-//         if (playerHealth != null)
+//         if (!collision.gameObject.CompareTag("Player")) return;
+//         if (Time.time < lastAttackTime + attackCooldown) return;
+
+//         playerHealth?.TakeDamage(damageAmount);
+//         lastAttackTime = Time.time;
+
+//         if (!isKnockedBack)
+//             StartCoroutine(KnockbackRoutine());
+//     }
+
+//     private IEnumerator KnockbackRoutine()
+//     {
+//         isKnockedBack = true;
+
+//         Vector2 startPos = rb.position;
+//         Vector2 awayFromPlayer = (startPos - (Vector2)playerTransform.position).normalized;
+
+//         float currentDist = Vector2.Distance(startPos, playerTransform.position);
+//         float maxAllowed = chaseRange - currentDist - 0.2f;
+//         float actualDist = Mathf.Min(knockbackDistance, Mathf.Max(0f, maxAllowed));
+
+//         Vector2 targetPos = startPos + awayFromPlayer * actualDist;
+
+//         float elapsed = 0f;
+//         while (elapsed < knockbackDuration)
 //         {
-//             playerHealth.TakeDamage((int)attackStrength);
-//             // Optionally, add specific attack animations or effects here
+//             elapsed += Time.fixedDeltaTime;
+//             float t = elapsed / knockbackDuration;
+
+//             rb.MovePosition(Vector2.Lerp(startPos, targetPos, t));
+//             yield return null;
 //         }
+
+//         rb.MovePosition(targetPos);
+//         isKnockedBack = false;
+//     }
+
+//     private void OnDrawGizmosSelected()
+//     {
+//         Gizmos.color = playerInRange ? Color.red : Color.yellow;
+//         Gizmos.DrawWireSphere(transform.position, chaseRange);
 //     }
 // }
+

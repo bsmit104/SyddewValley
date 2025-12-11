@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      housetiles_0: 3875278349179709816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

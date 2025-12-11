@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bluechairsmith_0: 2561816282825276029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
