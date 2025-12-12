@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Anabel_0
+      name: Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -183,16 +183,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fb5928cf50144d60800000000000000
-      internalID: 7873436052116560886
+      spriteID: 92e0c136bbd0f094088d6229bd4f7fe4
+      internalID: 1537987077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_1
+      name: Walk_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,16 +204,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6f0d7b0e13908e6b0800000000000000
-      internalID: -5266949654381604618
+      spriteID: 923cff74566ccb14cbe0ca749e9b5569
+      internalID: -1266232587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_2
+      name: Walk_2
       rect:
         serializedVersion: 2
         x: 32
@@ -225,16 +225,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9087245fd23593e0800000000000000
-      internalID: -2047674520799051621
+      spriteID: 38940917903195844a97f0f1dd131deb
+      internalID: -597941353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_3
+      name: Walk_3
       rect:
         serializedVersion: 2
         x: 48
@@ -246,16 +246,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a657ac0a14f3e870800000000000000
-      internalID: 8711074496983291552
+      spriteID: 147a0a16bb986da4798f116c15eaa586
+      internalID: 1606332548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_4
+      name: Walk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -267,16 +267,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c843c14339a008b00800000000000000
-      internalID: 828673958786905228
+      spriteID: cbaee762199492448b9ce8b0af12431e
+      internalID: 631148599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_5
+      name: Walk_5
       rect:
         serializedVersion: 2
         x: 16
@@ -288,16 +288,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7b253b0e88414790800000000000000
-      internalID: -7547671725585650821
+      spriteID: 6fe615f7e2b9da84e9a84ce677b0abd1
+      internalID: 243464513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_6
+      name: Walk_6
       rect:
         serializedVersion: 2
         x: 32
@@ -309,16 +309,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f20471d7bb4370370800000000000000
-      internalID: 8288651619060891695
+      spriteID: a090f6441c30e7a41aca1e189e6ce995
+      internalID: -1089846169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_7
+      name: Walk_7
       rect:
         serializedVersion: 2
         x: 48
@@ -330,16 +330,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 936d09a797e0044b0800000000000000
-      internalID: -5458346833462897095
+      spriteID: d8e9f1e01a189d7459382247fe3af596
+      internalID: -616719946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_8
+      name: Walk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -351,16 +351,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f2e2b7e68fa6e410800000000000000
-      internalID: 1506084119349748466
+      spriteID: 49c0a7572bf676247a38821006b137a2
+      internalID: -1218374747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_9
+      name: Walk_9
       rect:
         serializedVersion: 2
         x: 16
@@ -372,16 +372,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53235d196b1afa0f0800000000000000
-      internalID: -1103485578179694027
+      spriteID: b7287fd0391ab914784e5c8721c36d85
+      internalID: -1474103571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_10
+      name: Walk_10
       rect:
         serializedVersion: 2
         x: 32
@@ -393,16 +393,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: becf20fef72b750a0800000000000000
-      internalID: -6892844442126713621
+      spriteID: 9d133dcc5444f6f44a9e4edacece77ad
+      internalID: -1423553800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_11
+      name: Walk_11
       rect:
         serializedVersion: 2
         x: 48
@@ -414,16 +414,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b6f9bad8c046e4b50800000000000000
-      internalID: 6579306110714093419
+      spriteID: ec6907cd96ec80040835ff09c88f9e8f
+      internalID: 1003863931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_12
+      name: Walk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -435,16 +435,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 91d9e22bcf30c4f20800000000000000
-      internalID: 3408103401868664089
+      spriteID: 8f6526f30669b434196dc250f64cd027
+      internalID: 1695037338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_13
+      name: Walk_13
       rect:
         serializedVersion: 2
         x: 16
@@ -456,16 +456,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: acf85cc11b36300f0800000000000000
-      internalID: -1151967467333644342
+      spriteID: 828962c7c223e274f812b9fb9e25ec09
+      internalID: -67215882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_14
+      name: Walk_14
       rect:
         serializedVersion: 2
         x: 32
@@ -477,16 +477,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f559d332f69b90f30800000000000000
-      internalID: 4542365586163602783
+      spriteID: 02117da07464be94e88cc486ab36f74c
+      internalID: -519715573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anabel_15
+      name: Walk_15
       rect:
         serializedVersion: 2
         x: 48
@@ -498,10 +498,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2cf8552b9f40c9650800000000000000
-      internalID: 6240868654113984450
+      spriteID: 0c45f8bde0121224eaec55e8e60fc5c4
+      internalID: 375025558
       vertices: []
       indices: 
       edges: []
@@ -517,22 +517,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Anabel_0: 7873436052116560886
-      Anabel_1: -5266949654381604618
-      Anabel_10: -6892844442126713621
-      Anabel_11: 6579306110714093419
-      Anabel_12: 3408103401868664089
-      Anabel_13: -1151967467333644342
-      Anabel_14: 4542365586163602783
-      Anabel_15: 6240868654113984450
-      Anabel_2: -2047674520799051621
-      Anabel_3: 8711074496983291552
-      Anabel_4: 828673958786905228
-      Anabel_5: -7547671725585650821
-      Anabel_6: 8288651619060891695
-      Anabel_7: -5458346833462897095
-      Anabel_8: 1506084119349748466
-      Anabel_9: -1103485578179694027
+      Walk_0: 1537987077
+      Walk_1: -1266232587
+      Walk_10: -1423553800
+      Walk_11: 1003863931
+      Walk_12: 1695037338
+      Walk_13: -67215882
+      Walk_14: -519715573
+      Walk_15: 375025558
+      Walk_2: -597941353
+      Walk_3: 1606332548
+      Walk_4: 631148599
+      Walk_5: 243464513
+      Walk_6: -1089846169
+      Walk_7: -616719946
+      Walk_8: -1218374747
+      Walk_9: -1474103571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,10 +5,26 @@ using TMPro; // Import TextMeshPro namespace
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance { get; private set; }
+
     public TMP_Text dialogueText; // Use TextMeshProUGUI instead of Text
     public GameObject dialoguePanel;
 
     private bool isDialogueVisible = false;
+
+    void Awake()
+    {
+        // Singleton pattern
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
@@ -20,37 +36,58 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowDialogue(string dialogue)
     {
-        dialoguePanel.SetActive(true);
-        dialogueText.text = dialogue;
-        isDialogueVisible = true;
+        if (dialoguePanel != null && dialogueText != null)
+        {
+            dialoguePanel.SetActive(true);
+            dialogueText.text = dialogue;
+            isDialogueVisible = true;
+        }
+        else
+        {
+            Debug.LogWarning("DialogueManager: Panel or Text is not assigned!");
+        }
     }
 
     public void HideDialogue()
     {
-        dialoguePanel.SetActive(false);
-        isDialogueVisible = false;
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+            isDialogueVisible = false;
+        }
     }
 }
 
-
+// using System.Collections;
+// using System.Collections.Generic;
 // using UnityEngine;
-// using UnityEngine.UI;
+// using TMPro; // Import TextMeshPro namespace
 
 // public class DialogueManager : MonoBehaviour
 // {
-//     public Text dialogueText;       // Reference to the UI Text component for displaying dialogue
-//     public GameObject dialoguePanel; // Reference to the UI Panel that contains the dialogue text
+//     public TMP_Text dialogueText; // Use TextMeshProUGUI instead of Text
+//     public GameObject dialoguePanel;
 
-//     // Method to show dialogue
-//     public void ShowDialogue(string dialogue)
+//     private bool isDialogueVisible = false;
+
+//     void Update()
 //     {
-//         dialoguePanel.SetActive(true); // Show the dialogue panel
-//         dialogueText.text = dialogue;  // Set the dialogue text
+//         if (isDialogueVisible && Input.GetKeyDown(KeyCode.Space)) // Example key for closing dialogue
+//         {
+//             HideDialogue();
+//         }
 //     }
 
-//     // Method to hide dialogue
+//     public void ShowDialogue(string dialogue)
+//     {
+//         dialoguePanel.SetActive(true);
+//         dialogueText.text = dialogue;
+//         isDialogueVisible = true;
+//     }
+
 //     public void HideDialogue()
 //     {
-//         dialoguePanel.SetActive(false); // Hide the dialogue panel
+//         dialoguePanel.SetActive(false);
+//         isDialogueVisible = false;
 //     }
 // }
