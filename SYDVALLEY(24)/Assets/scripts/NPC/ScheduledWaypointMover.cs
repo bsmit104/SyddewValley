@@ -193,10 +193,74 @@ public class ScheduledWaypointMover : MonoBehaviour
         return true;
     }
 
+    // void SwitchSchedule(WaypointSchedule newSchedule)
+    // {
+    //     // Deactivate old schedule
+    //     if (currentSchedule != null)
+    //     {
+    //         DeactivateScheduleObjects(currentSchedule);
+    //     }
+
+    //     // Stop current movement
+    //     if (movementCoroutine != null)
+    //     {
+    //         StopCoroutine(movementCoroutine);
+    //         movementCoroutine = null;
+    //     }
+
+    //     currentSchedule = newSchedule;
+
+    //     if (newSchedule == null)
+    //     {
+    //         // No active schedule
+    //         isActive = false;
+            
+    //         if (hideWhenInactive && spriteRenderer != null)
+    //             spriteRenderer.enabled = false;
+            
+    //         if (inactivePosition != Vector3.zero)
+    //             transform.position = inactivePosition;
+            
+    //         if (animator != null)
+    //             animator.SetBool("isWalking", false);
+            
+    //         return;
+    //     }
+
+    //     // Activate new schedule
+    //     isActive = true;
+        
+    //     if (spriteRenderer != null)
+    //         spriteRenderer.enabled = true;
+
+    //     ActivateScheduleObjects(newSchedule);
+
+    //     // Load waypoints
+    //     if (newSchedule.waypointParent != null)
+    //     {
+    //         currentWaypoints = new Transform[newSchedule.waypointParent.childCount];
+    //         for (int i = 0; i < newSchedule.waypointParent.childCount; i++)
+    //             currentWaypoints[i] = newSchedule.waypointParent.GetChild(i);
+
+    //         if (currentWaypoints.Length > 0)
+    //         {
+    //             // Snap to first waypoint
+    //             transform.position = currentWaypoints[0].position;
+    //             currentWaypointIndex = 0;
+                
+    //             // Start movement
+    //             movementCoroutine = StartCoroutine(MoveAlongWaypoints());
+    //         }
+    //     }
+    // }
     void SwitchSchedule(WaypointSchedule newSchedule)
     {
-        // Deactivate old schedule
-        if (currentSchedule != null)
+        // Handle object state changes when switching schedules
+        bool wasActive = currentSchedule != null;
+        bool willBeActive = newSchedule != null;
+
+        // Deactivate old schedule objects only when going from active to inactive
+        if (wasActive && !willBeActive && currentSchedule != null)
         {
             DeactivateScheduleObjects(currentSchedule);
         }
@@ -233,7 +297,11 @@ public class ScheduledWaypointMover : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.enabled = true;
 
-        ActivateScheduleObjects(newSchedule);
+        // Activate schedule objects only when going from inactive to active
+        if (!wasActive && willBeActive)
+        {
+            ActivateScheduleObjects(newSchedule);
+        }
 
         // Load waypoints
         if (newSchedule.waypointParent != null)

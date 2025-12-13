@@ -3810,8 +3810,7 @@ MonoBehaviour:
     loopWaypoints: 0
     objectsToEnable:
     - {fileID: 236571139}
-    objectsToDisable:
-    - {fileID: 236571139}
+    objectsToDisable: []
     priority: 0
   hideWhenInactive: 1
   inactivePosition: {x: 0, y: 0, z: 0}
@@ -5440,8 +5439,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 249751887}
-    objectsToDisable:
-    - {fileID: 249751887}
+    objectsToDisable: []
     priority: 0
   hideWhenInactive: 1
   inactivePosition: {x: 0, y: 0, z: 0}
@@ -11067,8 +11065,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1431774152}
-    objectsToDisable:
-    - {fileID: 1431774152}
+    objectsToDisable: []
     priority: 0
   - scheduleName: Soccer
     validMonths: 01000000
@@ -11081,8 +11078,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1431774152}
-    objectsToDisable:
-    - {fileID: 1431774152}
+    objectsToDisable: []
     priority: 0
   hideWhenInactive: 1
   inactivePosition: {x: 0, y: 0, z: 0}

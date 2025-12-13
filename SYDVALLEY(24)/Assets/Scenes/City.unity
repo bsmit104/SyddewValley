@@ -17071,8 +17071,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 859427915}
-    objectsToDisable:
-    - {fileID: 859427915}
+    objectsToDisable: []
     priority: 0
   hideWhenInactive: 1
   inactivePosition: {x: 0, y: 0, z: 0}

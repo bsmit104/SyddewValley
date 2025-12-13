@@ -1021,8 +1021,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1586432634}
-    objectsToDisable:
-    - {fileID: 1586432634}
+    objectsToDisable: []
     priority: 0
   - scheduleName: RedBull
     validMonths: 0200000003000000
@@ -1889,8 +1888,7 @@ MonoBehaviour:
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1776776463}
-    objectsToDisable:
-    - {fileID: 1776776463}
+    objectsToDisable: []
     priority: 0
   hideWhenInactive: 1
   inactivePosition: {x: 0, y: 0, z: 0}
@@ -5369,6 +5367,8 @@ Transform:
   - {fileID: 1018392368}
   - {fileID: 399351779}
   - {fileID: 841981646}
+  - {fileID: 1948406051}
+  - {fileID: 1599550708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &471906645
@@ -15532,8 +15532,8 @@ MonoBehaviour:
     startHour: 6
     endHour: 23
     waypointParent: {fileID: 725236769}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 1
     objectsToEnable: []
     objectsToDisable: []
@@ -22215,7 +22215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1599550707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22278,12 +22278,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599550706}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.21, y: -3.89, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1499996, y: -5.790148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 460161416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616419381
 GameObject:
@@ -23002,9 +23002,7 @@ MonoBehaviour:
     objectsToEnable:
     - {fileID: 1948406049}
     - {fileID: 1599550706}
-    objectsToDisable:
-    - {fileID: 1948406049}
-    - {fileID: 1599550706}
+    objectsToDisable: []
     priority: 0
   - scheduleName: HooptoTB
     validMonths: 01000000
@@ -93036,7 +93034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1948406050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93099,12 +93097,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948406049}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.4, y: -4.7, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.340002, y: -6.6001472, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 460161416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1949021556 stripped
 Transform:
@@ -99568,5 +99566,3 @@ SceneRoots:
   - {fileID: 212408340}
   - {fileID: 1281055752}
   - {fileID: 460161416}
-  - {fileID: 1948406051}
-  - {fileID: 1599550708}
