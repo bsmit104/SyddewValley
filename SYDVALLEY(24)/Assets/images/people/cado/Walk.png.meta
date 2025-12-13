@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cado_0
+      name: Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -183,16 +183,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8f054b257b5327ac0800000000000000
-      internalID: -3858962869220257544
+      spriteID: 8e5a46259be8f9c478f40d956258abb1
+      internalID: -14422188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_1
+      name: Walk_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,16 +204,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ed9bc86834d3598a0800000000000000
-      internalID: -6299061143578297890
+      spriteID: 7bba243ca8f5a194d8800f52ee7f8668
+      internalID: -1309783122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_2
+      name: Walk_2
       rect:
         serializedVersion: 2
         x: 32
@@ -225,16 +225,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc3c2df6afdd06a90800000000000000
-      internalID: -7322608926416780339
+      spriteID: 0e0cdacdddacfbc478372df51139533e
+      internalID: -1636867817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_3
+      name: Walk_3
       rect:
         serializedVersion: 2
         x: 48
@@ -246,16 +246,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5bdf1e95f1fcf2880800000000000000
-      internalID: -8633454227087032907
+      spriteID: 8397180c981b5c942a70116d3861fbdb
+      internalID: 465514288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_4
+      name: Walk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -267,16 +267,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: def4a91a8ddebe660800000000000000
-      internalID: 7416282726075617261
+      spriteID: c959abd10263a854788d710f5b5a8e6e
+      internalID: -130118102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_5
+      name: Walk_5
       rect:
         serializedVersion: 2
         x: 16
@@ -288,16 +288,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 203d20018b3039ce0800000000000000
-      internalID: -1399770970104605950
+      spriteID: faf62297ecdadb14da67c81dbc7d0a4d
+      internalID: -2113183393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_6
+      name: Walk_6
       rect:
         serializedVersion: 2
         x: 32
@@ -309,16 +309,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a8a71660ea470460800000000000000
-      internalID: 7207812056275724449
+      spriteID: 014565cc7f03a8f45acac869c608e319
+      internalID: -966796246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_7
+      name: Walk_7
       rect:
         serializedVersion: 2
         x: 48
@@ -330,16 +330,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16aa0b4b76cb0f750800000000000000
-      internalID: 6336771829309418081
+      spriteID: b61757ca857bb0b498d6d6d115bb43d0
+      internalID: 1320863755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_8
+      name: Walk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -351,16 +351,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f72248a87baf0a300800000000000000
-      internalID: 261484444597363327
+      spriteID: 36c6450ef1690d04f986ad8588f5ce8e
+      internalID: -298110477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_9
+      name: Walk_9
       rect:
         serializedVersion: 2
         x: 16
@@ -372,16 +372,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89a04031ba027f820800000000000000
-      internalID: 2951863999895177880
+      spriteID: fe8601aae74cd784d8376c288498fd6e
+      internalID: -749610260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_10
+      name: Walk_10
       rect:
         serializedVersion: 2
         x: 32
@@ -393,16 +393,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 883a3d85cd14d52a0800000000000000
-      internalID: -6747164252092259448
+      spriteID: 4b10c1b5d5385d34f8492449736fad0f
+      internalID: 465276181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_11
+      name: Walk_11
       rect:
         serializedVersion: 2
         x: 48
@@ -414,16 +414,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 409d124ad337de190800000000000000
-      internalID: -7931556660145694460
+      spriteID: b60892bd8388360429e942732d9696e3
+      internalID: 97027063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_12
+      name: Walk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -435,16 +435,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f2dbe77dff12771d0800000000000000
-      internalID: -3353174014838260433
+      spriteID: b2e013020756d074e9e782073fa36668
+      internalID: -1618474598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_13
+      name: Walk_13
       rect:
         serializedVersion: 2
         x: 16
@@ -456,16 +456,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b35c6f99d630d5f70800000000000000
-      internalID: 9177495384920343867
+      spriteID: 3d2236efa21accd4fb11f06a37074738
+      internalID: -973679107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_14
+      name: Walk_14
       rect:
         serializedVersion: 2
         x: 32
@@ -477,16 +477,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 23602fa665ac324d0800000000000000
-      internalID: -3160460040973711822
+      spriteID: 339cbe2bc79c5b94a9860c441d09e19a
+      internalID: -315362400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cado_15
+      name: Walk_15
       rect:
         serializedVersion: 2
         x: 48
@@ -498,10 +498,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3230cc6b3041c710800000000000000
-      internalID: 1711719957349282366
+      spriteID: 6ecb72ef29ff87d4a8e757bc426f8436
+      internalID: -342039574
       vertices: []
       indices: 
       edges: []
@@ -517,22 +517,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cado_0: -3858962869220257544
-      cado_1: -6299061143578297890
-      cado_10: -6747164252092259448
-      cado_11: -7931556660145694460
-      cado_12: -3353174014838260433
-      cado_13: 9177495384920343867
-      cado_14: -3160460040973711822
-      cado_15: 1711719957349282366
-      cado_2: -7322608926416780339
-      cado_3: -8633454227087032907
-      cado_4: 7416282726075617261
-      cado_5: -1399770970104605950
-      cado_6: 7207812056275724449
-      cado_7: 6336771829309418081
-      cado_8: 261484444597363327
-      cado_9: 2951863999895177880
+      Walk_0: -14422188
+      Walk_1: -1309783122
+      Walk_10: 465276181
+      Walk_11: 97027063
+      Walk_12: -1618474598
+      Walk_13: -973679107
+      Walk_14: -315362400
+      Walk_15: -342039574
+      Walk_2: -1636867817
+      Walk_3: 465514288
+      Walk_4: -130118102
+      Walk_5: -2113183393
+      Walk_6: -966796246
+      Walk_7: 1320863755
+      Walk_8: -298110477
+      Walk_9: -749610260
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

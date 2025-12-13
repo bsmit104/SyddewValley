@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babec1e7e27b1f541841e086f6e69740, type: 3}
+  m_Name: Ronnie
+  m_EditorClassIdentifier: 
+  npcName: Brae
+  lovedGifts:
+  - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
+  likedGifts:
+  - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
+  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
+  hatedGifts:
+  - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+  - {fileID: 11400000, guid: 6ebd2b21d8c1fcc419e1f46d640502d6, type: 2}
+  - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  - {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
+  - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
+  heartPoints: 110
+  dialogues:
+  - '"None of this is real. We are NPCs. Im not sure about you though"'
+  - '"I see you. I know youre not really here. You are in a bedroom controlling them
+    remotely"'
+  - '"Its ok we can be friends, but im keeping my eye on you"'
+  - '"Sorry I am so weird.."'

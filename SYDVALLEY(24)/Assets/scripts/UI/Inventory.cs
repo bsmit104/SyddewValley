@@ -159,8 +159,9 @@ public class Inventory : MonoBehaviour
     {
         if (selectedItem != null && npcInteraction != null)
         {
+            // NPCInteraction.GiveGift now handles removing the item from inventory
+            // only if the gift is accepted (not at daily limit)
             npcInteraction.GiveGift(selectedItem);
-            RemoveItem(selectedItem, 1);
         }
     }
 }
@@ -185,6 +186,24 @@ public class Inventory : MonoBehaviour
 //     public event Action<Item> OnSelectedItemChanged;
 
 //     private Item selectedItem;
+    
+//     // Singleton instance
+//     public static Inventory Instance { get; private set; }
+
+//     void Awake()
+//     {
+//         // Implement singleton pattern
+//         if (Instance == null)
+//         {
+//             Instance = this;
+//             DontDestroyOnLoad(gameObject);
+//         }
+//         else
+//         {
+//             Destroy(gameObject);
+//             return;
+//         }
+//     }
 
 //     void Start()
 //     {
@@ -313,5 +332,3 @@ public class Inventory : MonoBehaviour
 //         }
 //     }
 // }
-
-

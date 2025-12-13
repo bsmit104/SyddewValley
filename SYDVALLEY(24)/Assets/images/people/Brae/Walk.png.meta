@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brae_0
+      name: Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -183,16 +183,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 48a6ac01bb3e9f560800000000000000
-      internalID: 7348154659611765380
+      spriteID: d5eb9d4e28d8ca141875f74a361cf711
+      internalID: 1562021637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_1
+      name: Walk_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,16 +204,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4a5887658a2f18070800000000000000
-      internalID: 8107027609062770084
+      spriteID: c6e9a690b6cc64e4cb7aab27b7546a08
+      internalID: -1389614128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_2
+      name: Walk_2
       rect:
         serializedVersion: 2
         x: 32
@@ -225,16 +225,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62f72d74de6ce46e0800000000000000
-      internalID: -1851323674388168922
+      spriteID: cc4da72b2fc9f1b4a974cce99e012843
+      internalID: 1482296117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_3
+      name: Walk_3
       rect:
         serializedVersion: 2
         x: 48
@@ -246,16 +246,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 578e0abcb2b60cca0800000000000000
-      internalID: -5998676867813414795
+      spriteID: 6f36f07b4fed8aa4e8db76e5a39ce534
+      internalID: -1735302362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_4
+      name: Walk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -267,16 +267,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e544ef44512e55f0800000000000000
-      internalID: -766138240605075992
+      spriteID: 00a7e72f872a234438dc2d2d2dc30078
+      internalID: 836286349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_5
+      name: Walk_5
       rect:
         serializedVersion: 2
         x: 16
@@ -288,16 +288,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af3d96d6ec26f5830800000000000000
-      internalID: 4062074027649913850
+      spriteID: 7c80e1bcc8151df49b822af90e387d81
+      internalID: 1761504266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_6
+      name: Walk_6
       rect:
         serializedVersion: 2
         x: 32
@@ -309,16 +309,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c122e4f7b3fe94e60800000000000000
-      internalID: 7947146056289886748
+      spriteID: a11662efe9089cb429d2b898d0836d59
+      internalID: -2025871493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_7
+      name: Walk_7
       rect:
         serializedVersion: 2
         x: 48
@@ -330,16 +330,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a83db52cbdf4fd1e0800000000000000
-      internalID: -2170928690092059766
+      spriteID: 9466e18696f56f14f9f5bf46cdce3c9a
+      internalID: -2126626613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_8
+      name: Walk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -351,16 +351,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3bbf235908574a4b0800000000000000
-      internalID: -5430086055582565453
+      spriteID: 5e1ca6a8bd4d31e4d8a36012aaa48818
+      internalID: -418652135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_9
+      name: Walk_9
       rect:
         serializedVersion: 2
         x: 16
@@ -372,16 +372,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b5419ded73a9f8a0800000000000000
-      internalID: -6270801244884744777
+      spriteID: fd5747e4148dc444fa0762cc98343953
+      internalID: -1429996024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_10
+      name: Walk_10
       rect:
         serializedVersion: 2
         x: 32
@@ -393,16 +393,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a39ff2962a510fa70800000000000000
-      internalID: 8858604254331402554
+      spriteID: f98308723b196cc4faefa4497a3f09d6
+      internalID: -507528476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_11
+      name: Walk_11
       rect:
         serializedVersion: 2
         x: 48
@@ -414,16 +414,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5202af96005f7680800000000000000
-      internalID: -8755191161206734245
+      spriteID: 4af0b8eb31d8960489f43ef0ea6f239a
+      internalID: -178324855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_12
+      name: Walk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -435,16 +435,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e269f14ec3d84f500800000000000000
-      internalID: 429123157171869230
+      spriteID: 3f1394aa3b0e43a4faf646210e1a4787
+      internalID: -1752684257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_13
+      name: Walk_13
       rect:
         serializedVersion: 2
         x: 16
@@ -456,16 +456,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b7670fb9d771c060800000000000000
-      internalID: 6971985475242780594
+      spriteID: 8efaee05dc4dcc047816316af5c3b550
+      internalID: 139351249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_14
+      name: Walk_14
       rect:
         serializedVersion: 2
         x: 32
@@ -477,16 +477,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7b66b311b5617030800000000000000
-      internalID: 3490682997403183995
+      spriteID: 52b4638efe7fb4e4ca9e9db1c6f996c3
+      internalID: 1388004286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brae_15
+      name: Walk_15
       rect:
         serializedVersion: 2
         x: 48
@@ -498,10 +498,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0223a6a4c1b427cb0800000000000000
-      internalID: -4867745662354443744
+      spriteID: d75cc5acac02c8c4095c303d0c9c6b3e
+      internalID: 941808123
       vertices: []
       indices: 
       edges: []
@@ -517,22 +517,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Brae_0: 7348154659611765380
-      Brae_1: 8107027609062770084
-      Brae_10: 8858604254331402554
-      Brae_11: -8755191161206734245
-      Brae_12: 429123157171869230
-      Brae_13: 6971985475242780594
-      Brae_14: 3490682997403183995
-      Brae_15: -4867745662354443744
-      Brae_2: -1851323674388168922
-      Brae_3: -5998676867813414795
-      Brae_4: -766138240605075992
-      Brae_5: 4062074027649913850
-      Brae_6: 7947146056289886748
-      Brae_7: -2170928690092059766
-      Brae_8: -5430086055582565453
-      Brae_9: -6270801244884744777
+      Walk_0: 1562021637
+      Walk_1: -1389614128
+      Walk_10: -507528476
+      Walk_11: -178324855
+      Walk_12: -1752684257
+      Walk_13: 139351249
+      Walk_14: 1388004286
+      Walk_15: 941808123
+      Walk_2: 1482296117
+      Walk_3: -1735302362
+      Walk_4: 836286349
+      Walk_5: 1761504266
+      Walk_6: -2025871493
+      Walk_7: -2126626613
+      Walk_8: -418652135
+      Walk_9: -1429996024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

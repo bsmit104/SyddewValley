@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kev_0
+      name: Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -183,16 +183,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41c7f1b976348a160800000000000000
-      internalID: 7036948530029624340
+      spriteID: 12814a1ed811cec438d0c8fa86858e9d
+      internalID: 147599279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_1
+      name: Walk_1
       rect:
         serializedVersion: 2
         x: 16
@@ -204,16 +204,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd430505f6aec9c50800000000000000
-      internalID: 6673466511665935581
+      spriteID: 32f5a539ea0dd884f8bbaccb5c30346a
+      internalID: 1066639575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_2
+      name: Walk_2
       rect:
         serializedVersion: 2
         x: 32
@@ -225,16 +225,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2c4d1c33fbbc1ff0800000000000000
-      internalID: -63969641330029522
+      spriteID: 4cc8c995ea7bee5448c6efc75688b9c2
+      internalID: -872208005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_3
+      name: Walk_3
       rect:
         serializedVersion: 2
         x: 48
@@ -246,16 +246,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6bb7062b9f72ecdb0800000000000000
-      internalID: -4769831001945769034
+      spriteID: c9f9ab6c2efff9345920e831634c6c18
+      internalID: -342830991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_4
+      name: Walk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -267,16 +267,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09d0d64a16fc20d60800000000000000
-      internalID: 7855068718364954000
+      spriteID: ae6add620b758ff4e9bbc893b29b645c
+      internalID: 1828619535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_5
+      name: Walk_5
       rect:
         serializedVersion: 2
         x: 16
@@ -288,16 +288,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f1e7f88dae280520800000000000000
-      internalID: 2668434102079185394
+      spriteID: 2b4a29b4fdfad6746b3b0d7f72c0efd4
+      internalID: -1349138404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_6
+      name: Walk_6
       rect:
         serializedVersion: 2
         x: 32
@@ -309,16 +309,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e546bdb8e15fc4500800000000000000
-      internalID: 381949579963884638
+      spriteID: fe3a3ad71d26d324eb5be99eca638337
+      internalID: 1837421384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_7
+      name: Walk_7
       rect:
         serializedVersion: 2
         x: 48
@@ -330,16 +330,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a9f5ce622a55d630800000000000000
-      internalID: 3951163352021334441
+      spriteID: b4f4278666b22ba4d8b2d84dee10e78e
+      internalID: 928474326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_8
+      name: Walk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -351,16 +351,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 65e2f2a3a2217cf80800000000000000
-      internalID: -8086474633346339242
+      spriteID: f8e8a89789072774aba599e4ce6f6321
+      internalID: 161284877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_9
+      name: Walk_9
       rect:
         serializedVersion: 2
         x: 16
@@ -372,16 +372,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc01aaa0e979b3680800000000000000
-      internalID: -8774252743961734964
+      spriteID: cb5e1154ae64f534d8fbb71372016b5d
+      internalID: -2140944416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_10
+      name: Walk_10
       rect:
         serializedVersion: 2
         x: 32
@@ -393,16 +393,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d450eaa7d52ec4f0800000000000000
-      internalID: -806665675037715243
+      spriteID: b4a2d6bf9ad236746a6676a5a831bc14
+      internalID: 1058135778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_11
+      name: Walk_11
       rect:
         serializedVersion: 2
         x: 48
@@ -414,16 +414,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eb36a935e9075a240800000000000000
-      internalID: 4802368402970272702
+      spriteID: 6645b27a8f6111c479264da33e240954
+      internalID: -1731127082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_12
+      name: Walk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -435,16 +435,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a77fc1b147e5aa40800000000000000
-      internalID: 5378959599305979808
+      spriteID: d10704ed753823349a260da8c1bc9889
+      internalID: -1052305937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_13
+      name: Walk_13
       rect:
         serializedVersion: 2
         x: 16
@@ -456,16 +456,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3cbca279d959effa0800000000000000
-      internalID: -5765005968909087805
+      spriteID: 2d4f53da41160f6489e7cd92f3433aeb
+      internalID: -144776167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_14
+      name: Walk_14
       rect:
         serializedVersion: 2
         x: 32
@@ -477,16 +477,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7011ccf20ad043d70800000000000000
-      internalID: 9021850935177777415
+      spriteID: af4ae2b9d16a8954c97d9c001964f66b
+      internalID: 1668197602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kev_15
+      name: Walk_15
       rect:
         serializedVersion: 2
         x: 48
@@ -498,10 +498,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e63be291e1ae9f720800000000000000
-      internalID: 2880590851672552302
+      spriteID: 9526f92b64d64544193bf00283db8d37
+      internalID: -938064698
       vertices: []
       indices: 
       edges: []
@@ -517,22 +517,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Kev_0: 7036948530029624340
-      Kev_1: 6673466511665935581
-      Kev_10: -806665675037715243
-      Kev_11: 4802368402970272702
-      Kev_12: 5378959599305979808
-      Kev_13: -5765005968909087805
-      Kev_14: 9021850935177777415
-      Kev_15: 2880590851672552302
-      Kev_2: -63969641330029522
-      Kev_3: -4769831001945769034
-      Kev_4: 7855068718364954000
-      Kev_5: 2668434102079185394
-      Kev_6: 381949579963884638
-      Kev_7: 3951163352021334441
-      Kev_8: -8086474633346339242
-      Kev_9: -8774252743961734964
+      Walk_0: 147599279
+      Walk_1: 1066639575
+      Walk_10: 1058135778
+      Walk_11: -1731127082
+      Walk_12: -1052305937
+      Walk_13: -144776167
+      Walk_14: 1668197602
+      Walk_15: -938064698
+      Walk_2: -872208005
+      Walk_3: -342830991
+      Walk_4: 1828619535
+      Walk_5: -1349138404
+      Walk_6: 1837421384
+      Walk_7: 928474326
+      Walk_8: 161284877
+      Walk_9: -2140944416
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
