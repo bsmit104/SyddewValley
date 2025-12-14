@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest2
+  m_EditorClassIdentifier: 
+  questID: Quest2
+  questGiver: Sydney
+  questDescription: Heyy! Really craving an in n out burgerrrr, if someone hypothetically
+    brought me one, Id have to pay them 10 dollas.
+  requestedItem: {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+  reward: 10
+  acceptDialogue: 'THANKS SO MUCH!!! Heres that money. '
+  reminderDialogue: I want in n out sooo bad
+  isActive: 0
+  isCompleted: 0

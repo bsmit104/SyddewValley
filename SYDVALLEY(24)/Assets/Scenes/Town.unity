@@ -1003,7 +1003,7 @@ MonoBehaviour:
     validDays: 
     startHour: 9
     endHour: 12
-    waypointParent: {fileID: 248414899}
+    waypointParent: {fileID: 54247616}
     moveSpeed: 2
     waitTime: 0
     loopWaypoints: 0
@@ -7703,6 +7703,8 @@ GameObject:
   m_Component:
   - component: {fileID: 618267648}
   - component: {fileID: 618267647}
+  - component: {fileID: 618267650}
+  - component: {fileID: 618267649}
   m_Layer: 0
   m_Name: questboard
   m_TagString: Untagged
@@ -7773,12 +7775,70 @@ Transform:
   m_GameObject: {fileID: 618267646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35, y: 1.09, z: 0}
+  m_LocalPosition: {x: 2.56, y: -5.67, z: 0}
   m_LocalScale: {x: 3.1284, y: 3.1284, z: 3.1284}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &618267649
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618267646}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0134599805, y: -0.10431391}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.0602924, y: 0.838204}
+  m_EdgeRadius: 0
+--- !u!114 &618267650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618267646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dd502fcad6a5e45be5c7f0b643bb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624040669
 GameObject:
   m_ObjectHideFlags: 0
@@ -24768,6 +24828,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3499053521964808279, guid: c00d41706c44a154fb20146b3f066238, type: 3}
   m_PrefabInstance: {fileID: 4311335812971801534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1765860918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765860920}
+  - component: {fileID: 1765860919}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1765860919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765860918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8872491d4916d0546ad6c42e070d3e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allQuests:
+  - {fileID: 11400000, guid: 48d78e645bf2fcc4bb761b090dd2f27f, type: 2}
+  - {fileID: 11400000, guid: a73493fe42c0e6942b4efd846165f7cc, type: 2}
+  - {fileID: 11400000, guid: f06969426f67a634ab6fca60a68d8c45, type: 2}
+--- !u!4 &1765860920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765860918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16388917, y: -6.5578275, z: 0.04618288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776776463
 GameObject:
   m_ObjectHideFlags: 0
@@ -99566,3 +99674,4 @@ SceneRoots:
   - {fileID: 212408340}
   - {fileID: 1281055752}
   - {fileID: 460161416}
+  - {fileID: 1765860920}
