@@ -16,4 +16,20 @@ MonoBehaviour:
   availableItems:
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
   - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  - {fileID: 11400000, guid: e76402d251f78c04bb9e300c81902fc8, type: 2}
+  - {fileID: 11400000, guid: 5f39bdef50eb3ef4387901083a5dbb9b, type: 2}
+  - {fileID: 11400000, guid: 4e457e149b56bfb4b8128d8f0b270a66, type: 2}
+  - {fileID: 11400000, guid: d70cbc243dff08f45a91a5d5a9bd31b3, type: 2}
+  - {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+  - {fileID: 11400000, guid: edb3cb5bcf3d64647ad3dc41c407bc62, type: 2}
+  - {fileID: 11400000, guid: 880f1e9df62726a479e763b3d77e9538, type: 2}
+  - {fileID: 11400000, guid: 538016910c89780408bbda106bc2d61f, type: 2}
+  - {fileID: 11400000, guid: e330ba864989f7b4a8b3ff9024f9263d, type: 2}
+  - {fileID: 11400000, guid: fca31fe9ad0136e469e4efee3cfd97af, type: 2}
+  - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
+  - {fileID: 11400000, guid: ea05408ef2d60764b9cf35f3483b8958, type: 2}
+  - {fileID: 11400000, guid: d32be267ca1d9e446aea73d9f3a7f02b, type: 2}
+  - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
+  - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
+  - {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
   shopIcon: {fileID: 21300000, guid: 0001115863271d644a5d49716a681934, type: 3}

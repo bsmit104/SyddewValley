@@ -1,4 +1,4 @@
-// EnemySpawner.cs – FIXED VERSION (Dec 2025)
+// EnemySpawner.cs – FIXED VERSION with scene transition safety
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private static EnemySpawner _instance;
     private Transform enemiesParent;
     private Coroutine currentSpawnRoutine;
+    private string currentSpawnScene; // Track which scene the coroutine is for
 
     private void Awake()
     {
@@ -41,34 +42,26 @@ public class EnemySpawner : MonoBehaviour
     {
         Debug.Log($"[EnemySpawner] Scene loaded: {scene.name}");
         
-        // Check if this scene should have enemies
-        if (excludedScenes.Contains(scene.name))
-        {
-            Debug.Log($"[EnemySpawner] Scene '{scene.name}' is excluded from enemy spawning");
-            
-            // Stop any ongoing spawn routine
-            if (currentSpawnRoutine != null)
-            {
-                StopCoroutine(currentSpawnRoutine);
-                currentSpawnRoutine = null;
-            }
-            
-            // Clear any existing enemies
-            ClearEnemies();
-            return;
-        }
-        
-        // Stop any ongoing spawn routine
+        // Stop any ongoing spawn routine IMMEDIATELY
         if (currentSpawnRoutine != null)
         {
             StopCoroutine(currentSpawnRoutine);
             currentSpawnRoutine = null;
+            currentSpawnScene = null;
         }
         
-        // Clear old enemies
+        // Clear any existing enemies
         ClearEnemies();
         
-        // Start new spawn routine
+        // Check if this scene should have enemies
+        if (excludedScenes.Contains(scene.name))
+        {
+            Debug.Log($"[EnemySpawner] Scene '{scene.name}' is excluded from enemy spawning");
+            return;
+        }
+        
+        // Start new spawn routine for this scene
+        currentSpawnScene = scene.name;
         currentSpawnRoutine = StartCoroutine(SpawnForCurrentScene());
     }
 
@@ -85,17 +78,27 @@ public class EnemySpawner : MonoBehaviour
         
         // First scene
         Debug.Log("[EnemySpawner] Starting initial spawn");
+        currentSpawnScene = currentScene;
         currentSpawnRoutine = StartCoroutine(SpawnForCurrentScene());
     }
 
     private IEnumerator SpawnForCurrentScene()
     {
+        // Store the scene we're spawning for
+        string spawnSceneName = SceneManager.GetActiveScene().name;
+        
         // Wait for scene to fully load
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        string sceneName = SceneManager.GetActiveScene().name;
-        Debug.Log($"[EnemySpawner] Beginning spawn for scene: {sceneName}");
+        // SAFETY CHECK: Verify we're still in the same scene
+        if (SceneManager.GetActiveScene().name != spawnSceneName)
+        {
+            Debug.Log($"[EnemySpawner] Scene changed during initialization. Aborting spawn for '{spawnSceneName}'");
+            yield break;
+        }
+
+        Debug.Log($"[EnemySpawner] Beginning spawn for scene: {spawnSceneName}");
 
         // === ALWAYS GET FRESH REFERENCES FROM THE CURRENT SCENE ===
         SceneEnemyConfig config = FindObjectOfType<SceneEnemyConfig>();
@@ -112,20 +115,20 @@ public class EnemySpawner : MonoBehaviour
 
         if (tilemap == null)
         {
-            Debug.LogWarning($"[EnemySpawner] No Tilemap found in scene: {sceneName} - skipping enemy spawn");
+            Debug.LogWarning($"[EnemySpawner] No Tilemap found in scene: {spawnSceneName} - skipping enemy spawn");
             yield break;
         }
 
         if (prefabs == null || prefabs.Count == 0)
         {
-            Debug.LogWarning($"[EnemySpawner] No enemy prefabs defined for scene: {sceneName}");
+            Debug.LogWarning($"[EnemySpawner] No enemy prefabs defined for scene: {spawnSceneName}");
             yield break;
         }
 
         Debug.Log($"[EnemySpawner] Config found: {(config != null ? "SceneEnemyConfig" : "Default")}. Target: {targetCount} enemies");
 
         // Fresh parent object for this scene only
-        GameObject parentObj = new GameObject($"Enemies_{sceneName}");
+        GameObject parentObj = new GameObject($"Enemies_{spawnSceneName}");
         enemiesParent = parentObj.transform;
 
         // Player position (fresh every time)
@@ -139,6 +142,17 @@ public class EnemySpawner : MonoBehaviour
 
         while (spawned < targetCount && maxAttempts-- > 0)
         {
+            // CRITICAL SAFETY CHECK: Verify scene hasn't changed and tilemap still exists
+            if (SceneManager.GetActiveScene().name != spawnSceneName || tilemap == null)
+            {
+                Debug.Log($"[EnemySpawner] Scene changed or tilemap destroyed during spawn. Aborting.");
+                if (enemiesParent != null)
+                {
+                    Destroy(enemiesParent.gameObject);
+                }
+                yield break;
+            }
+
             Vector3 randomWorld = new Vector3(
                 Random.Range(bounds.min.x, bounds.max.x),
                 Random.Range(bounds.min.y, bounds.max.y),
@@ -169,8 +183,9 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(stagger);
         }
 
-        Debug.Log($"[EnemySpawner] Successfully spawned {spawned}/{targetCount} enemies in '{sceneName}'");
+        Debug.Log($"[EnemySpawner] Successfully spawned {spawned}/{targetCount} enemies in '{spawnSceneName}'");
         currentSpawnRoutine = null;
+        currentSpawnScene = null;
     }
 
     private Vector3 GetPlayerPosition()
@@ -207,9 +222,14 @@ public class EnemySpawner : MonoBehaviour
         }
         
         if (currentSpawnRoutine != null)
+        {
             StopCoroutine(currentSpawnRoutine);
+            currentSpawnRoutine = null;
+            currentSpawnScene = null;
+        }
         
         ClearEnemies();
+        currentSpawnScene = currentScene;
         currentSpawnRoutine = StartCoroutine(SpawnForCurrentScene());
     }
 
@@ -218,6 +238,7 @@ public class EnemySpawner : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
+
 
 // // EnemySpawner.cs – FIXED VERSION (Dec 2025)
 // using System.Collections;
@@ -228,6 +249,10 @@ public class EnemySpawner : MonoBehaviour
 
 // public class EnemySpawner : MonoBehaviour
 // {
+//     [Header("Scene Control")]
+//     [Tooltip("Scenes where enemies should NOT spawn (MainMenu, etc.)")]
+//     public List<string> excludedScenes = new List<string> { "MainMenu", "SaveSlotMenu" };
+
 //     [Header("GLOBAL FALLBACK (only if no SceneEnemyConfig in current scene)")]
 //     public List<GameObject> defaultEnemyPrefabs = new List<GameObject>();
 //     public int defaultEnemyCount = 12;
@@ -258,6 +283,23 @@ public class EnemySpawner : MonoBehaviour
 //     {
 //         Debug.Log($"[EnemySpawner] Scene loaded: {scene.name}");
         
+//         // Check if this scene should have enemies
+//         if (excludedScenes.Contains(scene.name))
+//         {
+//             Debug.Log($"[EnemySpawner] Scene '{scene.name}' is excluded from enemy spawning");
+            
+//             // Stop any ongoing spawn routine
+//             if (currentSpawnRoutine != null)
+//             {
+//                 StopCoroutine(currentSpawnRoutine);
+//                 currentSpawnRoutine = null;
+//             }
+            
+//             // Clear any existing enemies
+//             ClearEnemies();
+//             return;
+//         }
+        
 //         // Stop any ongoing spawn routine
 //         if (currentSpawnRoutine != null)
 //         {
@@ -274,6 +316,15 @@ public class EnemySpawner : MonoBehaviour
 
 //     private void Start()
 //     {
+//         // Check if current scene should have enemies
+//         string currentScene = SceneManager.GetActiveScene().name;
+        
+//         if (excludedScenes.Contains(currentScene))
+//         {
+//             Debug.Log($"[EnemySpawner] Starting in excluded scene '{currentScene}', skipping spawn");
+//             return;
+//         }
+        
 //         // First scene
 //         Debug.Log("[EnemySpawner] Starting initial spawn");
 //         currentSpawnRoutine = StartCoroutine(SpawnForCurrentScene());
@@ -285,7 +336,8 @@ public class EnemySpawner : MonoBehaviour
 //         yield return new WaitForEndOfFrame();
 //         yield return new WaitForEndOfFrame();
 
-//         Debug.Log($"[EnemySpawner] Beginning spawn for scene: {SceneManager.GetActiveScene().name}");
+//         string sceneName = SceneManager.GetActiveScene().name;
+//         Debug.Log($"[EnemySpawner] Beginning spawn for scene: {sceneName}");
 
 //         // === ALWAYS GET FRESH REFERENCES FROM THE CURRENT SCENE ===
 //         SceneEnemyConfig config = FindObjectOfType<SceneEnemyConfig>();
@@ -302,20 +354,20 @@ public class EnemySpawner : MonoBehaviour
 
 //         if (tilemap == null)
 //         {
-//             Debug.LogError($"[EnemySpawner] No Tilemap found in scene: {SceneManager.GetActiveScene().name}");
+//             Debug.LogWarning($"[EnemySpawner] No Tilemap found in scene: {sceneName} - skipping enemy spawn");
 //             yield break;
 //         }
 
 //         if (prefabs == null || prefabs.Count == 0)
 //         {
-//             Debug.LogWarning($"[EnemySpawner] No enemy prefabs defined for scene: {SceneManager.GetActiveScene().name}");
+//             Debug.LogWarning($"[EnemySpawner] No enemy prefabs defined for scene: {sceneName}");
 //             yield break;
 //         }
 
 //         Debug.Log($"[EnemySpawner] Config found: {(config != null ? "SceneEnemyConfig" : "Default")}. Target: {targetCount} enemies");
 
 //         // Fresh parent object for this scene only
-//         GameObject parentObj = new GameObject($"Enemies_{SceneManager.GetActiveScene().name}");
+//         GameObject parentObj = new GameObject($"Enemies_{sceneName}");
 //         enemiesParent = parentObj.transform;
 
 //         // Player position (fresh every time)
@@ -359,7 +411,7 @@ public class EnemySpawner : MonoBehaviour
 //             yield return new WaitForSeconds(stagger);
 //         }
 
-//         Debug.Log($"[EnemySpawner] Successfully spawned {spawned}/{targetCount} enemies in '{SceneManager.GetActiveScene().name}'");
+//         Debug.Log($"[EnemySpawner] Successfully spawned {spawned}/{targetCount} enemies in '{sceneName}'");
 //         currentSpawnRoutine = null;
 //     }
 
@@ -388,6 +440,14 @@ public class EnemySpawner : MonoBehaviour
 //     [ContextMenu("Respawn Enemies in Current Scene")]
 //     public void ManualRespawn()
 //     {
+//         string currentScene = SceneManager.GetActiveScene().name;
+        
+//         if (excludedScenes.Contains(currentScene))
+//         {
+//             Debug.LogWarning($"[EnemySpawner] Cannot spawn in excluded scene '{currentScene}'");
+//             return;
+//         }
+        
 //         if (currentSpawnRoutine != null)
 //             StopCoroutine(currentSpawnRoutine);
         

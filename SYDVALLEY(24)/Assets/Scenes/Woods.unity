@@ -4954,13 +4954,13 @@ MonoBehaviour:
   styleA:
     augtomberPrefab: {fileID: 7299861900188199268, guid: a332d3414f68e2941baa36f8ec305ed9, type: 3}
     novecanuaryPrefab: {fileID: 7299861900188199268, guid: f184130284c45fc49b7d17536529bd79, type: 3}
-    febmaprilPrefab: {fileID: 7299861900188199268, guid: a332d3414f68e2941baa36f8ec305ed9, type: 3}
-    mayunlyPrefab: {fileID: 7299861900188199268, guid: f184130284c45fc49b7d17536529bd79, type: 3}
+    febmaprilPrefab: {fileID: 7299861900188199268, guid: 1d2d862097e852542ab96a895807b328, type: 3}
+    mayunlyPrefab: {fileID: 7299861900188199268, guid: 435863707f406f5478b37aaa9213754c, type: 3}
   styleB:
     augtomberPrefab: {fileID: 5038001370701100835, guid: 73777ac1f6f38b84cb79b10b8f4d6221, type: 3}
     novecanuaryPrefab: {fileID: 5038001370701100835, guid: 4b39737184e8c914c836a0b447e520f5, type: 3}
-    febmaprilPrefab: {fileID: 5038001370701100835, guid: 73777ac1f6f38b84cb79b10b8f4d6221, type: 3}
-    mayunlyPrefab: {fileID: 5038001370701100835, guid: 4b39737184e8c914c836a0b447e520f5, type: 3}
+    febmaprilPrefab: {fileID: 5038001370701100835, guid: e91c0cbfadd568e4daaa0ae0fe156f4f, type: 3}
+    mayunlyPrefab: {fileID: 5038001370701100835, guid: 96af6fb681e7a4041b53426afc9f8009, type: 3}
 --- !u!4 &594343225
 Transform:
   m_ObjectHideFlags: 0
@@ -12899,6 +12899,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282922631}
   m_CullTransparentMesh: 1
+--- !u!1 &1284705612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284705614}
+  - component: {fileID: 1284705613}
+  m_Layer: 0
+  m_Name: SceneForageConfig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1284705613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284705612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70c53317b366ce41ad550e882856051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forageItems:
+  - item: {fileID: 11400000, guid: 4a210dd8c8a617445bde98b1d2b2d7d1, type: 2}
+    worldPrefab: {fileID: 3310949664301477623, guid: c45aa7fa3c932704680652b7675d5c01, type: 3}
+    spawnWeight: 0.6
+  - item: {fileID: 11400000, guid: 6623d3b398c3f414492c4b44d1debeb6, type: 2}
+    worldPrefab: {fileID: 4439133327286190392, guid: 3737c38ea45ce824cb90c084c83ad652, type: 3}
+    spawnWeight: 0.6
+  - item: {fileID: 11400000, guid: d70cbc243dff08f45a91a5d5a9bd31b3, type: 2}
+    worldPrefab: {fileID: 7491296885664572072, guid: 2439c65442ab701469309cf25a39c3f0, type: 3}
+    spawnWeight: 0.6
+  - item: {fileID: 11400000, guid: 7d4d27fc4c411b844a701509220e89c2, type: 2}
+    worldPrefab: {fileID: 8059958408906440163, guid: 265a93a18c47bee49ae21ccf85729ed4, type: 3}
+    spawnWeight: 0.4
+  - item: {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+    worldPrefab: {fileID: 4794560484715817368, guid: fd57f06fec9aa3840a4a43a5211ad7ab, type: 3}
+    spawnWeight: 0.7
+  - item: {fileID: 11400000, guid: 571597bac85628e4f93f108314b30651, type: 2}
+    worldPrefab: {fileID: 6134111883055005354, guid: 602eed101965ca243b2a150bde9106a1, type: 3}
+    spawnWeight: 0.3
+  - item: {fileID: 11400000, guid: fbd76a1ebd4fde243a6ba727526168c3, type: 2}
+    worldPrefab: {fileID: 2110351776597875008, guid: a53f10886e56ae44691279916fb5750f, type: 3}
+    spawnWeight: 0.7
+  targetItemCount: 10
+  minDistanceBetweenItems: 3
+  spawnStaggerDelay: 0.1
+  groundTilemap: {fileID: 948744108}
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!4 &1284705614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284705612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -60.740963, y: -0.8889166, z: -0.0623756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288318918
 GameObject:
   m_ObjectHideFlags: 0
@@ -70277,3 +70350,4 @@ SceneRoots:
   - {fileID: 249751889}
   - {fileID: 1431774154}
   - {fileID: 236571141}
+  - {fileID: 1284705614}

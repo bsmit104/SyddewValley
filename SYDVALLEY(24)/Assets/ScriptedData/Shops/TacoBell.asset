@@ -16,5 +16,12 @@ MonoBehaviour:
   availableItems:
   - {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
-  - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
+  - {fileID: 11400000, guid: 078b8cff9b0f46b40a0ef80a11879c47, type: 2}
+  - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  - {fileID: 11400000, guid: 7dbf2fa19feb7294cae36aaacc3c1b21, type: 2}
+  - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+  - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: 8b91b447483476c43a77ae2a033e63bb, type: 2}
+  - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
+  - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
   shopIcon: {fileID: 8611833618497729674, guid: 098ca3aa6cef9c34da67b9400c188549, type: 3}
