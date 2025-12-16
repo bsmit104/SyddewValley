@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babec1e7e27b1f541841e086f6e69740, type: 3}
+  m_Name: Coda
+  m_EditorClassIdentifier: 
+  npcName: Coda
+  lovedGifts:
+  - {fileID: 11400000, guid: c6fc83490b80b364abe727567a3edf03, type: 2}
+  - {fileID: 11400000, guid: 52d06e30324657d498359457aacd60e6, type: 2}
+  - {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
+  - {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
+  likedGifts:
+  - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
+  - {fileID: 11400000, guid: d4080d39d613c494fa38cf4cc3b258b7, type: 2}
+  - {fileID: 11400000, guid: 7dbf2fa19feb7294cae36aaacc3c1b21, type: 2}
+  - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  hatedGifts:
+  - {fileID: 11400000, guid: d32be267ca1d9e446aea73d9f3a7f02b, type: 2}
+  - {fileID: 11400000, guid: e76402d251f78c04bb9e300c81902fc8, type: 2}
+  - {fileID: 11400000, guid: ea05408ef2d60764b9cf35f3483b8958, type: 2}
+  - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
+  - {fileID: 11400000, guid: 7d4d27fc4c411b844a701509220e89c2, type: 2}
+  heartPoints: 110
+  dialogues:
+  - '"Did you see the news?"'
+  - '"Can''t we just talk about the political and economical state of the world right
+    now?"'
+  - '"Do you lift bro?"'
+  - '"Fed"'
+  - '"AUGHHHHH"'
+  - '"BEANZZZZZZZZZZZZZZZZZZZ"'
+  - '"Where da laylaloo at?"'
+  - '"Have you seen F1?"'
+  - '"6 7"'
+  - '"me n the boys are playing catch phrase later"'
+  - '"catchphrase is flammable btw"'
+  - '"I think Riley has depression."'
