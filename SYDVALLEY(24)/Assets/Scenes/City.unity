@@ -8935,7 +8935,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -9029,9 +9029,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 571597bac85628e4f93f108314b30651, type: 2}
     worldPrefab: {fileID: 6134111883055005354, guid: 602eed101965ca243b2a150bde9106a1, type: 3}
     spawnWeight: 0.6
-  - item: {fileID: 11400000, guid: edb3cb5bcf3d64647ad3dc41c407bc62, type: 2}
-    worldPrefab: {fileID: 9151255986750930665, guid: 3bd893f372928b64d8a698d19977591a, type: 3}
-    spawnWeight: 0.3
   - item: {fileID: 11400000, guid: 64943fd6cf1f4fb44adb67528e55d96c, type: 2}
     worldPrefab: {fileID: 3446259019154399890, guid: 50752e3abbbeb0f4caaa034bb6e5e7ba, type: 3}
     spawnWeight: 0.7
