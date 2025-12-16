@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest2
+  m_Name: Quest12
   m_EditorClassIdentifier: 
-  questID: Quest2
+  questID: Quest12
   questGiver: Sydney
-  questDescription: Heyy! Really craving an in n out burgerrrr, if someone hypothetically
-    brought me one, Id have to pay them 10 dollas. - Syd
-  requestedItem: {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
-  reward: 10
-  acceptDialogue: 'THANKS SO MUCH!!! Heres that money. '
-  reminderDialogue: I want in n out sooo bad
+  questDescription: Heyy guyss its Sydney. I need a tomato for this pasta Im making
+    for dinner. Can someone pleasssse find me one?
+  requestedItem: {fileID: 11400000, guid: 7d4d27fc4c411b844a701509220e89c2, type: 2}
+  reward: 4
+  acceptDialogue: Youre literally the best!
+  reminderDialogue: My moms gonna kill me if I dont find a tomato!
   isActive: 0
   isCompleted: 0

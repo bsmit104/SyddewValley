@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest2
+  m_Name: Quest21
   m_EditorClassIdentifier: 
-  questID: Quest2
-  questGiver: Sydney
-  questDescription: Heyy! Really craving an in n out burgerrrr, if someone hypothetically
-    brought me one, Id have to pay them 10 dollas. - Syd
-  requestedItem: {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
-  reward: 10
-  acceptDialogue: 'THANKS SO MUCH!!! Heres that money. '
-  reminderDialogue: I want in n out sooo bad
+  questID: Quest21
+  questGiver: Anabelle
+  questDescription: Could someone bring me a chocy so I can focus on studying. I
+    need bwain power :'( - Anabelle
+  requestedItem: {fileID: 11400000, guid: a6449876147338f45879fbf95fa3ac64, type: 2}
+  reward: 6
+  acceptDialogue: Thank youuu. Lowk Ima fail anyway. Shld we play minecraft instead?
+  reminderDialogue: Need chocy for study
   isActive: 0
   isCompleted: 0

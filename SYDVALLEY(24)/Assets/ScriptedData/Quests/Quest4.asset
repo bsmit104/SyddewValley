@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest2
+  m_Name: Quest4
   m_EditorClassIdentifier: 
-  questID: Quest2
-  questGiver: Sydney
-  questDescription: Heyy! Really craving an in n out burgerrrr, if someone hypothetically
-    brought me one, Id have to pay them 10 dollas. - Syd
-  requestedItem: {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
-  reward: 10
-  acceptDialogue: 'THANKS SO MUCH!!! Heres that money. '
-  reminderDialogue: I want in n out sooo bad
+  questID: Quest4
+  questGiver: Cado
+  questDescription: Hey its Caden. I need a Cherry Coke to lock in on my hw. I will
+    pay 6 bucks if someone brings me one
+  requestedItem: {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
+  reward: 6
+  acceptDialogue: Nooo wayyy. Thanks G.
+  reminderDialogue: 'I cannot focus on my work rn. Need coke or ima die. '
   isActive: 0
   isCompleted: 0

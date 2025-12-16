@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest26
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  questID: Quest26
+  questGiver: Kevin
+  questDescription: I love spaghetti. Please bring spaghetti - K
+  requestedItem: {fileID: 11400000, guid: 52d06e30324657d498359457aacd60e6, type: 2}
+  reward: 9
+  acceptDialogue: HOORAY SPAGHETTI!
+  reminderDialogue: Spaghetti is my fav! If I cld 3d print it oh boy we'd have a
+    problem!
+  isActive: 0
   isCompleted: 0

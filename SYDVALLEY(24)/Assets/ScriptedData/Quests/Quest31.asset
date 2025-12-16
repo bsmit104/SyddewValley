@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest31
+  m_EditorClassIdentifier: 
+  questID: Quest31
+  questGiver: Ronnie
+  questDescription: Can someone bring me green olives please. Sorry if I seemed rude
+    other times I used this thing. I just dont get out much.
+  requestedItem: {fileID: 11400000, guid: d32be267ca1d9e446aea73d9f3a7f02b, type: 2}
+  reward: 4
+  acceptDialogue: 'Hey! Thanks! Im gonna make an olive dip thing. Id love for you
+    to hang out. It gets lonely being the only humanoid rabbit in the entire world. '
+  reminderDialogue: I really want to make an olive dip!
+  isActive: 0
+  isCompleted: 0

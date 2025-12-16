@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest2
+  m_Name: Quest8
   m_EditorClassIdentifier: 
-  questID: Quest2
-  questGiver: Sydney
-  questDescription: Heyy! Really craving an in n out burgerrrr, if someone hypothetically
-    brought me one, Id have to pay them 10 dollas. - Syd
-  requestedItem: {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+  questID: Quest8
+  questGiver: Alien
+  questDescription: I would like to try potato salad. I might be having a party,
+    dont ask if you can come. Its for my suitors. - Lyraaaa.
+  requestedItem: {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
   reward: 10
-  acceptDialogue: 'THANKS SO MUCH!!! Heres that money. '
-  reminderDialogue: I want in n out sooo bad
+  acceptDialogue: This will be wonderous at the party. Heres your reward human.
+  reminderDialogue: Potatoooor salado
   isActive: 0
   isCompleted: 0

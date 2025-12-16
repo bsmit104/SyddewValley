@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest7
+  m_EditorClassIdentifier: 
+  questID: Quest7
+  questGiver: Alien
+  questDescription: I require a cantelope. I wish to bring it to my ex husbands wedding
+    on my home planet meylo. I dont understand but it seems it prevents marriage.
+    - Lyra.
+  requestedItem: {fileID: 11400000, guid: d70cbc243dff08f45a91a5d5a9bd31b3, type: 2}
+  reward: 5
+  acceptDialogue: I will ensure they cant elope. He will be mine again.. Anyways,
+    are you doing anything later?
+  reminderDialogue: They CANT ELOPE!!!
+  isActive: 1
+  isCompleted: 0

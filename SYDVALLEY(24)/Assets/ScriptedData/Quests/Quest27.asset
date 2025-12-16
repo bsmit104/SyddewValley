@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest27
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  questID: Quest27
+  questGiver: Kevin
+  questDescription: Hey! I want to surprise anabelle with a chicken dinner. Can someone
+    bring a chicken leg? - K
+  requestedItem: {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
+  reward: 8
+  acceptDialogue: HOORAYYYY.
+  reminderDialogue: I need that chicken quick!
+  isActive: 0
   isCompleted: 0

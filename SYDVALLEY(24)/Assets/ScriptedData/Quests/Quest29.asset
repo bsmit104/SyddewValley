@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest29
+  m_EditorClassIdentifier: 
+  questID: Quest29
+  questGiver: Ronnie
+  questDescription: I need an egg, I am going to hatch it, NO I am not eating it,
+    YES im a vegan, im a rabbit
+  requestedItem: {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+  reward: 2
+  acceptDialogue: Thank you :) Sorry if I seemed intense before. I just think the
+    solitude is getting to me.
+  reminderDialogue: I want to hatch an egg so I can better understand reality and
+    maybe he will get cursed by the blue beast with 3 eyes like me to be a humanoid
+    chicken buddy. Like a brother!!
+  isActive: 0
+  isCompleted: 0

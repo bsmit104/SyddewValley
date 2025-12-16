@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest16
+  m_EditorClassIdentifier: 
+  questID: Quest16
+  questGiver: Brae
+  questDescription: Caliroll wld go hard rn. Id pay - Brae
+  requestedItem: {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  reward: 3
+  acceptDialogue: Hell ya. This is gonna be so good rn. My stomach was starting to
+    hurt from all this RED BULL ENERGY.
+  reminderDialogue: I need a caliroll. My stomach lowk hurts from that red bull i
+    had earlier..
+  isActive: 0
+  isCompleted: 0

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest25
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  questID: Quest25
+  questGiver: Kevin
+  questDescription: The most important meal of the day serving it up Garys way BLAH
+    can someone bring me a breakfast burrito please? - K
+  requestedItem: {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  reward: 7
+  acceptDialogue: Hooray!
+  reminderDialogue: That song was from Spongebob
+  isActive: 0
   isCompleted: 0

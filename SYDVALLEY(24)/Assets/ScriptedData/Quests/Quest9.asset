@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest9
+  m_EditorClassIdentifier: 
+  questID: Quest9
+  questGiver: Alien
+  questDescription: HOLLO its LYRA! My crab mount is growing tired in this climate.
+    He needs to feed. Bring me a taco. That should fulfill his nutritional needs.
+  requestedItem: {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
+  reward: 5
+  acceptDialogue: He will feast. Here is your reward.
+  reminderDialogue: My crab it hungry..
+  isActive: 0
+  isCompleted: 0

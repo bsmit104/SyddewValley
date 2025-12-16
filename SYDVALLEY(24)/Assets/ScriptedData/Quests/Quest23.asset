@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest23
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
+  questID: Quest23
+  questGiver: Anabelle
+  questDescription: I need potato salad rn. My fam ate the last bit and im sad -
+    Anabele
+  requestedItem: {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
   reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  acceptDialogue: Thank youuuu. Got any ranch?
+  reminderDialogue: Im so sad they ate all the potato saladddd
+  isActive: 0
   isCompleted: 0

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest20
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  questID: Quest20
+  questGiver: Cado
+  questDescription: Can someone pick up a carrot for Rocket? - Caden
+  requestedItem: {fileID: 11400000, guid: 4a210dd8c8a617445bde98b1d2b2d7d1, type: 2}
+  reward: 2
+  acceptDialogue: Thanks, saving me time fr
+  reminderDialogue: I need a carrot for rocket so bad. I have so much on my plate
+    though!
+  isActive: 0
   isCompleted: 0

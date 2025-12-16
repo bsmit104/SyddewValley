@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest28
+  m_EditorClassIdentifier: 
+  questID: Quest28
+  questGiver: Ronnie
+  questDescription: Look just cause I am a rabbit doesnt mean I only eat carrots,
+    so I hate to play into stereotypes but I need a carrot. F*** we live in a matrix.
+    - Ronnie
+  requestedItem: {fileID: 11400000, guid: 4a210dd8c8a617445bde98b1d2b2d7d1, type: 2}
+  reward: 3
+  acceptDialogue: 'I literally knew it would be you to bring me a carrot. I literally
+    had dejavu. '
+  reminderDialogue: 'I need a carrot, but not cause im a rabbit. F*** I shldnt have
+    even asked. '
+  isActive: 0
+  isCompleted: 0

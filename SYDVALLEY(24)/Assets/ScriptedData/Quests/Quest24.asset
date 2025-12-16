@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
-  m_Name: Quest3
+  m_Name: Quest24
   m_EditorClassIdentifier: 
-  questID: Quest3
-  questGiver: Brae
-  questDescription: Hey I need coffe or ima die. 5 dolla if someone brings me one.
-    - Brae
-  requestedItem: {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  reward: 5
-  acceptDialogue: Thanks bruv
-  reminderDialogue: need caffeine or ima die
-  isActive: 1
+  questID: Quest24
+  questGiver: Anabelle
+  questDescription: Quiero una naranja - Anabelle
+  requestedItem: {fileID: 11400000, guid: 126a438373ed23243b1cec5d7233257e, type: 2}
+  reward: 3
+  acceptDialogue: Did u understand my spanish? Ive been practicing :))
+  reminderDialogue: QUIERO NARANJA
+  isActive: 0
   isCompleted: 0

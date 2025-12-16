@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b0c1e94ae7fb24db4ed279c7146b0a, type: 3}
+  m_Name: Quest11
+  m_EditorClassIdentifier: 
+  questID: Quest11
+  questGiver: Alien
+  questDescription: EVERYTHING SUCKS IDK WHAT TO DO IM A FAILURE. >:( SOMEONE BRING
+    ME A BEER. I WILL PAY. THIS IS THE TRI BOOBED SEXY BLUE LADY IN THE DESERT!!!!!!!!!!!!!
+  requestedItem: {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
+  reward: 10
+  acceptDialogue: Thank you. Sorry if i seemed intense before. It was just a show
+    really. How else wld i get you to bring me a beer this fast? <3
+  reminderDialogue: I NEED THE BEER OR IM GOING TO DIE! BRING IT TO THE SHIP!
+  isActive: 0
+  isCompleted: 0
