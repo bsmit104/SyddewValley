@@ -3805,8 +3805,8 @@ MonoBehaviour:
     startHour: 13
     endHour: 23
     waypointParent: {fileID: 2062800113}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 0
     objectsToEnable:
     - {fileID: 236571139}
@@ -5434,8 +5434,8 @@ MonoBehaviour:
     startHour: 6
     endHour: 23
     waypointParent: {fileID: 275786590}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 249751887}
@@ -11060,8 +11060,8 @@ MonoBehaviour:
     startHour: 6
     endHour: 23
     waypointParent: {fileID: 1827144226}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1431774152}
@@ -11073,8 +11073,8 @@ MonoBehaviour:
     startHour: 6
     endHour: 23
     waypointParent: {fileID: 1827144226}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 1
     objectsToEnable:
     - {fileID: 1431774152}

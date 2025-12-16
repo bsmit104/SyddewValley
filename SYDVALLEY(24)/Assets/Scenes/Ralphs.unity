@@ -42013,8 +42013,8 @@ MonoBehaviour:
     startHour: 0
     endHour: 0
     waypointParent: {fileID: 900012997}
-    moveSpeed: 0
-    waitTime: 0
+    moveSpeed: 2
+    waitTime: 5
     loopWaypoints: 0
     objectsToEnable: []
     objectsToDisable: []
