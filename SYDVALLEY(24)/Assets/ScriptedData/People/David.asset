@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babec1e7e27b1f541841e086f6e69740, type: 3}
+  m_Name: David
+  m_EditorClassIdentifier: 
+  npcName: David
+  lovedGifts:
+  - {fileID: 11400000, guid: 5f39bdef50eb3ef4387901083a5dbb9b, type: 2}
+  - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
+  - {fileID: 11400000, guid: e76402d251f78c04bb9e300c81902fc8, type: 2}
+  - {fileID: 11400000, guid: d32be267ca1d9e446aea73d9f3a7f02b, type: 2}
+  - {fileID: 11400000, guid: 8b91b447483476c43a77ae2a033e63bb, type: 2}
+  - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
+  likedGifts:
+  - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  hatedGifts:
+  - {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
+  heartPoints: 110
+  dialogues:
+  - '"Hey, nice day today"'
+  - '"Dont worry, where Im from we slimes are nice. These slimes here are sub slimes"'
+  - '"I was feeding ducks earlier, so gentle and kind creatures."'
+  - '"I want to get into fundraising"'
+  - '"I just love people and life"'
+  - '"Hey how are you? Everything good?'
+  - '"If I had money I wld just give you money for free"'
+  - '"Wow you are slaying today"'
+  - '"Brayden is so lucky to have such an amazing girlfriend"'
