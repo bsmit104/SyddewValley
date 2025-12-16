@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babec1e7e27b1f541841e086f6e69740, type: 3}
+  m_Name: Ribs
+  m_EditorClassIdentifier: 
+  npcName: Ribs
+  lovedGifts:
+  - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
+  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
+  likedGifts:
+  - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  - {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+  hatedGifts:
+  - {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
+  - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  heartPoints: 110
+  dialogues:
+  - '"Hope youre not like the rest of the humans."'
+  - '"They kidnap my people, cage them up and force them to fight"'
+  - '"We also prevent malicious alien invasions here."'
+  - '"We actually developed a croaking technology that inflicts psychological distress
+    on persons of interest"'
+  - '"Everyone is an enemy, except if I am being honest we are pretty trusting"'
+  - '"You are probably a good egg"'
+  - '"We see humans like you see frogs"'
+  - '"Working nine to Fribbit"'
+  - '"We have spies everywhere"'
+  - '"Im doing this for my kids.."'
+  - '"Chickens are actually public enemy #1"'
+  - '"Im something of an alcoholic if I am being honest"'
