@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackOlives
   m_EditorClassIdentifier: 
   itemName: Black Olives
-  itemIcon: {fileID: 5356638019702245175, guid: 30c7fd76247dcaf42862588d5ea1e3ca, type: 3}
+  itemIcon: {fileID: -380387430950579151, guid: 30c7fd76247dcaf42862588d5ea1e3ca, type: 3}
   maxStack: 69
   isSellable: 1
   sellPrice: 5

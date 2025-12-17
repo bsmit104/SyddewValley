@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c8833844ae2c874b98e0de3b3826657, type: 3}
-  m_Name: ChickenSando
+  m_Name: Blueflower
   m_EditorClassIdentifier: 
-  itemName: Chicken Sandwich
-  itemIcon: {fileID: 21300000, guid: f66ea3015fda1ab4d9fd6c34a8756685, type: 3}
-  maxStack: 69
+  itemName: Blue Flower
+  itemIcon: {fileID: 382732674395083362, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
+  maxStack: 0
   isSellable: 0
   sellPrice: 0
-  buyPrice: 10
+  buyPrice: 0
   isAvailableInShop: 1
-  isFood: 1
-  hungerRestore: 25
-  isPlaceable: 0
+  isFood: 0
+  hungerRestore: 0
+  isPlaceable: 1
