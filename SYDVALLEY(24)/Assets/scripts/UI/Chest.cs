@@ -1,14 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Chest : MonoBehaviour
 {
+    [Header("Chest Identification")]
+    [Tooltip("Unique ID for this chest (e.g., 'Town_ChestInHouse', 'City_ShopChest')")]
+    public string chestID;
+
     private bool isPlayerInRange;
     private ChestInventory chestInventory;
     public Inventory playerInventory;
 
     public ChestInventory ChestInventory => chestInventory;
+    public string ChestID => chestID;
+
+    void Awake()
+    {
+        // Auto-generate chest ID if not set
+        if (string.IsNullOrEmpty(chestID))
+        {
+            chestID = $"{SceneManager.GetActiveScene().name}_{gameObject.name}_{transform.position.x}_{transform.position.y}";
+        }
+    }
 
     void Start()
     {
@@ -18,10 +31,13 @@ public class Chest : MonoBehaviour
         // Ensure ChestManager exists
         if (ChestManager.Instance == null)
         {
-            Debug.LogError("ChestManager not found in scene! Please add a ChestManager GameObject with the ChestManager script.");
+            Debug.LogError("ChestManager not found in scene!");
             enabled = false;
             return;
         }
+
+        // Load chest contents from save
+        LoadChestContents();
     }
 
     void Update()
@@ -73,127 +89,60 @@ public class Chest : MonoBehaviour
     {
         if (ChestManager.Instance == null) return;
         ChestManager.Instance.CloseChest();
+        
+        // Save chest contents when closing
+        SaveChestContents();
     }
 
-    // public void TransferToChest(Inventory.ItemStack itemStack)
-    // {
-    //     if (chestInventory.AddItem(itemStack))
-    //     {
-    //         playerInventory.RemoveItem(itemStack.item, itemStack.stackSize);
-    //     }
-    // }
+    private void LoadChestContents()
+    {
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.LoadChestInventory(chestID, chestInventory);
+        }
+    }
 
-    // public void TransferToPlayer(Inventory.ItemStack itemStack)
-    // {
-    //     if (playerInventory.AddItem(itemStack.item, itemStack.stackSize))
-    //     {
-    //         chestInventory.RemoveItem(itemStack.item, itemStack.stackSize);
-    //     }
-    // }
+    private void SaveChestContents()
+    {
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SaveChestInventory(chestID, chestInventory);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Save chest contents when the scene unloads
+        SaveChestContents();
+    }
 }
 
 
-// public class Chest : MonoBehaviour
-// {
-//     public GameObject chestCanvas; // Assign this in the Inspector
-//     private bool isPlayerInRange;
-//     public ChestInventory chestInventory;
-//     public Inventory playerInventory;
-
-//     void Update()
-//     {
-//         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
-//         {
-//             ToggleChest();
-//         }
-//     }
-
-//     void OnTriggerEnter2D(Collider2D other)
-//     {
-//         if (other.CompareTag("Player"))
-//         {
-//             isPlayerInRange = true;
-//         }
-//     }
-
-//     void OnTriggerExit2D(Collider2D other)
-//     {
-//         if (other.CompareTag("Player"))
-//         {
-//             isPlayerInRange = false;
-//             CloseChest();
-//         }
-//     }
-
-//     void ToggleChest()
-//     {
-//         if (chestCanvas.activeSelf)
-//         {
-//             CloseChest();
-//         }
-//         else
-//         {
-//             OpenChest();
-//         }
-//     }
-
-//     void OpenChest()
-//     {
-//         chestCanvas.SetActive(true);
-//     }
-
-//     void CloseChest()
-//     {
-//         chestCanvas.SetActive(false);
-//     }
-
-//     public void TransferItemToPlayerInventory(int itemIndex)
-//     {
-//         if (chestInventory != null && playerInventory != null)
-//         {
-//             if (itemIndex >= 0 && itemIndex < chestInventory.items.Count)
-//             {
-//                 var itemStack = chestInventory.items[itemIndex];
-//                 if (itemStack != null && itemStack.item != null)
-//                 {
-//                     if (playerInventory.AddItem(itemStack.item, itemStack.stackSize))
-//                     {
-//                         chestInventory.RemoveItem(itemStack.item, itemStack.stackSize);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-//     public void TransferItemToChestInventory(int itemIndex)
-//     {
-//         if (chestInventory != null && playerInventory != null)
-//         {
-//             if (itemIndex >= 0 && itemIndex < playerInventory.items.Count)
-//             {
-//                 var itemStack = playerInventory.items[itemIndex];
-//                 if (itemStack != null && itemStack.item != null)
-//                 {
-//                     if (chestInventory.AddItem(itemStack.item, itemStack.stackSize))
-//                     {
-//                         playerInventory.RemoveItem(itemStack.item, itemStack.stackSize);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-
-
-
-
+// using System.Collections;
+// using System.Collections.Generic;
 // using UnityEngine;
 
 // public class Chest : MonoBehaviour
 // {
-//     public GameObject chestCanvas; // Assign this in the Inspector
 //     private bool isPlayerInRange;
+//     private ChestInventory chestInventory;
+//     public Inventory playerInventory;
+
+//     public ChestInventory ChestInventory => chestInventory;
+
+//     void Start()
+//     {
+//         // Create a unique inventory instance for this chest
+//         chestInventory = gameObject.AddComponent<ChestInventory>();
+        
+//         // Ensure ChestManager exists
+//         if (ChestManager.Instance == null)
+//         {
+//             Debug.LogError("ChestManager not found in scene! Please add a ChestManager GameObject with the ChestManager script.");
+//             enabled = false;
+//             return;
+//         }
+//     }
 
 //     void Update()
 //     {
@@ -222,7 +171,9 @@ public class Chest : MonoBehaviour
 
 //     void ToggleChest()
 //     {
-//         if (chestCanvas.activeSelf)
+//         if (ChestManager.Instance == null) return;
+        
+//         if (ChestManager.Instance.IsChestOpen())
 //         {
 //             CloseChest();
 //         }
@@ -234,11 +185,30 @@ public class Chest : MonoBehaviour
 
 //     void OpenChest()
 //     {
-//         chestCanvas.SetActive(true);
+//         if (ChestManager.Instance == null) return;
+//         ChestManager.Instance.OpenChest(this);
 //     }
 
 //     void CloseChest()
 //     {
-//         chestCanvas.SetActive(false);
+//         if (ChestManager.Instance == null) return;
+//         ChestManager.Instance.CloseChest();
 //     }
+
+//     // public void TransferToChest(Inventory.ItemStack itemStack)
+//     // {
+//     //     if (chestInventory.AddItem(itemStack))
+//     //     {
+//     //         playerInventory.RemoveItem(itemStack.item, itemStack.stackSize);
+//     //     }
+//     // }
+
+//     // public void TransferToPlayer(Inventory.ItemStack itemStack)
+//     // {
+//     //     if (playerInventory.AddItem(itemStack.item, itemStack.stackSize))
+//     //     {
+//     //         chestInventory.RemoveItem(itemStack.item, itemStack.stackSize);
+//     //     }
+//     // }
 // }
+

@@ -3992,7 +3992,7 @@ GameObject:
   - component: {fileID: 196899952}
   - component: {fileID: 196899951}
   m_Layer: 0
-  m_Name: chest
+  m_Name: chest4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4010,6 +4010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca989c4839fd78847bee90485c825f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestID: chest4
   playerInventory: {fileID: 533837612}
 --- !u!61 &196899952
 BoxCollider2D:
@@ -47196,7 +47197,7 @@ GameObject:
   - component: {fileID: 2030719954}
   - component: {fileID: 2030719953}
   m_Layer: 0
-  m_Name: chest (1)
+  m_Name: chest3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47214,6 +47215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca989c4839fd78847bee90485c825f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestID: chest3
   playerInventory: {fileID: 533837612}
 --- !u!61 &2030719954
 BoxCollider2D:
