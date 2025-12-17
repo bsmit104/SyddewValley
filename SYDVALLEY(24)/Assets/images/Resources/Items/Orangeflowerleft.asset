@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Orange Flower Left
   itemIcon: {fileID: 3102807365247254869, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
   maxStack: 0
-  isSellable: 1
+  isSellable: 0
   sellPrice: 0
-  buyPrice: 0
+  buyPrice: 12
   isAvailableInShop: 1
   isFood: 0
   hungerRestore: 0

@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Yellow Flower
   itemIcon: {fileID: 7178679613761584067, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
   maxStack: 0
-  isSellable: 1
+  isSellable: 0
   sellPrice: 0
-  buyPrice: 0
+  buyPrice: 10
   isAvailableInShop: 1
   isFood: 0
   hungerRestore: 0

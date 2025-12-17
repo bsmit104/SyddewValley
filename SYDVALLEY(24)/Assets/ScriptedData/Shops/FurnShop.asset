@@ -14,6 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopName: FurnShop
   availableItems:
-  - {fileID: 11400000, guid: 2694d43bdb1607541b170f80d2d65636, type: 2}
+  - {fileID: 11400000, guid: 52c4456c3f1091d42b9bc2c8a899d03a, type: 2}
+  - {fileID: 11400000, guid: 7739ae8be3712e347962073f4266d853, type: 2}
+  - {fileID: 11400000, guid: a12cca9d7707e224ca633ecec588b69a, type: 2}
+  - {fileID: 11400000, guid: b17adb4b761cbac438119ed10d119c89, type: 2}
+  - {fileID: 11400000, guid: f78af4b0f866e3348907d882d5b08318, type: 2}
+  - {fileID: 11400000, guid: 080785e42ef395f4aa6efaae1c9b50c9, type: 2}
+  - {fileID: 11400000, guid: 4c87b4418bc822c47a3c28e296ada24e, type: 2}
+  - {fileID: 11400000, guid: 7a42550027e07a54bbb02b9bf00e4512, type: 2}
+  - {fileID: 11400000, guid: 89798d572b95e0242b185c21aaa3d786, type: 2}
+  - {fileID: 11400000, guid: cee4a8792b9b6104bb8f2734e2607d32, type: 2}
+  - {fileID: 11400000, guid: 312c1b1878a227c4ca4cd105e7c28b66, type: 2}
+  - {fileID: 11400000, guid: 742fa609dbbead74b85c0873fba657ea, type: 2}
+  - {fileID: 11400000, guid: 7cbd932fe0b9c21439324e3dd2a0e3f5, type: 2}
+  - {fileID: 11400000, guid: 8ef21e273a60a524587855a757772e61, type: 2}
+  - {fileID: 11400000, guid: c3456444355d5a449aa1d12477e1d96a, type: 2}
+  - {fileID: 11400000, guid: fa4c4e1ce076c8e4b8775fc583849b99, type: 2}
+  - {fileID: 11400000, guid: 751fbba6737c00f41aa111db424435cb, type: 2}
+  - {fileID: 11400000, guid: 0aedee33a7658b14e8d8d4ff4abcb526, type: 2}
+  - {fileID: 11400000, guid: 62524882a9201f54fa525675e20bc9b6, type: 2}
+  - {fileID: 11400000, guid: 80282409e00bb2946a0dd99df13271e4, type: 2}
+  - {fileID: 11400000, guid: 54aaed50731a171449c1f83d8201ce19, type: 2}
+  - {fileID: 11400000, guid: 600bc0ee6a9a6a142b15bdf62e4b6214, type: 2}
   - {fileID: 11400000, guid: 95af317c3acd56f4582493b18b1b3b45, type: 2}
+  - {fileID: 11400000, guid: 1d160381ad9e60d4cac51f7224ce38e9, type: 2}
+  - {fileID: 11400000, guid: 50dbe664234c07149b4bea572fe7149c, type: 2}
+  - {fileID: 11400000, guid: 2b40745e0d7af094593884403102f0b8, type: 2}
+  - {fileID: 11400000, guid: bb66b9ac0a5f1dc4f88e891ad22c572f, type: 2}
+  - {fileID: 11400000, guid: c3fdc19372309624eb95d1ee1e10ae0a, type: 2}
+  - {fileID: 11400000, guid: 6105cc959f4d7594eaa5b12f76ebccc4, type: 2}
+  - {fileID: 11400000, guid: e06ddf661a4ae90499c49a57cfa5b5ed, type: 2}
+  - {fileID: 11400000, guid: 38a1f7134d8b12b4ab86744647ae8b78, type: 2}
+  - {fileID: 11400000, guid: d480ecaf23a894a4290beb3d14edfc24, type: 2}
+  - {fileID: 11400000, guid: 075e03870772b214db6965ffb13ab428, type: 2}
+  - {fileID: 11400000, guid: 4840a998563c58043901487f4982a610, type: 2}
   shopIcon: {fileID: 8591533231565066105, guid: e876312b12b948742b7916ef457568e6, type: 3}

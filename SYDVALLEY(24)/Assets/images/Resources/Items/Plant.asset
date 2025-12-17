@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Plant
   itemIcon: {fileID: 8591533231565066105, guid: e876312b12b948742b7916ef457568e6, type: 3}
   maxStack: 0
-  isSellable: 1
+  isSellable: 0
   sellPrice: 0
   buyPrice: 0
   isAvailableInShop: 1

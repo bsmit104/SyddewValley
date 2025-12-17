@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Tealflowerleft
   m_EditorClassIdentifier: 
   itemName: Teal Flower Left
-  itemIcon: {fileID: 8591533231565066105, guid: e876312b12b948742b7916ef457568e6, type: 3}
+  itemIcon: {fileID: -5606360352757718097, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
   maxStack: 0
-  isSellable: 1
+  isSellable: 0
   sellPrice: 0
-  buyPrice: 0
+  buyPrice: 15
   isAvailableInShop: 1
   isFood: 0
   hungerRestore: 0

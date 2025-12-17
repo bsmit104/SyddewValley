@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c8833844ae2c874b98e0de3b3826657, type: 3}
-  m_Name: Purpleflower
+  m_Name: Yellowflowerleft
   m_EditorClassIdentifier: 
-  itemName: Plant
-  itemIcon: {fileID: -6639310812974848393, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
+  itemName: Yellow Flower Left
+  itemIcon: {fileID: -8608029353942601026, guid: ad3353e5151972642bcf5915a0d643a4, type: 3}
   maxStack: 0
   isSellable: 0
   sellPrice: 0
