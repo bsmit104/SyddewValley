@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (isDialogueVisible && Input.GetKeyDown(KeyCode.Space)) // Example key for closing dialogue
+        if (isDialogueVisible && Input.GetKeyDown(KeyCode.Q)) // Example key for closing dialogue
         {
             HideDialogue();
         }

@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Quest19
   m_EditorClassIdentifier: 
   questID: Quest19
-  questGiver: 
-  questDescription: 
-  requestedItem: {fileID: 0}
-  reward: 0
-  acceptDialogue: 
-  reminderDialogue: 
+  questGiver: James
+  questDescription: I need protein. I dont have enough money, someone maybe wanna
+    buy me a chicken sandwich? Ill pay what I can give.. - James
+  requestedItem: {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  reward: 1
+  acceptDialogue: '*scarfing* "Thank goodness I thought I was gonna die.'
+  reminderDialogue: '*looks pale.. wait what*'
   isActive: 0
   isCompleted: 0

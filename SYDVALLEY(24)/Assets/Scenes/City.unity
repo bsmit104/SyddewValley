@@ -3133,7 +3133,7 @@ GameObject:
   - component: {fileID: 473148897}
   - component: {fileID: 473148896}
   - component: {fileID: 473148895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Restaurant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4758,7 +4758,7 @@ GameObject:
   - component: {fileID: 657911030}
   - component: {fileID: 657911029}
   - component: {fileID: 657911031}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: furnstore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9310,7 +9310,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.065050125, y: -0.013196945}
+  m_Offset: {x: -0.08329773, y: -0.74313354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9320,7 +9320,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.6733665, y: 2.731823}
+  m_Size: {x: 3.5492935, y: 4.191696}
   m_EdgeRadius: 0
 --- !u!61 &1056985891
 BoxCollider2D:
@@ -18567,7 +18567,7 @@ GameObject:
   - component: {fileID: 1965943060}
   - component: {fileID: 1965943059}
   - component: {fileID: 1965943058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vendingMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19505,9 +19505,12 @@ MonoBehaviour:
   clockText: {fileID: 326299513}
   newDayPanel: {fileID: 301310994}
   newDayDateText: {fileID: 617963741}
+  penaltyText: {fileID: 0}
   nextDayButton: {fileID: 1593157998}
   dayDurationInSeconds: 300
   startHour: 6
+  minPassoutPenalty: 10
+  maxPassoutPenalty: 30
   currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:

@@ -14,12 +14,29 @@ public class NPCInteraction : MonoBehaviour
     private const int NEUTRAL_GIFT_POINTS = 20;
     private const int HATED_GIFT_POINTS = -40;
 
+    // void Update()
+    // {
+    //     // Detect player interaction (e.g., pressing a key while near the NPC)
+    //     if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         Interact();
+    //     }
+    // }
     void Update()
     {
         // Detect player interaction (e.g., pressing a key while near the NPC)
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
+        }
+
+        // Add gift handling directly in the NPC script
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.G))
+        {
+            if (Inventory.Instance != null)
+            {
+                Inventory.Instance.GiveSelectedItemToNPC(this);
+            }
         }
     }
 
@@ -82,10 +99,10 @@ public class NPCInteraction : MonoBehaviour
         if (FriendshipManager.Instance != null)
         {
             FriendshipManager.Instance.ModifyFriendship(npcData.npcName, pointsToAdd);
-            
+
             // Track that this NPC received a gift today
             FriendshipManager.Instance.OnGiftGiven(npcData.npcName);
-            
+
             // Update UI if it's open
             FriendshipUI friendshipUI = FindObjectOfType<FriendshipUI>();
             if (friendshipUI != null)
@@ -99,8 +116,8 @@ public class NPCInteraction : MonoBehaviour
         }
 
         // Also update the old heartPoints system for backward compatibility
-        npcData.heartPoints = FriendshipManager.Instance != null 
-            ? FriendshipManager.Instance.GetHeartLevel(npcData.npcName) 
+        npcData.heartPoints = FriendshipManager.Instance != null
+            ? FriendshipManager.Instance.GetHeartLevel(npcData.npcName)
             : npcData.heartPoints;
 
         // Remove item from inventory only if gift was accepted
@@ -285,10 +302,10 @@ public class NPCInteraction : MonoBehaviour
 //         if (FriendshipManager.Instance != null)
 //         {
 //             FriendshipManager.Instance.ModifyFriendship(npcData.npcName, pointsToAdd);
-            
+
 //             // Track that this NPC received a gift today
 //             FriendshipManager.Instance.OnGiftGiven(npcData.npcName);
-            
+
 //             // Update UI if it's open
 //             FriendshipUI friendshipUI = FindObjectOfType<FriendshipUI>();
 //             if (friendshipUI != null)
@@ -486,10 +503,10 @@ public class NPCInteraction : MonoBehaviour
 //         if (FriendshipManager.Instance != null)
 //         {
 //             FriendshipManager.Instance.ModifyFriendship(npcData.npcName, pointsToAdd);
-            
+
 //             // Track that this NPC received a gift today
 //             FriendshipManager.Instance.OnGiftGiven(npcData.npcName);
-            
+
 //             // Update UI if it's open
 //             FriendshipUI friendshipUI = FindObjectOfType<FriendshipUI>();
 //             if (friendshipUI != null)

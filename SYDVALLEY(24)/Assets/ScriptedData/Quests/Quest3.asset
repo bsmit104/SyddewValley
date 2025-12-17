@@ -20,5 +20,5 @@ MonoBehaviour:
   reward: 5
   acceptDialogue: Thanks bruv
   reminderDialogue: need caffeine or ima die
-  isActive: 1
+  isActive: 0
   isCompleted: 0
