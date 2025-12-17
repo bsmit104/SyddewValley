@@ -24,7 +24,7 @@ MonoBehaviour:
   hatedGifts:
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
-  heartPoints: 0
+  heartPoints: 110
   dialogues:
   - '"Today is a nice day for a hike"'
   - '"I was working on a poem earlier"'
@@ -48,3 +48,5 @@ MonoBehaviour:
     gone And I''ve been here for too long To face this on my own Well, I guess this
     is growing up Well, I guess this is growing up DRUM SOLO" *starts beat boxing
     and Irish dancing*'
+  - '"Brayden says if you ever see anything that seems like a glitch, its just proof
+    this is a video game or matrix, well that or its the aliens"*'
