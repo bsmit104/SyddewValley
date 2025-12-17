@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234af205cb365a046a6ac3e925275755, type: 3}
   m_Name: VendingMachine
   m_EditorClassIdentifier: 
-  shopName: 
+  shopName: VendingMachine
   availableItems:
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
-  shopIcon: {fileID: 0}
+  - {fileID: 11400000, guid: a6449876147338f45879fbf95fa3ac64, type: 2}
+  - {fileID: 11400000, guid: e330ba864989f7b4a8b3ff9024f9263d, type: 2}
+  - {fileID: 11400000, guid: 7dbf2fa19feb7294cae36aaacc3c1b21, type: 2}
+  shopIcon: {fileID: 21300000, guid: beae5189cbb25a046877d5a191a408af, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   shopName: Rileys Drugstore
   availableItems:
   - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
-  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
+  - {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
+  - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: 8b91b447483476c43a77ae2a033e63bb, type: 2}
   shopIcon: {fileID: 8611833618497729674, guid: 098ca3aa6cef9c34da67b9400c188549, type: 3}
