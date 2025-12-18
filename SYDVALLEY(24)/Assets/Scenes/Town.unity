@@ -2060,8 +2060,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 982991388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.9999998}
-  m_AnchorMax: {x: 1, y: 0.9999998}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9263,7 +9263,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1113108983}
   m_HandleRect: {fileID: 1113108982}
   m_Direction: 0
-  m_Value: 0.5000017
+  m_Value: 0.50000054
   m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11733,7 +11733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendshipPanel: {fileID: 1599382757}
   npcListContainer: {fileID: 558834358}
-  npcEntryPrefab: {fileID: 3297153898945043475, guid: 712c7232eae16c240b783b1f7a3bbf62, type: 3}
+  npcEntryPrefab: {fileID: 5033435776102239638, guid: a71dc4d5ce00b8f4ea791374b9052141, type: 3}
   toggleKey: 122
   fullHeartSprite: {fileID: 21300000, guid: a4a1e534706cbd847a992b1c5ddd6cc0, type: 3}
   emptyHeartSprite: {fileID: 21300000, guid: b8ba9c4d81dd4ef44b1823908d3cd6f6, type: 3}
@@ -12641,7 +12641,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 145689403}
   m_HandleRect: {fileID: 145689402}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12986,8 +12986,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 845061189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5000017, y: 0}
-  m_AnchorMax: {x: 0.5000017, y: 1}
+  m_AnchorMin: {x: 0.50000054, y: 0}
+  m_AnchorMax: {x: 0.50000054, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -97229,6 +97229,8 @@ MonoBehaviour:
   startHour: 6
   minPassoutPenalty: 10
   maxPassoutPenalty: 30
+  deathRespawnScene: Town
+  deathRespawnPosition: {x: 0, y: -3, z: 0}
   currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:
