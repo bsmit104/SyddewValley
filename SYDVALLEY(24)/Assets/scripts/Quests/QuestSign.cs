@@ -107,13 +107,9 @@ public class QuestSign : MonoBehaviour
             }
         }
         
-        // Activate the quest
+        // Activate the quest and show the quest description from the ScriptableObject
         QuestManager.Instance.ActivateQuest(staticCurrentDailyQuest);
-        
-        string questMessage = $"Hey this is {staticCurrentDailyQuest.questGiver}, Can someone bring me a {staticCurrentDailyQuest.requestedItem.itemName}? " +
-                             $"I will pay you ${staticCurrentDailyQuest.reward}!!";
-        
-        ShowDialogue(questMessage);
+        ShowDialogue(staticCurrentDailyQuest.questDescription);
     }
     
     private void ShowDialogue(string dialogue)
@@ -162,7 +158,6 @@ public class QuestSign : MonoBehaviour
     }
 }
 
-
 // using System.Collections;
 // using System.Collections.Generic;
 // using UnityEngine;
@@ -170,22 +165,42 @@ public class QuestSign : MonoBehaviour
 
 // public class QuestSign : MonoBehaviour
 // {
-//     private Quest currentDailyQuest; // The quest assigned for today
-//     private bool isPlayerInRange = false;
+//     // Static variable to persist the current quest across scene loads
+//     private static Quest staticCurrentDailyQuest;
+//     private static int staticLastAssignedDay = -1;
+//     private static CalendarManager.Month staticLastAssignedMonth;
+//     private static bool staticInitialized = false;
     
-//     private int lastAssignedDay = -1;
-//     private CalendarManager.Month lastAssignedMonth;
+//     private bool isPlayerInRange = false;
+//     private bool hasSubscribedToEvents = false;
     
 //     void Start()
 //     {
-//         // Subscribe to day changes
-//         if (CalendarManager.Instance != null)
+//         // Only initialize once across all scene loads
+//         if (!staticInitialized)
 //         {
-//             CalendarManager.Instance.OnDayChanged += OnNewDay;
+//             staticInitialized = true;
+//             AssignNewQuest();
+//         }
+//         else
+//         {
+//             // Check if day has changed since last time
+//             if (CalendarManager.Instance != null)
+//             {
+//                 if (staticLastAssignedDay != CalendarManager.Instance.CurrentDay || 
+//                     staticLastAssignedMonth != CalendarManager.Instance.CurrentMonth)
+//                 {
+//                     AssignNewQuest();
+//                 }
+//             }
 //         }
         
-//         // Assign initial quest
-//         AssignNewQuest();
+//         // Subscribe to day changes (only once per sign instance)
+//         if (CalendarManager.Instance != null && !hasSubscribedToEvents)
+//         {
+//             CalendarManager.Instance.OnDayChanged += OnNewDay;
+//             hasSubscribedToEvents = true;
+//         }
 //     }
 
 //     void Update()
@@ -212,38 +227,40 @@ public class QuestSign : MonoBehaviour
 //         }
 
 //         // Get a random quest from the quest pool
-//         currentDailyQuest = QuestManager.Instance.GetRandomQuest();
+//         staticCurrentDailyQuest = QuestManager.Instance.GetRandomQuest();
         
-//         if (currentDailyQuest != null)
+//         if (staticCurrentDailyQuest != null && CalendarManager.Instance != null)
 //         {
-//             lastAssignedDay = CalendarManager.Instance.CurrentDay;
-//             lastAssignedMonth = CalendarManager.Instance.CurrentMonth;
-//             Debug.Log($"New quest assigned: {currentDailyQuest.questGiver} wants {currentDailyQuest.requestedItem.itemName}");
+//             staticLastAssignedDay = CalendarManager.Instance.CurrentDay;
+//             staticLastAssignedMonth = CalendarManager.Instance.CurrentMonth;
+//             Debug.Log($"New quest assigned: {staticCurrentDailyQuest.questGiver} wants {staticCurrentDailyQuest.requestedItem.itemName}");
 //         }
 //     }
     
 //     private void InteractWithSign()
 //     {
-//         if (currentDailyQuest == null)
+//         if (staticCurrentDailyQuest == null)
 //         {
 //             ShowDialogue("No quests available today. Check back tomorrow!");
 //             return;
 //         }
         
 //         // Check if this quest is already active
-//         if (currentDailyQuest.isActive)
+//         if (staticCurrentDailyQuest.isActive)
 //         {
-//             ShowDialogue("You've already accepted this quest! Bring the item to the NPC.");
+//             string reminderMessage = $"Reminder: {staticCurrentDailyQuest.questGiver} wants a {staticCurrentDailyQuest.requestedItem.itemName}. " +
+//                                     $"Bring it to them for ${staticCurrentDailyQuest.reward}!";
+//             ShowDialogue(reminderMessage);
 //             return;
 //         }
         
 //         // Check if the quest was already completed today
-//         if (currentDailyQuest.isCompleted)
+//         if (staticCurrentDailyQuest.isCompleted)
 //         {
 //             // Assign a new quest since the previous one was completed
 //             AssignNewQuest();
             
-//             if (currentDailyQuest == null)
+//             if (staticCurrentDailyQuest == null)
 //             {
 //                 ShowDialogue("No more quests available today. Check back tomorrow!");
 //                 return;
@@ -251,10 +268,10 @@ public class QuestSign : MonoBehaviour
 //         }
         
 //         // Activate the quest
-//         QuestManager.Instance.ActivateQuest(currentDailyQuest);
+//         QuestManager.Instance.ActivateQuest(staticCurrentDailyQuest);
         
-//         string questMessage = $"Hey this is {currentDailyQuest.questGiver}, Can someone bring me a {currentDailyQuest.requestedItem.itemName}? " +
-//                              $"I will pay you ${currentDailyQuest.reward}!!";
+//         string questMessage = $"Hey this is {staticCurrentDailyQuest.questGiver}, Can someone bring me a {staticCurrentDailyQuest.requestedItem.itemName}? " +
+//                              $"I will pay you ${staticCurrentDailyQuest.reward}!!";
         
 //         ShowDialogue(questMessage);
 //     }
@@ -289,9 +306,19 @@ public class QuestSign : MonoBehaviour
 
 //     private void OnDestroy()
 //     {
-//         if (CalendarManager.Instance != null)
+//         if (CalendarManager.Instance != null && hasSubscribedToEvents)
 //         {
 //             CalendarManager.Instance.OnDayChanged -= OnNewDay;
+//             hasSubscribedToEvents = false;
 //         }
 //     }
+    
+//     // Reset static data when game quits or starts fresh
+//     private void OnApplicationQuit()
+//     {
+//         staticInitialized = false;
+//         staticCurrentDailyQuest = null;
+//         staticLastAssignedDay = -1;
+//     }
 // }
+

@@ -2090,7 +2090,7 @@ Transform:
   m_GameObject: {fileID: 255714279}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.98, y: -3.36, z: 0}
+  m_LocalPosition: {x: -12.7, y: -3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38108,7 +38108,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.6452489, y: -0.37137747}
+  m_Offset: {x: 0.57885575, y: -5.151786}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -38118,7 +38118,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.2904978, y: 2.3338299}
+  m_Size: {x: 10.656227, y: 11.894646}
   m_EdgeRadius: 0
 --- !u!224 &1282387558 stripped
 RectTransform:
@@ -40297,6 +40297,8 @@ MonoBehaviour:
   hungerBar: {fileID: 798129531}
   hungerDrainInterval: 60
   healthRegenInterval: 20
+  minMedicalBill: 10
+  maxMedicalBill: 30
   damageKey: 112
   energyKey: 111
   regenEnergyKey: 105
@@ -44071,9 +44073,14 @@ MonoBehaviour:
   clockText: {fileID: 326299513}
   newDayPanel: {fileID: 301310994}
   newDayDateText: {fileID: 617963741}
+  penaltyText: {fileID: 0}
   nextDayButton: {fileID: 1593157998}
   dayDurationInSeconds: 300
   startHour: 6
+  minPassoutPenalty: 10
+  maxPassoutPenalty: 30
+  deathRespawnScene: Town
+  deathRespawnPosition: {x: 0, y: -3, z: 0}
   currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:
