@@ -6253,7 +6253,7 @@ GameObject:
   - component: {fileID: 196899952}
   - component: {fileID: 196899951}
   m_Layer: 0
-  m_Name: chest
+  m_Name: chest9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6271,6 +6271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca989c4839fd78847bee90485c825f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestID: chest9
   playerInventory: {fileID: 533837612}
 --- !u!61 &196899952
 BoxCollider2D:
@@ -42542,6 +42543,8 @@ MonoBehaviour:
   hungerBar: {fileID: 798129531}
   hungerDrainInterval: 60
   healthRegenInterval: 20
+  minMedicalBill: 10
+  maxMedicalBill: 30
   damageKey: 112
   energyKey: 111
   regenEnergyKey: 105
@@ -47977,9 +47980,14 @@ MonoBehaviour:
   clockText: {fileID: 326299513}
   newDayPanel: {fileID: 301310994}
   newDayDateText: {fileID: 617963741}
+  penaltyText: {fileID: 0}
   nextDayButton: {fileID: 1593157998}
   dayDurationInSeconds: 300
   startHour: 6
+  minPassoutPenalty: 10
+  maxPassoutPenalty: 30
+  deathRespawnScene: Town
+  deathRespawnPosition: {x: 0, y: -3, z: 0}
   currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:

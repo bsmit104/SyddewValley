@@ -5396,7 +5396,7 @@ GameObject:
   - component: {fileID: 196899952}
   - component: {fileID: 196899951}
   m_Layer: 0
-  m_Name: chest
+  m_Name: chest8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5414,6 +5414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca989c4839fd78847bee90485c825f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestID: chest8
   playerInventory: {fileID: 533837612}
 --- !u!61 &196899952
 BoxCollider2D:
@@ -5549,7 +5550,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: e351166c6f410ab428d6b3d48ee0ee1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5570,7 +5571,7 @@ Transform:
   m_GameObject: {fileID: 196899950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.8, y: 5.31, z: 0}
+  m_LocalPosition: {x: -2.51, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56545,6 +56546,8 @@ MonoBehaviour:
   hungerBar: {fileID: 798129531}
   hungerDrainInterval: 60
   healthRegenInterval: 20
+  minMedicalBill: 10
+  maxMedicalBill: 30
   damageKey: 112
   energyKey: 111
   regenEnergyKey: 105
@@ -59413,7 +59416,7 @@ GameObject:
   - component: {fileID: 2030719954}
   - component: {fileID: 2030719953}
   m_Layer: 0
-  m_Name: chest (1)
+  m_Name: chest7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59431,6 +59434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca989c4839fd78847bee90485c825f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestID: chest7
   playerInventory: {fileID: 533837612}
 --- !u!61 &2030719954
 BoxCollider2D:
@@ -59566,7 +59570,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: e351166c6f410ab428d6b3d48ee0ee1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -59587,7 +59591,7 @@ Transform:
   m_GameObject: {fileID: 2030719952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.78, y: -11.43, z: 0}
+  m_LocalPosition: {x: 17.08, y: 3.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59797,9 +59801,14 @@ MonoBehaviour:
   clockText: {fileID: 326299513}
   newDayPanel: {fileID: 301310994}
   newDayDateText: {fileID: 617963741}
+  penaltyText: {fileID: 0}
   nextDayButton: {fileID: 1593157998}
   dayDurationInSeconds: 300
   startHour: 6
+  minPassoutPenalty: 10
+  maxPassoutPenalty: 30
+  deathRespawnScene: Town
+  deathRespawnPosition: {x: 0, y: -3, z: 0}
   currentTimeOfDay: 0
 --- !u!1001 &2091399819
 PrefabInstance:
