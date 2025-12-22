@@ -17,12 +17,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
+  - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: fca31fe9ad0136e469e4efee3cfd97af, type: 2}
+  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
   - {fileID: 11400000, guid: 6ebd2b21d8c1fcc419e1f46d640502d6, type: 2}
+  - {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
+  - {fileID: 11400000, guid: a6449876147338f45879fbf95fa3ac64, type: 2}
   hatedGifts:
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
   - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
+  - {fileID: 11400000, guid: 4e457e149b56bfb4b8128d8f0b270a66, type: 2}
+  - {fileID: 11400000, guid: 538016910c89780408bbda106bc2d61f, type: 2}
+  - {fileID: 11400000, guid: 64943fd6cf1f4fb44adb67528e55d96c, type: 2}
   heartPoints: 110
   dialogues:
   - '"Have you seen my airpods"'

@@ -16,9 +16,9 @@ MonoBehaviour:
   itemIcon: {fileID: 668132390524001209, guid: 30c7fd76247dcaf42862588d5ea1e3ca, type: 3}
   maxStack: 69
   isSellable: 1
-  sellPrice: 5
+  sellPrice: 2
   buyPrice: 10
   isAvailableInShop: 1
   isFood: 1
-  hungerRestore: 25
+  hungerRestore: 5
   isPlaceable: 0

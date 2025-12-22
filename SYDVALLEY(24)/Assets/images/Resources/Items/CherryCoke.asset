@@ -20,4 +20,5 @@ MonoBehaviour:
   buyPrice: 10
   isAvailableInShop: 1
   isFood: 1
-  hungerRestore: 25
+  hungerRestore: 10
+  isPlaceable: 0

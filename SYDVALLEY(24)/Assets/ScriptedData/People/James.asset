@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
   - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
   heartPoints: 110
   dialogues:
   - '"Im James from Survivor"'

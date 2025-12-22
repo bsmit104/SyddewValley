@@ -103,30 +103,30 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(damageKey))
-        {
-            TakeDamage(10);
-        }
+        // if (Input.GetKeyDown(damageKey))
+        // {
+        //     TakeDamage(10);
+        // }
 
-        if (Input.GetKeyDown(energyKey))
-        {
-            UseEnergy(20);
-        }
+        // if (Input.GetKeyDown(energyKey))
+        // {
+        //     UseEnergy(20);
+        // }
 
-        if (Input.GetKeyDown(regenEnergyKey))
-        {
-            RegenerateEnergy(20);
-        }
+        // if (Input.GetKeyDown(regenEnergyKey))
+        // {
+        //     RegenerateEnergy(20);
+        // }
 
-        if (Input.GetKeyDown(hungerDrainKey))
-        {
-            TakeHungerDamage(10);
-        }
+        // if (Input.GetKeyDown(hungerDrainKey))
+        // {
+        //     TakeHungerDamage(10);
+        // }
 
-        if (Input.GetKeyDown(regenHungerKey))
-        {
-            RegenerateHunger(20);
-        }
+        // if (Input.GetKeyDown(regenHungerKey))
+        // {
+        //     RegenerateHunger(20);
+        // }
 
         if (Input.GetMouseButtonDown(1))
         {

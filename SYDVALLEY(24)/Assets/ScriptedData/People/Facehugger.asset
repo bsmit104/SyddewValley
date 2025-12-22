@@ -10,32 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: babec1e7e27b1f541841e086f6e69740, type: 3}
-  m_Name: Anabelle
+  m_Name: Facehugger
   m_EditorClassIdentifier: 
-  npcName: Anabelle
+  npcName: Facehugger
   lovedGifts:
-  - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
+  - {fileID: 11400000, guid: 078b8cff9b0f46b40a0ef80a11879c47, type: 2}
   - {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
   - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
-  - {fileID: 11400000, guid: 078b8cff9b0f46b40a0ef80a11879c47, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
+  - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
+  - {fileID: 11400000, guid: c6fc83490b80b364abe727567a3edf03, type: 2}
   hatedGifts:
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
+  - {fileID: 11400000, guid: 4e457e149b56bfb4b8128d8f0b270a66, type: 2}
+  - {fileID: 11400000, guid: a6449876147338f45879fbf95fa3ac64, type: 2}
+  - {fileID: 11400000, guid: 7dbf2fa19feb7294cae36aaacc3c1b21, type: 2}
   - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
   heartPoints: 110
   dialogues:
-  - '"Maybe I should paint later"'
-  - '"Hey, fine weather today!"'
-  - '"RAH"'
-  - '"RAHHHHHH"'
-  - '"I like sauce"'
-  - '"I used to hate the texture of eggs, I still do but I found out if I put enough
-    sourcream and hot sauce on top, its good. Ya know?"'
-  - '"K''s coming over later"'
-  - '"Did you know I study marine Bio?"'
-  - '"Did you know sharks have fins?"'
-  - '"If not friend why friend shaped??"'
-  - '"I pick up all nudibranches, I fear no poison"'
+  - '"Give me my body back."'
+  - '"Whyyyyyyyy! Why are you doing this!"'
+  - '"Idk what you heard, but I dont eat.. nvm"'
+  - '*in and out of consciousness*'
+  - '"No dairy!"'
+  - '"Wheres sydney?"'
+  - '"I miss sydney.."'
+  - '"Which one of us is the real Brayden?"'
+  - '"Am I just a monster meant to trick thee, or am I really Brayden with a face
+    hugger that birthed a clone and controls him remotely, or are you free thinking."'
+  - '"Meep"'
+  - '"Sad"'

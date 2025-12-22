@@ -15,6 +15,11 @@ MonoBehaviour:
   npcName: Brae
   lovedGifts:
   - {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
+  - {fileID: 11400000, guid: 6623d3b398c3f414492c4b44d1debeb6, type: 2}
+  - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
+  - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  - {fileID: 11400000, guid: 1ff47af37d130fa4087eabf7af913c21, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
   - {fileID: 11400000, guid: 6ebd2b21d8c1fcc419e1f46d640502d6, type: 2}
@@ -22,6 +27,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
+  - {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+  - {fileID: 11400000, guid: 79980d42e2c9ccd4288562cf52fce80a, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
   heartPoints: 110
   dialogues:
   - '"Something is stinky"'

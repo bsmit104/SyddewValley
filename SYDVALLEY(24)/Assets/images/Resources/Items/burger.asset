@@ -17,8 +17,8 @@ MonoBehaviour:
   maxStack: 69
   isSellable: 0
   sellPrice: 0
-  buyPrice: 5
+  buyPrice: 15
   isAvailableInShop: 1
   isFood: 1
-  hungerRestore: 25
+  hungerRestore: 15
   isPlaceable: 0

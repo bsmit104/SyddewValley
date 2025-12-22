@@ -29,6 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea05408ef2d60764b9cf35f3483b8958, type: 2}
   - {fileID: 11400000, guid: a4a91d6106187e6479327f7177b35db7, type: 2}
   - {fileID: 11400000, guid: 7d4d27fc4c411b844a701509220e89c2, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
   heartPoints: 110
   dialogues:
   - '"Did you see the news?"'

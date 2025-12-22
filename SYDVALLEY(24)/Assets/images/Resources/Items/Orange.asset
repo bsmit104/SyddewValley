@@ -15,10 +15,10 @@ MonoBehaviour:
   itemName: Orange
   itemIcon: {fileID: 5479356476844602458, guid: 30c7fd76247dcaf42862588d5ea1e3ca, type: 3}
   maxStack: 69
-  isSellable: 0
-  sellPrice: 0
+  isSellable: 1
+  sellPrice: 5
   buyPrice: 5
   isAvailableInShop: 1
   isFood: 1
-  hungerRestore: 10
+  hungerRestore: 5
   isPlaceable: 0

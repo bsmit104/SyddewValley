@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b90e82898a978f47b9de3529ae71ca8, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  - {fileID: 11400000, guid: 9a1836a3b72333f4686304ad954a8f2a, type: 2}
+  - {fileID: 11400000, guid: 79980d42e2c9ccd4288562cf52fce80a, type: 2}
   hatedGifts:
   - {fileID: 11400000, guid: c236d6052dce83e43a228fa97122f723, type: 2}
   heartPoints: 110

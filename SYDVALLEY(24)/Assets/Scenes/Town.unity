@@ -21198,7 +21198,7 @@ MonoBehaviour:
   healthBar: {fileID: 1159776337}
   energyBar: {fileID: 1652627366}
   hungerBar: {fileID: 798129531}
-  hungerDrainInterval: 60
+  hungerDrainInterval: 30
   healthRegenInterval: 2
   minMedicalBill: 10
   maxMedicalBill: 30

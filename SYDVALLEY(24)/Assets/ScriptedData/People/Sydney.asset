@@ -18,9 +18,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b0b3b3f624ad1148983b3ef2b4d0bbb, type: 2}
   - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
   - {fileID: 11400000, guid: 987a29e01083ef34bb84979da35b16e6, type: 2}
+  - {fileID: 11400000, guid: 79980d42e2c9ccd4288562cf52fce80a, type: 2}
+  - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  - {fileID: 11400000, guid: ea05408ef2d60764b9cf35f3483b8958, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
   - {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
+  - {fileID: 11400000, guid: d32be267ca1d9e446aea73d9f3a7f02b, type: 2}
+  - {fileID: 11400000, guid: e76402d251f78c04bb9e300c81902fc8, type: 2}
+  - {fileID: 11400000, guid: fc94f904e63ba3b4a96d030b9d0805db, type: 2}
+  - {fileID: 11400000, guid: 9d34ac6162181844d96b855c2be297f1, type: 2}
   hatedGifts:
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}

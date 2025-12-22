@@ -17,13 +17,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5886fe3352ed2b142b2f9812f2dbc883, type: 2}
   - {fileID: 11400000, guid: 8039df5b94f4c134b99a2710e2618761, type: 2}
   - {fileID: 11400000, guid: 0d289f6f83d23a14ea56563f0787d47d, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
+  - {fileID: 11400000, guid: 078b8cff9b0f46b40a0ef80a11879c47, type: 2}
+  - {fileID: 11400000, guid: 5d6306379bb88924e8ffdc30b6baa58a, type: 2}
+  - {fileID: 11400000, guid: e330ba864989f7b4a8b3ff9024f9263d, type: 2}
   likedGifts:
   - {fileID: 11400000, guid: e8cb6332f3bc83c4490e7ada71af5d03, type: 2}
   - {fileID: 11400000, guid: 6ebd2b21d8c1fcc419e1f46d640502d6, type: 2}
+  - {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
   hatedGifts:
   - {fileID: 11400000, guid: d951b8aca874e6744b44612f59ce3db2, type: 2}
   - {fileID: 11400000, guid: 3d32614613b38e34096c614287d0fb41, type: 2}
   - {fileID: 11400000, guid: 8c0d7f241e62645469636b337d029432, type: 2}
+  - {fileID: 11400000, guid: 43e61502224717b40bbe8331d81b643a, type: 2}
+  - {fileID: 11400000, guid: 854ad3630b6f8454786c46a6856db928, type: 2}
   heartPoints: 110
   dialogues:
   - '"We shld play soccer"'

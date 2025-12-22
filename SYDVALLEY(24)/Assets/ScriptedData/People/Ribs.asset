@@ -23,6 +23,18 @@ MonoBehaviour:
   hatedGifts:
   - {fileID: 11400000, guid: 8d5481e9e98f4eb4592bfd3eba71a5d6, type: 2}
   - {fileID: 11400000, guid: 05bd74092455b1a4eb9e21be74ea5ae0, type: 2}
+  - {fileID: 11400000, guid: 4a210dd8c8a617445bde98b1d2b2d7d1, type: 2}
+  - {fileID: 11400000, guid: 7d4d27fc4c411b844a701509220e89c2, type: 2}
+  - {fileID: 11400000, guid: fbd76a1ebd4fde243a6ba727526168c3, type: 2}
+  - {fileID: 11400000, guid: 7a051000d0c49ed4fbe82fea310c9215, type: 2}
+  - {fileID: 11400000, guid: 126a438373ed23243b1cec5d7233257e, type: 2}
+  - {fileID: 11400000, guid: 6623d3b398c3f414492c4b44d1debeb6, type: 2}
+  - {fileID: 11400000, guid: 571597bac85628e4f93f108314b30651, type: 2}
+  - {fileID: 11400000, guid: d70cbc243dff08f45a91a5d5a9bd31b3, type: 2}
+  - {fileID: 11400000, guid: 4a09c1bd36866d946b3ed37cda76387f, type: 2}
+  - {fileID: 11400000, guid: cffe3f3a8c7133446a809a641f90f057, type: 2}
+  - {fileID: 11400000, guid: beb94f81d913cb94594e452fd87eb3b6, type: 2}
+  - {fileID: 11400000, guid: 9d34ac6162181844d96b855c2be297f1, type: 2}
   heartPoints: 110
   dialogues:
   - '"Hope youre not like the rest of the humans."'
